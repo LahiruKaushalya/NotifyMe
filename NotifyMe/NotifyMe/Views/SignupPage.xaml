@@ -2,11 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.Views.SignupPage"
-             xmlns:ViewModels="clr-namespace:NotifyMe.ViewModels">
-
-    <ContentPage.BindingContext>
-        <ViewModels:SignupViewModel/>
-    </ContentPage.BindingContext>
+             BindingContext="{Binding SignupViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ContentPage.Content>
         <Grid RowSpacing="0">

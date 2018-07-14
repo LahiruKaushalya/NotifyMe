@@ -11,6 +11,7 @@ namespace NotifyMe
 		public App ()
 		{
 			InitializeComponent();
+            new DependencyInjector();
 
 			MainPage = new NavigationPage(new LoginPage());
 		}

@@ -2,12 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.Views.LoginPage"
-             xmlns:ViewModels="clr-namespace:NotifyMe.ViewModels">
+             BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <ContentPage.BindingContext>
-        <ViewModels:LoginViewModel/>
-    </ContentPage.BindingContext>
-    
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>

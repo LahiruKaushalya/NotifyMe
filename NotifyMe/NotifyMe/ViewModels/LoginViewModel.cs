@@ -1,19 +1,19 @@
-﻿using NotifyMe.ServiceInterfaces;
-using NotifyMe.Services;
-using NotifyMe.Views;
-using System;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+
+using NotifyMe.ServiceInterfaces;
+using NotifyMe.Views;
 
 namespace NotifyMe.ViewModels
 {
     public class LoginViewModel
     {
-        private UserService _userService;
+        private IUserService _userService;
 
-        public LoginViewModel()
+        public LoginViewModel(IUserService userService)
         {
-            _userService = new UserService();
+            _userService = userService;
         }
 
         public string Email { get; set; }
