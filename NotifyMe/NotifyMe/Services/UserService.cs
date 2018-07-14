@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SQLite;
 using Xamarin.Forms;
 
-using NotifyMe.Models;
+using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
 
 namespace NotifyMe.Services

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using NotifyMe.Models;
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.ServiceInterfaces
 {
