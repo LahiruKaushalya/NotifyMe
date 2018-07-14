@@ -24,33 +24,34 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async() => {
                     if (Email != null && Password != null)
                     {
                         try
                         {
                             var user = _userService.GetUserByEmail(Email);
-
                             if (user != null)
                             {
                                 var password = user.Password;
                                 if (password == Password)
                                 {
                                     //Login success
+                                    await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                 }
                                 else
                                 {
-
+                                    await Application.Current.MainPage.DisplayAlert("Alert", "Invalid password", "Ok");
                                 }
                             }
                             else //invalid Email
                             {
-
+                                await Application.Current.MainPage.DisplayAlert("Alert", "Invalid username", "Ok");
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             //DB Error
+                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
                         }
                     }
                     else //Incomplete inputs
@@ -65,10 +66,14 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(() => {
-                    Application.Current.MainPage.Navigation.PushAsync(new SignupPage());
+                return new Command(async() => {
+                   await Application.Current.MainPage.Navigation.PushAsync(new SignupPage());
                 });
             }
         }
+    }
+
+    public interface IPageDialogService
+    {
     }
 }

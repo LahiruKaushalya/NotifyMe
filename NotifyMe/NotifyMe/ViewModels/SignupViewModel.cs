@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-using NotifyMe.Models;
+using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
 
 namespace NotifyMe.ViewModels
@@ -28,7 +28,7 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(() => {
+                return new Command(async() => {
                     if (Password != ConfirmPassword)
                     {
                         // DisplayAlert("Alert", "You have been alerted", "OK"); 
@@ -47,16 +47,18 @@ namespace NotifyMe.ViewModels
                             bool isok = _userService.AddUser(user);
                             if (isok)
                             {
-
+                                
                             }
                             else
                             {
                                 //Adding failed
+                                await Application.Current.MainPage.DisplayAlert("Oops", "Signup failed. Try again later", "Ok");
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             //DB Error
+                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
                         }
                     }
                 });

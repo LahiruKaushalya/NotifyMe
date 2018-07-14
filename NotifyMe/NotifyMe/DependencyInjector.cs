@@ -20,6 +20,7 @@ namespace NotifyMe
 
             _unityContainer.RegisterType<LoginViewModel>();
             _unityContainer.RegisterType<SignupViewModel>();
+            _unityContainer.RegisterType<HomePageMasterViewModel>();
 
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(_unityContainer));
         }

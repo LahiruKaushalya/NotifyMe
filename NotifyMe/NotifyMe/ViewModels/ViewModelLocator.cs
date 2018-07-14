@@ -19,5 +19,13 @@ namespace NotifyMe.ViewModels
                 return ServiceLocator.Current.GetInstance<SignupViewModel>();
             }
         }
+
+        public HomePageMasterViewModel HomePageMasterViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomePageMasterViewModel>();
+            }
+        }
     }
 }

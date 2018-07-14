@@ -51,7 +51,8 @@
 
                 <BoxView Grid.Row="3" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
                 <Entry x:Name="PasswordEntry" 
-                       Text="{Binding Password}" 
+                       Text="{Binding Password}"
+                       IsPassword="True"
                        Placeholder="Password"
                        Grid.Row="3" 
                        Grid.Column="1" 
@@ -61,6 +62,7 @@
                 <BoxView Grid.Row="4" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
+                       IsPassword="True"
                        Placeholder="Confirm Password"
                        Grid.Row="4" 
                        Grid.Column="1" 

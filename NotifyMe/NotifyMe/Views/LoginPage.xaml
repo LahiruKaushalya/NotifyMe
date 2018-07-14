@@ -42,6 +42,7 @@
                 <BoxView Grid.Row="2" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}" 
+                       IsPassword="True"
                        Placeholder="Password"
                        Grid.Row="2" 
                        Grid.Column="1" 
