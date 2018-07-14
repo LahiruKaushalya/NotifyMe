@@ -1,10 +1,10 @@
-﻿using SQLite;
+﻿using System.Linq;
+using System.Collections.Generic;
+using SQLite;
 using Xamarin.Forms;
 
 using NotifyMe.Models;
 using NotifyMe.ServiceInterfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace NotifyMe.Services
 {
@@ -18,17 +18,19 @@ namespace NotifyMe.Services
             _dbContext.CreateTable<User>();
         }
 
-        public bool AddUserAsync(User user)
+        public bool AddUser(User user)
         {
-            throw new System.NotImplementedException();
+            var rowId =  _dbContext.Insert(user);
+            return rowId != -1;
         }
 
-        public IEnumerable<User> GetAllUsersAsync()
+        public List<User> GetAllUsers()
         {
-            throw new System.NotImplementedException();
+            var users = (from user in _dbContext.Table<User>() select user).ToList();
+            return users;
         }
 
-        public User GetUserByEmailAsync(string Email)
+        public User GetUserByEmail(string Email)
         {
             var user = _dbContext.Table<User>().FirstOrDefault(u => u.Email == Email);
             return user;

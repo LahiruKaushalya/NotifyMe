@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.Views.LoginPage"
+             xmlns:ViewModels="clr-namespace:NotifyMe.ViewModels">
+
+    <ContentPage.BindingContext>
+        <ViewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Row="0" BackgroundColor="Aqua"/>
+
+            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="1" BackgroundColor="GhostWhite">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <BoxView Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" 
+                         VerticalOptions="CenterAndExpand" WidthRequest="120" BackgroundColor="AliceBlue"
+                         TranslationY="10"/>
+
+                <BoxView Grid.Row="1" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                <Entry x:Name="EmailEntry" 
+                       Text="{Binding Email}" 
+                       Placeholder="Email"
+                       Grid.Row="1" 
+                       Grid.Column="1" 
+                       BackgroundColor="AliceBlue" 
+                       Margin="0,0,60,0"/>
+
+                <BoxView Grid.Row="2" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                <Entry x:Name="PasswordEntry" 
+                       Text="{Binding Password}" 
+                       Placeholder="Password"
+                       Grid.Row="2" 
+                       Grid.Column="1" 
+                       BackgroundColor="AliceBlue" 
+                       Margin="0,0,60,0"/>
+
+                <Button Grid.Row="3" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="10"
+                        WidthRequest="150"
+                        Text="Login"
+                        Command="{Binding Login}"/>
+
+                <Button Grid.Row="4" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="10"
+                        WidthRequest="150"
+                        Text="Singup"
+                        Command="{Binding Signup}"/>
+
+            </Grid>
+
+            <BoxView  BackgroundColor="WhiteSmoke" HorizontalOptions="Center" VerticalOptions="End"
+                      HeightRequest="120" WidthRequest="120" TranslationY="30"/>
+        </Grid>
+
+    </ContentPage.Content>
+    
+</ContentPage>

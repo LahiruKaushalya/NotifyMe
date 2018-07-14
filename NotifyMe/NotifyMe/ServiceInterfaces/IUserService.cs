@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 using NotifyMe.Models;
 
@@ -7,11 +6,11 @@ namespace NotifyMe.ServiceInterfaces
 {
     public interface IUserService
     {
-        User GetUserByEmailAsync(string Email);
+        User GetUserByEmail(string Email);
 
-        IEnumerable<User> GetAllUsersAsync();
+        List<User> GetAllUsers();
 
-        bool AddUserAsync(User user);
+        bool AddUser(User user);
 
     }
 }

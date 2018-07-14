@@ -1,6 +1,7 @@
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using NotifyMe.Views;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace NotifyMe
@@ -11,7 +12,7 @@ namespace NotifyMe
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
 		protected override void OnStart ()
