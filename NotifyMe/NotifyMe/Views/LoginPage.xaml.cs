@@ -9,7 +9,7 @@ namespace NotifyMe.Views
 		public LoginPage ()
 		{
 			InitializeComponent ();
-            NavigationPage.SetHasNavigationBar(this , false);
+            NavigationPage.SetHasBackButton(this , false);
 		}
 	}
 }

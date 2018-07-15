@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.Views.SignupPage"
+             xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding SignupViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
+                <RowDefinition Height="140"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0" BackgroundColor="Aqua"/>
+            <BoxView Grid.Row="0" BackgroundColor="#03A9F4"/>
 
             <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="1" BackgroundColor="GhostWhite">
                 <Grid.ColumnDefinitions>
@@ -19,7 +20,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="80"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
@@ -31,7 +32,7 @@
                          VerticalOptions="CenterAndExpand" WidthRequest="120" BackgroundColor="AliceBlue"
                          TranslationY="10"/>
 
-                <BoxView Grid.Row="1" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                <Image Source="ic_action_person.png" Grid.Row="1" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
@@ -40,7 +41,7 @@
                        BackgroundColor="AliceBlue" 
                        Margin="0,0,60,0"/>
 
-                <BoxView Grid.Row="2" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                <Image Source="ic_action_email.png" Grid.Row="2" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
                 <Entry x:Name="EmailEntry" 
                        Text="{Binding Email}" 
                        Placeholder="Email"
@@ -49,7 +50,7 @@
                        BackgroundColor="AliceBlue" 
                        Margin="0,0,60,0"/>
 
-                <BoxView Grid.Row="3" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                <Image Source="ic_action_accounts.png" Grid.Row="3" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
                        IsPassword="True"
@@ -58,8 +59,8 @@
                        Grid.Column="1" 
                        BackgroundColor="AliceBlue" 
                        Margin="0,0,60,0"/>
-
-                <BoxView Grid.Row="4" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                
+                <Image Source="ic_action_accounts.png" Grid.Row="4" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
                        IsPassword="True"
@@ -75,13 +76,14 @@
                         VerticalOptions="StartAndExpand"
                         TranslationY="10"
                         WidthRequest="150"
-                        Text="Singup"
+                        Text="Signup"
                         Command="{Binding Signup}"/>
 
             </Grid>
 
-            <BoxView  BackgroundColor="WhiteSmoke" HorizontalOptions="Center" VerticalOptions="End"
-                      HeightRequest="120" WidthRequest="120" TranslationY="30"/>
+            <Image:CircleImage Source="notify_me.png" 
+                   HorizontalOptions="Center" VerticalOptions="End"
+                   HeightRequest="125" WidthRequest="125" TranslationY="30"/>
         </Grid>
 
     </ContentPage.Content>
