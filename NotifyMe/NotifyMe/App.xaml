@@ -7,6 +7,19 @@
 	<Application.Resources>
         <ResourceDictionary>
             <ViewModels:ViewModelLocator x:Key="ViewModelLocator"/>
+            
+            <!--Styles -->
+            <Color x:Key="BaseColor">#03A9F4</Color>
+            
+
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="20" ></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource BaseColor}" ></Setter>
+                <Setter Property="TextColor" Value="#FFFFFF" ></Setter>
+                <Setter Property="FontSize" Value="Medium" ></Setter>
+                <Setter Property="FontAttributes" Value="Bold" ></Setter>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

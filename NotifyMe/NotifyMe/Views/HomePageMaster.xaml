@@ -14,7 +14,7 @@
             ItemsSource="{Binding MenuItems}">
 
             <ListView.Header>
-                <Grid BackgroundColor="#03A9F4">
+                <Grid BackgroundColor="{StaticResource BaseColor}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
@@ -45,7 +45,7 @@
                                 <ColumnDefinition Width="AUTO"/>
                             </Grid.ColumnDefinitions>
 
-                            <BoxView Grid.Column="0" BackgroundColor="Aqua"/>
+                            <Image Grid.Column="0" Source="{Binding Icon}"/>
                             <Label  Grid.Column="1"
                                 VerticalOptions="FillAndExpand" 
                                 VerticalTextAlignment="Center" 

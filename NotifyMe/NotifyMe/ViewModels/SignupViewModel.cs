@@ -29,9 +29,13 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(async() => {
-                    if (Password != ConfirmPassword)
+                    if (Name == null || Email == null || Password == null || ConfirmPassword == null)
                     {
-                        // DisplayAlert("Alert", "You have been alerted", "OK"); 
+                        await Application.Current.MainPage.DisplayAlert("Alert", "Information required to signup is incomplete.", "Ok");
+                    }
+                    else if (Password != ConfirmPassword)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Alert", "Passwords are mismatch.", "Ok");
                     }
                     else
                     {

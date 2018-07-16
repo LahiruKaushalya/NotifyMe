@@ -5,18 +5,32 @@
              xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding SignupViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image">
+                <Setter Property="Margin" Value="40,0,0,0"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="0,0,40,0"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="Grid.Column" Value="1"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="140"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0" BackgroundColor="#03A9F4"/>
+            <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
 
-            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="1" BackgroundColor="GhostWhite">
+            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -28,54 +42,44 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <BoxView Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" 
-                         VerticalOptions="CenterAndExpand" WidthRequest="120" BackgroundColor="AliceBlue"
-                         TranslationY="10"/>
+                <Label Grid.Row="0" Grid.ColumnSpan="2" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center">
+                    NotifyMe
+                </Label>
 
-                <Image Source="ic_action_person.png" Grid.Row="1" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
+                <Image Source="ic_action_person.png" Grid.Row="1" Grid.Column="0"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
-                       Grid.Row="1" 
-                       Grid.Column="1" 
-                       BackgroundColor="AliceBlue" 
-                       Margin="0,0,60,0"/>
+                       Grid.Row="1"/>
 
-                <Image Source="ic_action_email.png" Grid.Row="2" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
+                <Image Source="ic_action_email.png" Grid.Row="2" Grid.Column="0" />
                 <Entry x:Name="EmailEntry" 
                        Text="{Binding Email}" 
                        Placeholder="Email"
-                       Grid.Row="2" 
-                       Grid.Column="1" 
-                       BackgroundColor="AliceBlue" 
-                       Margin="0,0,60,0"/>
+                       Grid.Row="2"/>
 
-                <Image Source="ic_action_accounts.png" Grid.Row="3" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="EndAndExpand"/>
+                <Image Source="ic_action_accounts.png" Grid.Row="3" Grid.Column="0"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
                        IsPassword="True"
                        Placeholder="Password"
-                       Grid.Row="3" 
-                       Grid.Column="1" 
-                       BackgroundColor="AliceBlue" 
-                       Margin="0,0,60,0"/>
-                
-                <Image Source="ic_action_accounts.png" Grid.Row="4" Grid.Column="0" BackgroundColor="AliceBlue" HorizontalOptions="End"/>
+                       Grid.Row="3"/>
+
+                <Image Source="ic_action_accounts.png" Grid.Row="4" Grid.Column="0"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
                        IsPassword="True"
                        Placeholder="Confirm Password"
-                       Grid.Row="4" 
-                       Grid.Column="1" 
-                       BackgroundColor="AliceBlue" 
-                       Margin="0,0,60,0"/>
+                       Grid.Row="4"/>
 
                 <Button Grid.Row="5" 
                         Grid.ColumnSpan="2" 
-                        HorizontalOptions="CenterAndExpand"
+                        HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
-                        TranslationY="10"
-                        WidthRequest="150"
+                        TranslationY="30"
+                        Margin="40,0,40,0"
                         Text="Signup"
                         Command="{Binding Signup}"/>
 
@@ -83,7 +87,8 @@
 
             <Image:CircleImage Source="notify_me.png" 
                    HorizontalOptions="Center" VerticalOptions="End"
-                   HeightRequest="125" WidthRequest="125" TranslationY="30"/>
+                   BorderColor="White" BorderThickness="3"
+                   HeightRequest="140" WidthRequest="140" TranslationY="25"/>
         </Grid>
 
     </ContentPage.Content>
