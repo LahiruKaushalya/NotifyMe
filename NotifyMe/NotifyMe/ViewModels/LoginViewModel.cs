@@ -33,10 +33,11 @@ namespace NotifyMe.ViewModels
                             if (user != null)
                             {
                                 var password = user.Password;
-                                if (password == Password)
+                                if (password == Password)//Login success
                                 {
-                                    //Login success
+                                    user.LoginState = true;
                                     _userService.SetCurrentUser(user);
+                                    _userService.UpdateLoginState(user);
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                 }
                                 else

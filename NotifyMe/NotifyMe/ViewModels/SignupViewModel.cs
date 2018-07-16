@@ -52,6 +52,7 @@ namespace NotifyMe.ViewModels
                             bool isok = _userService.AddUser(user);
                             if (isok)
                             {
+                                _userService.SetCurrentUser(user);
                                 await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                             }
                             else

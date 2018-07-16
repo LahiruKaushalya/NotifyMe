@@ -190,4 +190,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\notify_me.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_action_secure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_action_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_action_previous_item.png" />
+  </ItemGroup>
 </Project>

@@ -16,5 +16,9 @@ namespace NotifyMe.ServiceInterfaces
 
         bool AddUser(User user);
 
+        void UpdateLoginState(User user);
+
+        User GetCurrentUserFromDb();
+
     }
 }

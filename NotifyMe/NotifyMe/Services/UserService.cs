@@ -37,6 +37,12 @@ namespace NotifyMe.Services
             return _currentUser;
         }
 
+        public User GetCurrentUserFromDb()
+        {
+            var user = _dbContext.Table<User>().FirstOrDefault(u => u.LoginState == true);
+            return user;
+        }
+
         public User GetUserByEmail(string Email)
         {
             var user = _dbContext.Table<User>().FirstOrDefault(u => u.Email == Email);
@@ -46,6 +52,11 @@ namespace NotifyMe.Services
         public void SetCurrentUser(User user)
         {
             _currentUser = user;
+        }
+
+        public void UpdateLoginState(User user)
+        {
+            _dbContext.Update(user);
         }
     }
 }

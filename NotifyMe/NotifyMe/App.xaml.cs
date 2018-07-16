@@ -1,7 +1,9 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CommonServiceLocator;
 
 using NotifyMe.Views;
+using NotifyMe.ServiceInterfaces;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace NotifyMe
@@ -12,13 +14,23 @@ namespace NotifyMe
 		{
 			InitializeComponent();
             new DependencyInjector();
-
-			MainPage = new NavigationPage(new LoginPage());
 		}
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+            var userService = ServiceLocator.Current.GetInstance<IUserService>();
+            var currentUser = userService.GetCurrentUserFromDb();
+
+            if (currentUser == null)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                userService.SetCurrentUser(currentUser);
+                MainPage = new NavigationPage(new HomePage());
+            }
+
 		}
 
 		protected override void OnSleep ()

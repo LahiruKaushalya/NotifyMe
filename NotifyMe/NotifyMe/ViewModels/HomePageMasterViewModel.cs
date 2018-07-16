@@ -12,7 +12,7 @@ namespace NotifyMe.ViewModels
     {
         public ObservableCollection<HomePageMenuItem> MenuItems { get; set; }
 
-        public string UserName { get; set; }
+        public string UserName { get; set;}
 
         private IUserService _userService;
 
