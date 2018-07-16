@@ -12,6 +12,8 @@ namespace NotifyMe.Services
     {
         private SQLiteConnection _dbContext;
 
+        private User _currentUser;
+        
         public UserService()
         {
             _dbContext = DependencyService.Get<ISqliteConnection>().GetConnection();
@@ -30,10 +32,20 @@ namespace NotifyMe.Services
             return users;
         }
 
+        public User GetCurrentUser()
+        {
+            return _currentUser;
+        }
+
         public User GetUserByEmail(string Email)
         {
             var user = _dbContext.Table<User>().FirstOrDefault(u => u.Email == Email);
             return user;
+        }
+
+        public void SetCurrentUser(User user)
+        {
+            _currentUser = user;
         }
     }
 }

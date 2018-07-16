@@ -44,9 +44,8 @@
 
                 <Label Grid.Row="0" Grid.ColumnSpan="2" 
                        HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center">
-                    NotifyMe
-                </Label>
+                       VerticalTextAlignment="Center"
+                       Text="{StaticResource AppName}"/>
 
                 <Image Source="ic_action_email.png" Grid.Row="1"/>
                 <Entry x:Name="EmailEntry" 
@@ -54,7 +53,7 @@
                        Placeholder="Email"
                        Grid.Row="1"/>
 
-                <Image Source="ic_action_accounts.png" Grid.Row="2"/>
+                <Image Source="ic_action_secure.png" Grid.Row="2"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}" 
                        IsPassword="True"

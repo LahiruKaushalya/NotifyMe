@@ -4,6 +4,7 @@ using Xamarin.Forms;
 
 using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
+using NotifyMe.Views;
 
 namespace NotifyMe.ViewModels
 {
@@ -51,7 +52,7 @@ namespace NotifyMe.ViewModels
                             bool isok = _userService.AddUser(user);
                             if (isok)
                             {
-                                
+                                await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                             }
                             else
                             {

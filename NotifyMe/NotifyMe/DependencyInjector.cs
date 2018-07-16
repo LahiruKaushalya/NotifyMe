@@ -1,4 +1,5 @@
 ﻿using Unity;
+using Unity.Lifetime;
 using Unity.ServiceLocation;
 using CommonServiceLocator;
 
@@ -16,7 +17,7 @@ namespace NotifyMe
         {
             _unityContainer = new UnityContainer();
 
-            _unityContainer.RegisterType<IUserService, UserService>();
+            _unityContainer.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
 
             _unityContainer.RegisterType<LoginViewModel>();
             _unityContainer.RegisterType<SignupViewModel>();

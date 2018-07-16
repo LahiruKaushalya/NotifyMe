@@ -6,6 +6,10 @@ namespace NotifyMe.ServiceInterfaces
 {
     public interface IUserService
     {
+        User GetCurrentUser();
+
+        void SetCurrentUser(User user);
+
         User GetUserByEmail(string Email);
 
         List<User> GetAllUsers();

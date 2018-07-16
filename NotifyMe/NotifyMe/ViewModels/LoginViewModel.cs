@@ -36,6 +36,7 @@ namespace NotifyMe.ViewModels
                                 if (password == Password)
                                 {
                                     //Login success
+                                    _userService.SetCurrentUser(user);
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                 }
                                 else
@@ -56,7 +57,7 @@ namespace NotifyMe.ViewModels
                     }
                     else //Incomplete inputs
                     {
-                        
+                        await Application.Current.MainPage.DisplayAlert("Alert", "Information required to login is incomplete.", "Ok");
                     }
                 });
             }

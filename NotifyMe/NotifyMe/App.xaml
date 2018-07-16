@@ -7,6 +7,7 @@
 	<Application.Resources>
         <ResourceDictionary>
             <ViewModels:ViewModelLocator x:Key="ViewModelLocator"/>
+            <x:String x:Key="AppName">NotifyMe</x:String>
             
             <!--Styles -->
             <Color x:Key="BaseColor">#03A9F4</Color>
