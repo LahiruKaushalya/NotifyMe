@@ -46,27 +46,27 @@
                        HorizontalTextAlignment="Center" 
                        VerticalTextAlignment="Center"
                        Text="{StaticResource AppName}"/>
-                
-                <Image Source="ic_action_person.png" Grid.Row="1" Grid.Column="0"/>
+
+                <Image Source="round_person_black_48.png" Grid.Row="1" Grid.Column="0"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
                        Grid.Row="1"/>
 
-                <Image Source="ic_action_email.png" Grid.Row="2" Grid.Column="0" />
+                <Image Source="round_email_black_48.png" Grid.Row="2" Grid.Column="0" />
                 <Entry x:Name="EmailEntry" 
                        Text="{Binding Email}" 
                        Placeholder="Email"
                        Grid.Row="2"/>
 
-                <Image Source="ic_action_secure.png" Grid.Row="3" Grid.Column="0"/>
+                <Image Source="round_https_black_48.png" Grid.Row="3" Grid.Column="0"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
                        IsPassword="True"
                        Placeholder="Password"
                        Grid.Row="3"/>
 
-                <Image Source="ic_action_secure.png" Grid.Row="4" Grid.Column="0"/>
+                <Image Source="round_https_black_48.png" Grid.Row="4" Grid.Column="0"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
                        IsPassword="True"

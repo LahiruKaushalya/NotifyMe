@@ -47,13 +47,13 @@
                        VerticalTextAlignment="Center"
                        Text="{StaticResource AppName}"/>
 
-                <Image Source="ic_action_email.png" Grid.Row="1"/>
+                <Image Source="round_email_black_48.png" Grid.Row="1"/>
                 <Entry x:Name="EmailEntry" 
                        Text="{Binding Email}" 
                        Placeholder="Email"
                        Grid.Row="1"/>
 
-                <Image Source="ic_action_secure.png" Grid.Row="2"/>
+                <Image Source="round_https_black_48.png" Grid.Row="2"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}" 
                        IsPassword="True"

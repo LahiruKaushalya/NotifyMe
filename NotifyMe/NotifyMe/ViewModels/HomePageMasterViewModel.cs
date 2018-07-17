@@ -23,11 +23,60 @@ namespace NotifyMe.ViewModels
 
             MenuItems = new ObservableCollection<HomePageMenuItem>(new[]
             {
-                    new HomePageMenuItem { Id = 0, Title = "Page 1", Icon = "ic_action_person.png", TargetType = typeof(HomePageDetail) },
-                    new HomePageMenuItem { Id = 1, Title = "Page 2", Icon = "ic_action_person.png", TargetType = typeof(HomePageDetail) },
-                    new HomePageMenuItem { Id = 2, Title = "Page 3", Icon = "ic_action_person.png", TargetType = typeof(HomePageDetail) },
-                    new HomePageMenuItem { Id = 3, Title = "Page 4", Icon = "ic_action_person.png", TargetType = typeof(HomePageDetail) },
-                    new HomePageMenuItem { Id = 4, Title = "Logout", Icon = "ic_action_previous_item.png", TargetType = typeof(LoginPage) },
+                    new HomePageMenuItem
+                    {
+                        Id = 0,
+                        Title = "Alerts",
+                        Icon = "round_notifications_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem
+                    {
+                        Id = 1,
+                        Title = "Add Alert",
+                        Icon = "round_add_alert_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem
+                    {
+                        Id = 2,
+                        Title = "Locations",
+                        Icon = "round_place_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem
+                    {
+                        Id = 3,
+                        Title = "Add Lacation",
+                        Icon = "round_add_location_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem
+                    {
+                        Id = 4,
+                        Title = "Account",
+                        Icon = "round_account_circle_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem
+                    {
+                        Id = 5,
+                        Title = "Settings",
+                        Icon = "round_settings_black_48.png",
+                        TargetType = typeof(HomePageDetail)
+                    },
+
+                    new HomePageMenuItem {
+                        Id = 6,
+                        Title = "Logout",
+                        Icon = "round_exit_to_app_black_48.png",
+                        TargetType = typeof(LoginPage)
+                    },
             });
         }
 

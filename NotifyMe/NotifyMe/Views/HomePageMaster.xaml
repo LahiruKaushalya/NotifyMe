@@ -35,10 +35,14 @@
                            Grid.Row="0" 
                            Text="{Binding UserName}" 
                            HorizontalOptions="EndAndExpand"
-                           Margin="0,10,0,0"/>
+                           Margin="0,10,0,0"
+                           FontSize="Medium"/>
                     
                     <Label Grid.Column="1" 
                            Grid.Row="2" 
+                           Margin="8,0,0,0"
+                           FontSize="Large"
+                           FontAttributes="Italic"
                            Text="{StaticResource AppName}" 
                            Style="{DynamicResource SubtitleStyle}"/>
 
@@ -59,7 +63,7 @@
                                 VerticalOptions="FillAndExpand" 
                                 VerticalTextAlignment="Center" 
                                 Text="{Binding Title}" 
-                                FontSize="24"/>
+                                FontSize="Medium"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

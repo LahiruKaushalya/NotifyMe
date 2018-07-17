@@ -169,9 +169,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_action_accounts.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -187,18 +184,132 @@
     <BundleResource Include="Resources\Default%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_action_email.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_action_person.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\notify_me.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_action_secure.png" />
+    <BundleResource Include="Resources\round_person_black_48pt_1x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_action_previous_item.png" />
+    <BundleResource Include="Resources\round_person_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_person_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_email_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_email_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_email_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_https_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_https_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_https_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_exit_to_app_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_exit_to_app_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_exit_to_app_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_white_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_white_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_white_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_location_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_notifications_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_notifications_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_notifications_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_white_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_white_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_alert_white_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_account_circle_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_account_circle_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_account_circle_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_white_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_white_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_white_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_white_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_white_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_place_white_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_settings_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_settings_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_settings_black_48pt_3x.png" />
   </ItemGroup>
 </Project>
