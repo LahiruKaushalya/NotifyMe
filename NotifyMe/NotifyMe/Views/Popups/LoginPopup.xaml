@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.Popups.PasswordPopup"
+             x:Class="NotifyMe.Views.Popups.LoginPopup"
              xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             BindingContext="{Binding PasswordPopupViewModel, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding LoginPopupViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -21,56 +21,47 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Margin="40,56,40,20" RowSpacing="8" ColumnSpacing="5" BackgroundColor="White">
+    <Grid Margin="40,60,40,30" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="12"/>
-            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="round_https_black_48.png" Grid.Row="1"/>
-        <Entry x:Name="curPwdEntry" 
-                       Text="{Binding CurrentPassword}"
-                       IsPassword="True"
-                       Placeholder="Current Password"
+        <Image Source="round_person_black_48.png" Grid.Row="1"/>
+        <Entry x:Name="NameEntry" 
+                       Text="{Binding Email}"
+                       Placeholder="Email"
                        Grid.Row="1"/>
 
         <Image Source="round_https_black_48.png" Grid.Row="2"/>
-        <Entry x:Name="NewPwdEntry" 
-                       Text="{Binding NewPassword}" 
+        <Entry x:Name="PwdEntry" 
+                       Text="{Binding Password}" 
                        IsPassword="True"
-                       Placeholder="New Password"
+                       Placeholder="Password"
                        Grid.Row="2"/>
-        
-        <Image Source="round_https_black_48.png" Grid.Row="3"/>
-        <Entry x:Name="ConPwdEntry" 
-                       Text="{Binding ConfirmPassword}" 
-                       IsPassword="True"
-                       Placeholder="Confirm Password"
-                       Grid.Row="3"/>
 
-        <Button Grid.Row="4" 
+        <Button Grid.Row="3" 
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
-                        TranslationY="12"
+                        TranslationY="25"
                         Margin="30,0,30,0"
-                        Text="Update"
-                        Command="{Binding Update}"/>
+                        Text="Login"
+                        Command="{Binding Login}"/>
 
         <Image:CircleImage Source="notify_me.png" 
-                           Grid.Row="5"
+                           Grid.Row="4"
                            Grid.ColumnSpan="2"
                            HorizontalOptions="Center" VerticalOptions="Center"
                            BorderColor="White" BorderThickness="1"
-                           HeightRequest="150" WidthRequest="150" TranslationY="12"/>
+                           HeightRequest="150" WidthRequest="150" TranslationY="25"/>
 
     </Grid>
 

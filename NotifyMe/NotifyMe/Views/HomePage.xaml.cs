@@ -28,12 +28,12 @@ namespace NotifyMe.Views
             if (item == null)
                 return;
 
-            if (item.TargetType == typeof(LoginPage))
+            if (item.TargetType == typeof(SignupPage))
             {
                 var responce = await Application.Current.MainPage.DisplayAlert("Logout", "Are you sure?", "Yes", "No");
                 if (responce)
                 {
-                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                    Application.Current.MainPage = new NavigationPage(new SignupPage());
                     var user = _userService.GetCurrentUser();
                     user.LoginState = false;
                     _userService.UpdateUser(user);

@@ -23,7 +23,7 @@ namespace NotifyMe
 
             if (currentUser == null)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new SignupPage());
             }
             else
             {

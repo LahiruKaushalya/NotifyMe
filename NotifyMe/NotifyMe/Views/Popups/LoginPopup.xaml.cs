@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NotifyMe.Views
+namespace NotifyMe.Views.Popups
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SignupPage : ContentPage
+	public partial class LoginPopup 
 	{
-		public SignupPage ()
+		public LoginPopup ()
 		{
 			InitializeComponent ();
-            NavigationPage.SetHasBackButton(this, false);
-        }
+		}
 	}
 }

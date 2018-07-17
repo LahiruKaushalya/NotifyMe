@@ -4,11 +4,11 @@ namespace NotifyMe.ViewModels
 {
     public class ViewModelLocator
     {
-        public LoginViewModel LoginViewModel
+        public LoginPopupViewModel LoginPopupViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<LoginViewModel>();
+                return ServiceLocator.Current.GetInstance<LoginPopupViewModel>();
             }
         }
 

@@ -75,7 +75,7 @@ namespace NotifyMe.ViewModels
                         Id = 6,
                         Title = "Logout",
                         Icon = "round_exit_to_app_black_48.png",
-                        TargetType = typeof(LoginPage)
+                        TargetType = typeof(SignupPage)
                     },
             });
         }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
 
 using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
 using NotifyMe.Views;
+using NotifyMe.Views.Popups;
 
 namespace NotifyMe.ViewModels
 {
@@ -71,11 +73,14 @@ namespace NotifyMe.ViewModels
             }
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this , new PropertyChangedEventArgs(propertyName));
-        //}
+        public ICommand Login
+        {
+            get
+            {
+                return new Command(async() => {
+                    await PopupNavigation.PushAsync(new LoginPopup());
+                });
+            }
+        }
     }
 }

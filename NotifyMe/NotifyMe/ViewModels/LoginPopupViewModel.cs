@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
 
 using NotifyMe.ServiceInterfaces;
 using NotifyMe.Views;
 
 namespace NotifyMe.ViewModels
 {
-    public class LoginViewModel
+    public class LoginPopupViewModel
     {
         private IUserService _userService;
 
-        public LoginViewModel(IUserService userService)
+        public LoginPopupViewModel(IUserService userService)
         {
             _userService = userService;
         }
@@ -38,7 +39,9 @@ namespace NotifyMe.ViewModels
                                     user.LoginState = true;
                                     _userService.SetCurrentUser(user);
                                     _userService.UpdateUser(user);
+                                    
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                                    await PopupNavigation.PopAsync(true);
                                 }
                                 else
                                 {
@@ -63,19 +66,5 @@ namespace NotifyMe.ViewModels
                 });
             }
         }
-
-        public ICommand Signup
-        {
-            get
-            {
-                return new Command(async() => {
-                   await Application.Current.MainPage.Navigation.PushAsync(new SignupPage());
-                });
-            }
-        }
-    }
-
-    public interface IPageDialogService
-    {
     }
 }

@@ -8,11 +8,10 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Image">
-                <Setter Property="Margin" Value="40,0,0,0"></Setter>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
             </Style>
             <Style TargetType="Entry">
-                <Setter Property="Margin" Value="0,0,40,0"></Setter>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
                 <Setter Property="Grid.Column" Value="1"></Setter>
             </Style>
@@ -32,64 +31,7 @@
                      HeightRequest="2"
                      VerticalOptions="End"
                      BackgroundColor="{StaticResource BaseColor}"/>
-
-            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="AUTO"/>
-                    <RowDefinition Height="AUTO"/>
-                    <RowDefinition Height="AUTO"/>
-                    <RowDefinition Height="AUTO"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Grid.ColumnSpan="2" 
-                       HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center"
-                       Text="{StaticResource AppName}"/>
-
-                <Image Source="round_person_black_48.png" Grid.Row="1" Grid.Column="0"/>
-                <Entry x:Name="NameEntry" 
-                       Text="{Binding Name}" 
-                       Placeholder="Name"
-                       Grid.Row="1"/>
-                
-                <Image Source="round_call_black_48.png" Grid.Row="2" Grid.Column="0"/>
-                <Entry x:Name="TelephoneEntry" 
-                       Text="{Binding Telephone}"
-                       Placeholder="Update Telephone No"
-                       Grid.Row="2"/>
-
-                <Image Source="round_home_black_48.png" Grid.Row="3" Grid.Column="0" />
-                <Entry x:Name="AddressEntry" 
-                       Text="{Binding Address}"
-                       Placeholder="Update Home Address"
-                       Grid.Row="3"/>
-
-                <Button Grid.Row="4" 
-                        Grid.ColumnSpan="2" 
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="StartAndExpand"
-                        TranslationY="40"
-                        Margin="40,0,40,0"
-                        Text="Change Password"
-                        Command="{Binding ChangePassword}"/>
-
-                <Button Grid.Row="5" 
-                        Grid.ColumnSpan="2" 
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="StartAndExpand"
-                        TranslationY="40"
-                        Margin="40,0,40,0"
-                        Text="Update Account"
-                        Command="{Binding UpdateAccount}"/>
-
-            </Grid>
-
+            
             <Image:CircleImage Source="notify_me.png"
                                Grid.Row="1"
                                HorizontalOptions="Center" 
@@ -101,17 +43,67 @@
                                WidthRequest="150" 
                                TranslationY="-90"/>
 
-            <Button Image="round_add_a_photo_black_48.png"
-                   HeightRequest="60" 
-                   WidthRequest="60" 
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center"
-                   BackgroundColor="Transparent"
-                   Grid.Row="1"
-                   TranslationX="65"
-                   TranslationY="6"
-                   Command="{Binding UpdateAccountPic}"/>
-            
+            <Grid Grid.Row="1" Margin="40,80,40,20" RowSpacing="10" ColumnSpacing="5" BackgroundColor="GhostWhite">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="round_person_black_48.png" Grid.Row="0"/>
+                <Entry x:Name="NameEntry" 
+                       Text="{Binding Name}" 
+                       Placeholder="Name"
+                       Grid.Row="0"/>
+
+                <Image Source="round_call_black_48.png" Grid.Row="1"/>
+                <Entry x:Name="TelephoneEntry" 
+                       Text="{Binding Telephone}"
+                       Placeholder="Update Telephone No"
+                       Grid.Row="1"/>
+
+                <Image Source="round_home_black_48.png" Grid.Row="2"/>
+                <Entry x:Name="AddressEntry" 
+                       Text="{Binding Address}"
+                       Placeholder="Update Home Address"
+                       Grid.Row="2"/>
+
+                <Button Grid.Row="3" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="40"
+                        Text="Change Password"
+                        Command="{Binding ChangePassword}"/>
+
+                <Button Grid.Row="4" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="40"
+                        Text="Update Account"
+                        Command="{Binding UpdateAccount}"/>
+
+                <Image Source="round_add_a_photo_black_48.png"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       TranslationX="190"
+                       TranslationY="-80"/>
+
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        TranslationX="190"
+                        TranslationY="-80"
+                        BackgroundColor="Transparent"
+                        Command="{Binding UpdateAccountPic}"/>
+
+            </Grid>
         </Grid>
 
     </ContentPage.Content>

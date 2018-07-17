@@ -8,11 +8,10 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Image">
-                <Setter Property="Margin" Value="40,0,0,0"></Setter>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="Grid.Column" Value="0"></Setter>
             </Style>
             <Style TargetType="Entry">
-                <Setter Property="Margin" Value="0,0,40,0"></Setter>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
                 <Setter Property="Grid.Column" Value="1"></Setter>
             </Style>
@@ -22,72 +21,94 @@
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
 
-            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
+            <Grid Grid.Row="1" Margin="40,50,40,20" RowSpacing="5" ColumnSpacing="8" BackgroundColor="GhostWhite">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
                     <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.ColumnSpan="2" 
+                <Label Grid.Row="0" 
+                       Grid.ColumnSpan="2" 
                        HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center"
+                       VerticalTextAlignment="Start"
+                       TranslationY="-30"
                        Text="{StaticResource AppName}"/>
 
-                <Image Source="round_person_black_48.png" Grid.Row="1" Grid.Column="0"/>
+                <Image Source="round_person_black_48.png" Grid.Row="0"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
-                       Grid.Row="1"/>
+                       Grid.Row="0"/>
 
-                <Image Source="round_email_black_48.png" Grid.Row="2" Grid.Column="0" />
+                <Image Source="round_email_black_48.png" Grid.Row="1"/>
                 <Entry x:Name="EmailEntry" 
                        Text="{Binding Email}" 
                        Placeholder="Email"
-                       Grid.Row="2"/>
+                       Grid.Row="1"/>
 
-                <Image Source="round_https_black_48.png" Grid.Row="3" Grid.Column="0"/>
+                <Image Source="round_https_black_48.png" Grid.Row="2"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
                        IsPassword="True"
                        Placeholder="Password"
-                       Grid.Row="3"/>
+                       Grid.Row="2"/>
 
-                <Image Source="round_https_black_48.png" Grid.Row="4" Grid.Column="0"/>
+                <Image Source="round_https_black_48.png" Grid.Row="3"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
                        IsPassword="True"
                        Placeholder="Confirm Password"
-                       Grid.Row="4"/>
+                       Grid.Row="3"/>
 
-                <Button Grid.Row="5" 
+                <Button Grid.Row="4" 
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
                         TranslationY="30"
-                        Margin="40,0,40,0"
                         Text="Signup"
                         Command="{Binding Signup}"/>
 
+                <Label Grid.Row="5" 
+                       Grid.ColumnSpan="2" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       TranslationY="30"
+                       Text="Already have an account?"/>
+
+                <Button Grid.Row="6" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="30"
+                        Text="Login"
+                        Command="{Binding Login}"/>
+
             </Grid>
 
-            <Image:CircleImage Source="notify_me.png" 
-                   HorizontalOptions="Center" VerticalOptions="End"
-                   BorderColor="White" BorderThickness="3"
-                   HeightRequest="140" WidthRequest="140" TranslationY="25"/>
+            <Image:CircleImage Source="notify_me.png"
+                               Grid.Row="1" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Start"
+                               BorderColor="White" 
+                               BorderThickness="2"
+                               HeightRequest="90" 
+                               WidthRequest="90" 
+                               TranslationY="-75"/>   
         </Grid>
 
     </ContentPage.Content>

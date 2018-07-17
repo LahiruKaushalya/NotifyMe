@@ -19,7 +19,7 @@ namespace NotifyMe
 
             _unityContainer.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
 
-            _unityContainer.RegisterType<LoginViewModel>();
+            _unityContainer.RegisterType<LoginPopupViewModel>();
             _unityContainer.RegisterType<SignupViewModel>();
             _unityContainer.RegisterType<HomePageMasterViewModel>();
             _unityContainer.RegisterType<PasswordPopupViewModel>();
