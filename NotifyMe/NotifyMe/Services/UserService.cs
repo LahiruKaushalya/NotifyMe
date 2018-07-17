@@ -53,8 +53,8 @@ namespace NotifyMe.Services
         {
             _currentUser = user;
         }
-
-        public void UpdateLoginState(User user)
+        
+        public void UpdateUser(User user)
         {
             _dbContext.Update(user);
         }

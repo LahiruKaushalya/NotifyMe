@@ -36,7 +36,7 @@ namespace NotifyMe.Views
                     Application.Current.MainPage = new NavigationPage(new LoginPage());
                     var user = _userService.GetCurrentUser();
                     user.LoginState = false;
-                    _userService.UpdateLoginState(user);
+                    _userService.UpdateUser(user);
                 }
                 else
                 {

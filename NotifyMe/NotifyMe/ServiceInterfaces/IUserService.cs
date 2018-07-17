@@ -15,8 +15,8 @@ namespace NotifyMe.ServiceInterfaces
         List<User> GetAllUsers();
 
         bool AddUser(User user);
-
-        void UpdateLoginState(User user);
+        
+        void UpdateUser(User user);
 
         User GetCurrentUserFromDb();
 

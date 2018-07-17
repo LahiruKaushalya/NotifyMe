@@ -60,7 +60,7 @@ namespace NotifyMe.ViewModels
                         Id = 4,
                         Title = "Account",
                         Icon = "round_account_circle_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(AccountPage)
                     },
 
                     new HomePageMenuItem
