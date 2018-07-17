@@ -37,7 +37,7 @@ namespace NotifyMe.ViewModels
                                 {
                                     user.LoginState = true;
                                     _userService.SetCurrentUser(user);
-                                    _userService.UpdateLoginState(user);
+                                    _userService.UpdateUser(user);
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                 }
                                 else
