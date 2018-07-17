@@ -35,5 +35,13 @@ namespace NotifyMe.ViewModels
                 return ServiceLocator.Current.GetInstance<AccountViewModel>();
             }
         }
+
+        public PasswordPopupViewModel PasswordPopupViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PasswordPopupViewModel>();
+            }
+        }
     }
 }

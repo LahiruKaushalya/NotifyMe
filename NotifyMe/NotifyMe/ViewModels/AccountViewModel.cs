@@ -1,10 +1,13 @@
-﻿
-using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+
+using NotifyMe.Views.Popups;
+using NotifyMe.Models.DbModels;
+using NotifyMe.ServiceInterfaces;
 
 namespace NotifyMe.ViewModels
 {
@@ -43,7 +46,9 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(()=> { });
+                return new Command(()=> {
+                    PopupNavigation.PushAsync(new PasswordPopup());
+                });
             }
         }
 
