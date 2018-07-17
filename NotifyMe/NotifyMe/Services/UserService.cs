@@ -56,7 +56,7 @@ namespace NotifyMe.Services
         
         public void UpdateUser(User user)
         {
-            _dbContext.Update(user);
+            _dbContext.InsertOrReplace(user);
         }
     }
 }

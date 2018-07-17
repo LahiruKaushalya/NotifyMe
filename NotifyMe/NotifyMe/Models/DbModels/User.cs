@@ -17,6 +17,8 @@ namespace NotifyMe.Models.DbModels
 
         public string Telephone { get; set; }
 
+        public string Address { get; set; }
+
         public bool LoginState { get; set; }
 
         public DateTime CreatedOn { get; set; }

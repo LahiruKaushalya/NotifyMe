@@ -14,20 +14,22 @@ namespace NotifyMe.ViewModels
 
         private User _currentUser;
 
+        public string Name { get; set; }
+
+        public string Telephone { get; set; }
+
+        public string Address { get; set; }
+
         public AccountViewModel(IUserService userService)
         {
             _userService = userService;
             _currentUser = _userService.GetCurrentUser();
             Name = _currentUser.Name;
-            Email = _currentUser.Email;
             Telephone = _currentUser.Telephone;
+            Address = _currentUser.Address;
         }
 
-        public string Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Telephone { get; set; }
+        
 
         public ICommand UpdateAccountPic
         {
@@ -50,20 +52,34 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(async () => {
-                    if (Name == null || Email == null )
+                    if (Name.Equals(""))
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Name and Email should be there.", "Ok");
+                        await Application.Current.MainPage.DisplayAlert("Alert", "Name should be there.", "Ok");
+                    }
+                    else if (_currentUser.Name == Name &&  _currentUser.Address == Address && _currentUser.Telephone == Telephone)
+                    {
+                        return;
                     }
                     else
                     {
                         try
                         {
-                            _currentUser.Name = Name;
-                            _currentUser.Email = Email;
-                            _currentUser.Telephone = Telephone;
+                            var user = _userService.GetUserByEmail(_currentUser.Email);
+                            if (user == null || user.Name == _currentUser.Name)
+                            {
+                                _currentUser.Name = Name;
+                                _currentUser.Telephone = Telephone;
+                                _currentUser.Address = Address;
 
-                            _userService.UpdateUser(_currentUser);
-                            _userService.SetCurrentUser(_currentUser);
+                                _userService.UpdateUser(_currentUser);
+                                _userService.SetCurrentUser(_currentUser);
+                                await Application.Current.MainPage.DisplayAlert("Success", "Account successfully updated.", "Ok");
+                            }
+                            else
+                            {
+                                await Application.Current.MainPage.DisplayAlert("Alert", "Email not available.", "Ok");
+                            }
+                            
                         }
                         catch (Exception)
                         {

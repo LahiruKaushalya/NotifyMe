@@ -57,17 +57,17 @@
                        Text="{Binding Name}" 
                        Placeholder="Name"
                        Grid.Row="1"/>
-
-                <Image Source="round_email_black_48.png" Grid.Row="2" Grid.Column="0" />
-                <Entry x:Name="EmailEntry" 
-                       Text="{Binding Email}" 
-                       Placeholder="Email"
-                       Grid.Row="2"/>
-
-                <Image Source="round_https_black_48.png" Grid.Row="3" Grid.Column="0"/>
+                
+                <Image Source="round_call_black_48.png" Grid.Row="2" Grid.Column="0"/>
                 <Entry x:Name="TelephoneEntry" 
                        Text="{Binding Telephone}"
                        Placeholder="Update Telephone No"
+                       Grid.Row="2"/>
+
+                <Image Source="round_home_black_48.png" Grid.Row="3" Grid.Column="0" />
+                <Entry x:Name="AddressEntry" 
+                       Text="{Binding Address}"
+                       Placeholder="Update Home Address"
                        Grid.Row="3"/>
 
                 <Button Grid.Row="4" 
@@ -101,15 +101,15 @@
                                WidthRequest="150" 
                                TranslationY="-90"/>
 
-            <Button Image="round_email_black_48.png"
-                   HeightRequest="40" 
-                   WidthRequest="40" 
+            <Button Image="round_add_a_photo_black_48.png"
+                   HeightRequest="60" 
+                   WidthRequest="60" 
                    VerticalOptions="Start"
                    HorizontalOptions="Center"
                    BackgroundColor="Transparent"
                    Grid.Row="1"
-                   TranslationX="45"
-                   TranslationY="20"
+                   TranslationX="65"
+                   TranslationY="6"
                    Command="{Binding UpdateAccountPic}"/>
             
         </Grid>

@@ -312,4 +312,31 @@
   <ItemGroup>
     <BundleResource Include="Resources\round_settings_black_48pt_3x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_a_photo_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_a_photo_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_a_photo_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_call_black_48pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_call_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_call_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_home_black_48pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_home_black_48pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_home_black_48pt_3x.png" />
+  </ItemGroup>
 </Project>
