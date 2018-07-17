@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.Views.AccountPage"
+             xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BindingContext="{Binding AccountViewModel, Source={StaticResource ViewModelLocator}}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image">
+                <Setter Property="Margin" Value="40,0,0,0"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="0,0,40,0"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="Grid.Column" Value="1"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Row="0" BackgroundColor="White"/>
+            
+            <BoxView Grid.Row="0" 
+                     HeightRequest="2"
+                     VerticalOptions="End"
+                     BackgroundColor="{StaticResource BaseColor}"/>
+
+            <Grid Grid.Row="1" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="AUTO"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.ColumnSpan="2" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       Text="{StaticResource AppName}"/>
+
+                <Image Source="round_person_black_48.png" Grid.Row="1" Grid.Column="0"/>
+                <Entry x:Name="NameEntry" 
+                       Text="{Binding Name}" 
+                       Placeholder="Name"
+                       Grid.Row="1"/>
+
+                <Image Source="round_email_black_48.png" Grid.Row="2" Grid.Column="0" />
+                <Entry x:Name="EmailEntry" 
+                       Text="{Binding Email}" 
+                       Placeholder="Email"
+                       Grid.Row="2"/>
+
+                <Image Source="round_https_black_48.png" Grid.Row="3" Grid.Column="0"/>
+                <Entry x:Name="TelephoneEntry" 
+                       Text="{Binding Telephone}"
+                       Placeholder="Update Telephone No"
+                       Grid.Row="3"/>
+
+                <Button Grid.Row="4" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="40"
+                        Margin="40,0,40,0"
+                        Text="Change Password"
+                        Command="{Binding ChangePassword}"/>
+
+                <Button Grid.Row="5" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        TranslationY="40"
+                        Margin="40,0,40,0"
+                        Text="Update Account"
+                        Command="{Binding UpdateAccount}"/>
+
+            </Grid>
+
+            <Image:CircleImage Source="notify_me.png"
+                               Grid.Row="1"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Start"
+                               BorderColor="White"
+                               Aspect="AspectFill"
+                               BorderThickness="3"
+                               HeightRequest="150" 
+                               WidthRequest="150" 
+                               TranslationY="-90"/>
+
+            <Button Image="round_email_black_48.png"
+                   HeightRequest="40" 
+                   WidthRequest="40" 
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   BackgroundColor="Transparent"
+                   Grid.Row="1"
+                   TranslationX="45"
+                   TranslationY="20"
+                   Command="{Binding UpdateAccountPic}"/>
+            
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
