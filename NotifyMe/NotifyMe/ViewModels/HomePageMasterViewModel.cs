@@ -28,7 +28,7 @@ namespace NotifyMe.ViewModels
                         Id = 0,
                         Title = "Alerts",
                         Icon = "round_notifications_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(AlertsPage)
                     },
 
                     new HomePageMenuItem

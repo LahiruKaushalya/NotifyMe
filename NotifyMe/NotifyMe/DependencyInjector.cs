@@ -17,12 +17,33 @@ namespace NotifyMe
         {
             _unityContainer = new UnityContainer();
 
+            #region Services
             _unityContainer.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
+            #endregion
 
+            #region Popups
             _unityContainer.RegisterType<LoginPopupViewModel>();
+            _unityContainer.RegisterType<PasswordPopupViewModel>();
+            #endregion
+
+            #region Alerts
+            _unityContainer.RegisterType<TimeAlertsViewModel>();
+            _unityContainer.RegisterType<LocationAlertsViewModel>();
+            _unityContainer.RegisterType<AddTimeAlertViewModel>();
+            _unityContainer.RegisterType<AddLocationAlertViewModel>();
+            #endregion
+
+            #region Locations
+            _unityContainer.RegisterType<LocationsViewModel>();
+            _unityContainer.RegisterType<AddLocationViewModel>();
+            #endregion
+
+            #region Other
             _unityContainer.RegisterType<SignupViewModel>();
             _unityContainer.RegisterType<HomePageMasterViewModel>();
-            _unityContainer.RegisterType<PasswordPopupViewModel>();
+            _unityContainer.RegisterType<SettingsViewModel>();
+            _unityContainer.RegisterType<AccountViewModel>();
+            #endregion
 
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(_unityContainer));
         }
