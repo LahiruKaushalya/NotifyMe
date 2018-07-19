@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.AddTimeAlertPage">
+             x:Class="NotifyMe.Views.AddTimeAlertPage"
+             BindingContext="{Binding AddTimeAlertViewModel, Source={StaticResource ViewModelLocator}}">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Add new time alert"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
+            <Button Grid.Row="1" 
+                    Margin="30,0,30,0"
+                    Command="{Binding AddAlert}"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

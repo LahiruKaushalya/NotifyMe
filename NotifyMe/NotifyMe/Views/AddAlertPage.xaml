@@ -4,9 +4,9 @@
              x:Class="NotifyMe.Views.AddAlertPage"
              xmlns:Pages="clr-namespace:NotifyMe.Views">
 
-    <Pages:AddTimeAlertPage Title="Time"/>
+    <Pages:AddTimeAlertPage Icon="round_alarm_white_48.png"/>
 
-    <Pages:AddLocationAlertPage Title="Time"/>
+    <Pages:AddLocationAlertPage Icon="round_place_white_48.png"/>
 
 
 </TabbedPage>

@@ -36,7 +36,7 @@ namespace NotifyMe.ViewModels
                         Id = 1,
                         Title = "Add Alert",
                         Icon = "round_add_alert_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(AddAlertPage)
                     },
 
                     new HomePageMenuItem
@@ -44,7 +44,7 @@ namespace NotifyMe.ViewModels
                         Id = 2,
                         Title = "Locations",
                         Icon = "round_place_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(LocationsPage)
                     },
 
                     new HomePageMenuItem
@@ -52,7 +52,7 @@ namespace NotifyMe.ViewModels
                         Id = 3,
                         Title = "Add Lacation",
                         Icon = "round_add_location_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(AddLocationPage)
                     },
 
                     new HomePageMenuItem
@@ -68,7 +68,7 @@ namespace NotifyMe.ViewModels
                         Id = 5,
                         Title = "Settings",
                         Icon = "round_settings_black_48.png",
-                        TargetType = typeof(HomePageDetail)
+                        TargetType = typeof(SettingsPage)
                     },
 
                     new HomePageMenuItem {

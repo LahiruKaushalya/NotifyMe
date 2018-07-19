@@ -2,11 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.Views.TimeAlertsPage">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Time Alerts Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
