@@ -14,11 +14,12 @@
             
 
             <Style TargetType="Button">
-                <Setter Property="CornerRadius" Value="20" ></Setter>
-                <Setter Property="BackgroundColor" Value="{StaticResource BaseColor}" ></Setter>
-                <Setter Property="TextColor" Value="#FFFFFF" ></Setter>
-                <Setter Property="FontSize" Value="Medium" ></Setter>
-                <Setter Property="FontAttributes" Value="Bold" ></Setter>
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BaseColor}" />
+                <Setter Property="Margin" Value="30,0,30,0" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
         </ResourceDictionary>

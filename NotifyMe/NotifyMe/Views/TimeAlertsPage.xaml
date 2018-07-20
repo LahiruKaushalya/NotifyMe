@@ -1,16 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.TimeAlertsPage">
+             x:Class="NotifyMe.Views.TimeAlertsPage"
+             BindingContext="{Binding TimeAlertsViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="Margin" Value="15,0,15,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView ItemsSource="{Binding TimeAlerts}"
+              ItemTapped="ListView_ItemTapped"
+              CachingStrategy="RecycleElement"
+              Margin="0,20,0,20">
+
+        <ListView.Header>
+            <Grid ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Grid.Column="0"
+                       FontAttributes="Bold"
+                       Text="Title" />
+
+                <Label VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Grid.Column="1"
+                       FontAttributes="Bold"
+                       Text="Date and Time" />
+            </Grid>
+        </ListView.Header>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Grid.Column="0" 
+                               Text="{Binding Title}" />
+
+                        <Label VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
+                               Grid.Column="1" 
+                               Text="{Binding DateTime}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
     
-    <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1"/>
-            </Grid.RowDefinitions>
-
-            <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
-
-        </Grid>
-    </ContentPage.Content>
 </ContentPage>

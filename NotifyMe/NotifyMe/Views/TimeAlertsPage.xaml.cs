@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using NotifyMe.ViewModels;
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TimeAlertsPage : ContentPage
 	{
 		public TimeAlertsPage ()
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as TimeAlertsViewModel;
+            var alert = e.Item as Alert;
+        }
+    }
 }

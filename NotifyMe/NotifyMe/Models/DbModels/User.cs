@@ -1,7 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NotifyMe.Models.DbModels
 {
@@ -22,5 +20,6 @@ namespace NotifyMe.Models.DbModels
         public bool LoginState { get; set; }
 
         public DateTime CreatedOn { get; set; }
+        
     }
 }

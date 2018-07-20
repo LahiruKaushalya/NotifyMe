@@ -2,20 +2,65 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.Views.AddTimeAlertPage"
+             xmlns:CustomRenderer="clr-namespace:NotifyMe.CustomRenderers"
              BindingContext="{Binding AddTimeAlertViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="Margin" Value="2,20,0,0"/>
+                <Setter Property="FontSize" Value="Small"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="IsSpellCheckEnabled" Value="True"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
-            <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
-            <Button Grid.Row="1" 
-                    Margin="30,0,30,0"
-                    Command="{Binding AddAlert}"/>
-        </Grid>
+            <Grid Margin="0,0,0,30" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
+
+
+            <ScrollView Grid.Row="1" Margin="30,0,30,30">
+                <StackLayout >
+                    <Label Text="New Time Alert"
+                           FontSize="Medium"
+                           Margin="0,10,0,0"
+                           HorizontalTextAlignment="Center" />
+
+                    <Label Text="Title"/>
+                    <Entry x:Name="TitleEntry" 
+                           Text="{Binding Title}"/>
+
+                    <Label Text="Description"/>
+                    <CustomRenderer:CustomEditor x:Name="DesEditor"
+                                                 Text="{Binding Description}"/>
+
+                    <Label Text="Date"/>
+                    <DatePicker x:Name="DatePic"
+                                Date="{Binding Date}"/>
+
+                    <Label Text="Time"/>
+                    <TimePicker x:Name="TimePic"
+                                Time="{Binding Time}"/>
+                    
+                </StackLayout>
+            </ScrollView>
+
+            <Button Grid.Row="2"
+                        Text="Add"
+                        Command="{Binding AddAlert}"/>
+               
+       </Grid>
+       
     </ContentPage.Content>
 </ContentPage>
