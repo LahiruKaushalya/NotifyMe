@@ -23,11 +23,11 @@
 
     <Grid Margin="40,60,40,30" RowSpacing="10" ColumnSpacing="5" BackgroundColor="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.15*"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="AUTO"/>
@@ -51,8 +51,7 @@
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
-                        TranslationY="25"
-                        Margin="30,0,30,0"
+                        TranslationY="30"
                         Text="Login"
                         Command="{Binding Login}"/>
 
@@ -61,7 +60,7 @@
                            Grid.ColumnSpan="2"
                            HorizontalOptions="Center" VerticalOptions="Center"
                            BorderColor="White" BorderThickness="1"
-                           HeightRequest="150" WidthRequest="150" TranslationY="25"/>
+                           HeightRequest="150" WidthRequest="150" TranslationY="30"/>
 
     </Grid>
 

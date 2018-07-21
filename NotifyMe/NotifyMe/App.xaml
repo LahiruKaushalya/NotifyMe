@@ -11,7 +11,12 @@
             
             <!--Styles -->
             <Color x:Key="BaseColor">#03A9F4</Color>
-            
+
+            <Style TargetType="ActivityIndicator">
+                <Setter Property="Scale" Value="0.15" />
+                <Setter Property="Color" Value="White" />
+            </Style>
+
 
             <Style TargetType="Button">
                 <Setter Property="CornerRadius" Value="20" />

@@ -32,25 +32,37 @@ namespace NotifyMe.Services
 
         public List<Alert> GetAllLocationAlerts()
         {
-            var alerts = _dbContext.Table<Alert>().Where(a => a.Type == true).ToList();
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == true)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
             return alerts;
         }
 
         public List<Alert> GetAllTimeAlerts()
         {
-            var alerts = _dbContext.Table<Alert>().Where(a => a.Type == false).ToList();
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == false)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
             return alerts;
         }
 
         public List<Alert> GetAllUserLocationAlerts(string userEmail)
         {
-            var alerts = _dbContext.Table<Alert>().Where(a => a.Type == true && a.User == userEmail).ToList();
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == true && a.User == userEmail)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
             return alerts;
         }
 
         public List<Alert> GetAllUserTimeAlerts(string userEmail)
         {
-            var alerts = _dbContext.Table<Alert>().Where(a => a.Type == false && a.User == userEmail).ToList();
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == false && a.User == userEmail)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
             return alerts;
         }
     }
