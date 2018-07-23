@@ -5,29 +5,39 @@
              BindingContext="{Binding AddLocationViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ContentPage.Content>
-        <Grid RowSpacing="5" >
+        <Grid RowSpacing="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.86*"/>
-                <ColumnDefinition Width="0.14*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.98*"/>
-                <RowDefinition Height="0.02*"/>
+                <RowDefinition Height="0.88*"/>
+                <RowDefinition Height="0.12*"/>
             </Grid.RowDefinitions>
 
             <!--Map-->
             <ContentView Content="{Binding Map}"
-                         Grid.RowSpan="2"
+                         Grid.Row="0"
                          Grid.ColumnSpan="2"/>
+            
+            <Entry Text="{Binding LocationName}"
+                   Placeholder="Add new place"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Margin="20,0,0,0"/>
 
-            <Button Image="round_add_location_white_48.png"
-                    Grid.Row="0"
-                    Grid.Column="0"
+            <Button Image="round_add_white_48.png"
+                    Grid.Row="1"
+                    Grid.Column="1"
                     Margin="0,0,0,0"
-                    CornerRadius="45"
-                    HorizontalOptions="End"
-                    VerticalOptions="End"
-                    WidthRequest="66"
+                    CornerRadius="25"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="50"
+                    HeightRequest="50"
                     Command="{Binding AddLocation}"/>
 
             <ActivityIndicator Grid.RowSpan="2"

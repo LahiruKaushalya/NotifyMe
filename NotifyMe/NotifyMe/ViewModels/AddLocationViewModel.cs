@@ -9,6 +9,7 @@ using NotifyMe.ServiceInterfaces;
 using Plugin.Geolocator.Abstractions;
 using System.Windows.Input;
 using Xamarin.Forms;
+using NotifyMe.CustomRenderers;
 
 namespace NotifyMe.ViewModels
 {
@@ -20,7 +21,7 @@ namespace NotifyMe.ViewModels
 
         private bool _isLoading;
 
-        public Map Map { get; private set; }
+        public CustomMap Map { get; private set; }
         
         public bool IsLoading
         {
@@ -36,11 +37,15 @@ namespace NotifyMe.ViewModels
         {
             _userService = userService;
 
-            var defPos = new Xamarin.Forms.Maps.Position(7.8731, 80.7718);
-            var defRad = Distance.FromKilometers(500);
+            var defPos = new Xamarin.Forms.Maps.Position(7.8731, 80.7718);// Set default focus to Sri Lanka
+            var defRad = Distance.FromKilometers(400);
 
-            Map = new Map(MapSpan.FromCenterAndRadius(defPos, defRad)); // Set default focus to Sri Lanka
-            Map.IsShowingUser = true;
+            Map = new CustomMap()
+            {
+                MapType = MapType.Street, 
+                IsShowingUser = true
+            };
+            Map.MoveToRegion(MapSpan.FromCenterAndRadius(defPos, defRad));
         }
         
         public async Task GetCurrentLocation()
@@ -49,7 +54,7 @@ namespace NotifyMe.ViewModels
             locator.DesiredAccuracy = 20;
 
             var location = await locator.GetPositionAsync(timeout: TimeSpan.FromMilliseconds(5000)); //Get current position from GPS
-
+            Map.TapPosition = location;
             var position = new Xamarin.Forms.Maps.Position(location.Latitude, location.Longitude);
             var radius = Distance.FromKilometers(1.5);
 
@@ -62,7 +67,7 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(() => {
-
+                    
                 });
             }
         }
