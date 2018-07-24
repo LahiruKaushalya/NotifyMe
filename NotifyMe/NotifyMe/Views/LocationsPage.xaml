@@ -1,12 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.LocationsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="My locations"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="NotifyMe.Views.LocationsPage"
+             BindingContext="{Binding LocationsViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="15,0,15,0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView ItemsSource="{Binding Locations}"
+              ItemTapped="ListView_ItemTapped"
+              HasUnevenRows="True"
+              CachingStrategy="RecycleElement"
+              Margin="0,20,0,20">
+
+        <ListView.Header>
+            <Grid ColumnSpacing="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label HorizontalTextAlignment="Center"
+                       Grid.Column="0"
+                       FontAttributes="Bold"
+                       Text="Location Name" />
+
+                <Label HorizontalTextAlignment="Center"
+                       Grid.Column="1"
+                       FontAttributes="Bold"
+                       Text="Address" />
+            </Grid>
+        </ListView.Header>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell Height="40">
+                    <Grid ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" 
+                               Text="{Binding Name}" />
+                        
+                        <Label Grid.Column="1" 
+                                Text="{Binding Address}" />
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
 </ContentPage>

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using NotifyMe.Models.DbModels;
+using NotifyMe.ViewModels;
+using NotifyMe.Views.Popups;
+using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace NotifyMe.Views
 {
@@ -16,5 +16,18 @@ namespace NotifyMe.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as LocationsViewModel;
+            var location = e.Item as Location;
+            await PopupNavigation.PushAsync(new MapPopup(location));
+        }
+
+        public void DeleteLocation(Location location)
+        {
+            var vm = BindingContext as LocationsViewModel;
+            vm.DeleteLocation(location);
+        }
+    }
 }

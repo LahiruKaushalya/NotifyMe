@@ -55,7 +55,7 @@ namespace NotifyMe.ViewModels
 
                             if (isUser != null)
                             {
-                                await Application.Current.MainPage.DisplayAlert("Oops", "Email not avilable. Try again another", "Ok");
+                                await Application.Current.MainPage.DisplayAlert("Oops", "User Name not avilable. Try again another", "Ok");
                             }
                             else
                             {

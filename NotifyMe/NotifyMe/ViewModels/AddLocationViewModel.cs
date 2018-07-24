@@ -10,6 +10,7 @@ using Plugin.Geolocator.Abstractions;
 using System.Windows.Input;
 using Xamarin.Forms;
 using NotifyMe.CustomRenderers;
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.ViewModels
 {
@@ -18,11 +19,14 @@ namespace NotifyMe.ViewModels
     {
 
         private IUserService _userService;
+        private ILocationService _locationService;
 
         private bool _isLoading;
 
         public CustomMap Map { get; private set; }
-        
+
+        public string LocationName { get; set; }
+
         public bool IsLoading
         {
             get { return _isLoading; }
@@ -33,9 +37,10 @@ namespace NotifyMe.ViewModels
         }
 
 
-        public AddLocationViewModel(IUserService userService)
+        public AddLocationViewModel(IUserService userService, ILocationService locationService)
         {
             _userService = userService;
+            _locationService = locationService;
 
             var defPos = new Xamarin.Forms.Maps.Position(7.8731, 80.7718);// Set default focus to Sri Lanka
             var defRad = Distance.FromKilometers(400);
@@ -46,6 +51,8 @@ namespace NotifyMe.ViewModels
                 IsShowingUser = true
             };
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(defPos, defRad));
+
+            LocationName = string.Empty;
         }
         
         public async Task GetCurrentLocation()
@@ -66,8 +73,41 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(() => {
-                    
+                return new Command(async () => {
+                    if (LocationName == string.Empty)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Alert", "Add location name.", "Ok");
+                    }
+                    else
+                    {
+                        var location = new Location
+                        {
+                            Name = LocationName,
+                            User = _userService.GetCurrentUser().UserName,
+                            Latitude = Map.TapPosition.Latitude,
+                            Longitude = Map.TapPosition.Longitude,
+                            IsDeleted = false,
+                            CreatedOn = DateTime.Now
+                        };
+
+                        try
+                        {
+                            var id = _locationService.AddLocation(location);
+                            if (id != -1)
+                            {
+                                await Application.Current.MainPage.DisplayAlert("Success", "Location added successfully.", "Ok");
+                            }
+                            else
+                            {
+                                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            //DB Error
+                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                        }
+                    }
                 });
             }
         }

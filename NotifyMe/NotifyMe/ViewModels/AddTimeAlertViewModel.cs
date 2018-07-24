@@ -64,7 +64,7 @@ namespace NotifyMe.ViewModels
                             }
                             else
                             {
-                                await Application.Current.MainPage.DisplayAlert("Alert", "Something went wrong..", "Ok");
+                                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
                             }
                         }
                         catch (Exception)

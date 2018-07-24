@@ -19,6 +19,6 @@ namespace NotifyMe.Models.DbModels
 
         public bool IsDeleted { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

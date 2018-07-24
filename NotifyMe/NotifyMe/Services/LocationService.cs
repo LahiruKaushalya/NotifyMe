@@ -24,9 +24,33 @@ namespace NotifyMe.Services
             return _dbContext.Insert(location);
         }
 
-        public int DeleteLocation(Location location)
+        public int DeleteLocationHard(Location location)
         {
             return _dbContext.Delete(location);
+        }
+
+        public void DeleteLocationSoft(Location location)
+        {
+            location.IsDeleted = true;
+            _dbContext.Update(location);
+        }
+
+        public List<Location> GetLocations()
+        {
+            var locations = _dbContext.Table<Location>()
+                            .Where(l => l.IsDeleted == false)
+                            .OrderByDescending(l => l.Id)
+                            .ToList();
+            return locations;
+        }
+
+        public List<Location> GetLocationsByUser(string userName)
+        {
+            var locations = _dbContext.Table<Location>()
+                            .Where(l => l.User == userName && )
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return locations;
         }
 
         public List<Location> GetAllLocations()
@@ -36,20 +60,11 @@ namespace NotifyMe.Services
                             .ToList();
             return locations;
         }
-
-        public List<Location> GetAllLocationsById(int id)
-        {
-            var location = _dbContext.Table<Location>()
-                             .Where(l => l.Id == id && l.IsDeleted == false)
-                             .OrderByDescending(a => a.Id)
-                             .ToList();
-            return location;
-        }
-
-        public List<Location> GetAllLocationsByUser(string userEmail)
+        
+        public List<Location> GetAllLocationsByUser(string userName)
         {
             var locations = _dbContext.Table<Location>()
-                            .Where(l => l.User == userEmail && l.IsDeleted == false)
+                            .Where(l => l.User == userName)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return locations;

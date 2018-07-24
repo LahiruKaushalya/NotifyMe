@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.Views.Popups.MapPopup"
+             xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:Maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
+
+
+    <Grid Margin="40,60,40,60" 
+          Padding="5,5,5,5" 
+          BackgroundColor="GhostWhite">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.05*"/>
+        </Grid.RowDefinitions>
+
+        <Maps:Map x:Name="MiniMap"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="0"
+                  MapType="Street"/>
+
+        <Label Grid.Row="1" 
+               Grid.Column="0" 
+               Text="Latitude"/>
+
+        <Label Grid.Row="2" 
+               Grid.Column="0" 
+               Text="Longitude"/>
+
+        <Label x:Name="Latitude" 
+               Grid.Row="1" 
+               Grid.Column="1"/>
+
+        <Label x:Name="Longitude" 
+               Grid.Row="2" 
+               Grid.Column="1"/>
+
+        <Button Image="round_add_alert_white_48.png"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                CornerRadius="30"
+                Margin="0,0,0,0"
+                Clicked="DeleteLocation"/>
+    </Grid>
+  
+    
+</Pages:PopupPage>

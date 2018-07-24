@@ -21,6 +21,6 @@ namespace NotifyMe.Models.DbModels
 
         public DateTime DateTime { get; set; }
 
-        public string Location { get; set; }
+        public int LocationID { get; set; }
     }
 }

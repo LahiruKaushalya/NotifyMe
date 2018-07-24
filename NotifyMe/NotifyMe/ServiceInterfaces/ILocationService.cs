@@ -9,14 +9,19 @@ namespace NotifyMe.ServiceInterfaces
     {
         int AddLocation(Location location);
 
-        int DeleteLocation(Location location);
+        int DeleteLocationHard(Location location);
+
+        void DeleteLocationSoft(Location location);
 
         Location GetLocationById(int id);
 
+        List<Location> GetLocations();
+
+        List<Location> GetLocationsByUser(string userName);
+
         List<Location> GetAllLocations();
 
-        List<Location> GetAllLocationsByUser(string userEmail);
+        List<Location> GetAllLocationsByUser(string userName);
         
-        List<Location> GetAllLocationsById(int id);
     }
 }

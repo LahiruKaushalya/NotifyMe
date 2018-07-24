@@ -19,7 +19,7 @@
             <ContentView Content="{Binding Map}"
                          Grid.Row="0"
                          Grid.ColumnSpan="2"/>
-            
+
             <Entry Text="{Binding LocationName}"
                    Placeholder="Add new place"
                    Grid.Row="1"
