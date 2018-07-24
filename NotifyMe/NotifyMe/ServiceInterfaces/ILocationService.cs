@@ -22,6 +22,8 @@ namespace NotifyMe.ServiceInterfaces
         List<Location> GetAllLocations();
 
         List<Location> GetAllLocationsByUser(string userName);
-        
+
+        void RestoreLocation(Location location);
+
     }
 }

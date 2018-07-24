@@ -47,7 +47,7 @@ namespace NotifyMe.Services
         public List<Location> GetLocationsByUser(string userName)
         {
             var locations = _dbContext.Table<Location>()
-                            .Where(l => l.User == userName && )
+                            .Where(l => l.User == userName && l.IsDeleted == false)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return locations;
@@ -76,6 +76,12 @@ namespace NotifyMe.Services
                             .Where(l => l.Id == id && l.IsDeleted == false)
                             .FirstOrDefault();
             return location;
+        }
+
+        public void RestoreLocation(Location location)
+        {
+            location.IsDeleted = false;
+            _dbContext.Update(location);
         }
     }
 }

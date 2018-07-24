@@ -17,43 +17,54 @@
 
     <ListView ItemsSource="{Binding Locations}"
               ItemTapped="ListView_ItemTapped"
+              IsPullToRefreshEnabled="True"
               HasUnevenRows="True"
-              CachingStrategy="RecycleElement"
-              Margin="0,20,0,20">
+              Margin="0,20,0,20"
+              IsRefreshing="{Binding IsRefreshing}"
+              RefreshCommand="{Binding Refresh}">
 
         <ListView.Header>
-            <Grid ColumnSpacing="5">
+            <Grid ColumnSpacing="5" Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.6*"/>
-                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.55*"/>
+                    <ColumnDefinition Width="0.45*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label HorizontalTextAlignment="Center"
+                <Label HorizontalTextAlignment="Start"
                        Grid.Column="0"
                        FontAttributes="Bold"
                        Text="Location Name" />
 
-                <Label HorizontalTextAlignment="Center"
+                <Label HorizontalTextAlignment="Start"
                        Grid.Column="1"
                        FontAttributes="Bold"
-                       Text="Address" />
+                       Text="Show Deleted" />
+
+                <Switch Grid.Column="1"
+                        HorizontalOptions="End"
+                        Margin="0,0,10,0"
+                        Toggled="Switch_Toggled"/>
+                
             </Grid>
         </ListView.Header>
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell Height="40">
+                <ViewCell Height="50">
                     <Grid ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.6*"/>
-                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" 
                                Text="{Binding Name}" />
-                        
-                        <Label Grid.Column="1" 
-                                Text="{Binding Address}" />
+
+                        <Image Source="round_restore_from_trash_black_24.png" 
+                               Grid.Column="1" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               IsVisible="{Binding IsDeleted}"/>
 
                     </Grid>
                 </ViewCell>

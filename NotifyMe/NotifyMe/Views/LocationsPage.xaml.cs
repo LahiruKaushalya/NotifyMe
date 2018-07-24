@@ -24,10 +24,18 @@ namespace NotifyMe.Views
             await PopupNavigation.PushAsync(new MapPopup(location));
         }
 
-        public void DeleteLocation(Location location)
+        public void UpdateLocation(Location location, bool delete)
         {
             var vm = BindingContext as LocationsViewModel;
-            vm.DeleteLocation(location);
+            vm.UpdateLocation(location, delete);
+            vm.Refresh.Execute(null);
+        }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            var vm = BindingContext as LocationsViewModel;
+            vm.ShowDeleted = e.Value;
+            vm.Refresh.Execute(null);
         }
     }
 }

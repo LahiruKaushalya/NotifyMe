@@ -43,13 +43,23 @@
                Grid.Row="2" 
                Grid.Column="1"/>
 
-        <Button Image="round_add_alert_white_48.png"
+        <Button x:Name="DeleteBtn"
+                Image="round_delete_white_24.png"
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="2"
                 CornerRadius="30"
                 Margin="0,0,0,0"
                 Clicked="DeleteLocation"/>
+
+        <Button x:Name="RestoreBtn" 
+                Image="round_restore_from_trash_white_24.png"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                CornerRadius="30"
+                Margin="0,0,0,0"
+                Clicked="RestoreLocation"/>
     </Grid>
   
     

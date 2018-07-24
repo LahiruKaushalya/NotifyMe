@@ -1,28 +1,24 @@
-﻿using NotifyMe.Models.DbModels;
-using NotifyMe.ViewModels;
+﻿using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
+using NotifyMe.Models.DbModels;
+
+
 namespace NotifyMe.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MapPopup 
 	{
-        private Location _location;
-
 		public MapPopup (Location location)
 		{
 			InitializeComponent ();
 
             _location = location;
+            RestoreBtn.IsVisible = location.IsDeleted;
 
             var position = new Position(location.Latitude, location.Longitude);
             Latitude.Text = location.Latitude.ToString();
@@ -38,18 +34,31 @@ namespace NotifyMe.Views.Popups
             MiniMap.Pins.Add(pin);
         }
 
+        private Location _location;
+        
         private async Task DeleteLocation()
         {
             var responce = await Application.Current.MainPage.DisplayAlert("Delete Location", "Are you sure?", "Yes", "No");
-
+            
             if (responce)
             {
-                new LocationsPage().DeleteLocation(_location);
+                new LocationsPage().UpdateLocation(_location, true);
                 await PopupNavigation.PopAsync();
             }
             else { return; }
         }
 
+        private async Task RestoreLocation()
+        { 
+            var responce = await Application.Current.MainPage.DisplayAlert("Restore Location", "Are you sure?", "Yes", "No");
+            
+            if (responce)
+            {
+                new LocationsPage().UpdateLocation(_location, false);
+                await PopupNavigation.PopAsync();
+            }
+            else { return; }
+        }
 
     }
 }
