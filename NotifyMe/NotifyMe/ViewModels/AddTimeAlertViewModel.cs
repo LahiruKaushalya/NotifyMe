@@ -53,8 +53,10 @@ namespace NotifyMe.ViewModels
                                 Title = Title,
                                 Description = Description,
                                 User = currentUser.UserName,
-                                Type = false, //false means Time alert
-                                DateTime = Date + Time
+                                Type = true, //True means Time alert
+                                DateTime = Date + Time,
+                                IsActive = true,
+                                CreatedOn = DateTime.Now
                             };
                             var id =  _alertService.AddAlert(alert);
                             if (id != -1)
@@ -71,7 +73,6 @@ namespace NotifyMe.ViewModels
                         {
                             await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
                         }
-                        
                     }
                 });
             }

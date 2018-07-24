@@ -11,7 +11,8 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="Margin" Value="2,20,0,0"/>
-                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="IsSpellCheckEnabled" Value="True"/>

@@ -11,7 +11,8 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="Margin" Value="2,20,0,0"/>
-                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="IsSpellCheckEnabled" Value="True"/>
@@ -37,13 +38,18 @@
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="Title"/>
-                    <Entry x:Name="TitleEntry"/>
+                    <Entry x:Name="TitleEntry"
+                           Text="{Binding Title}"/>
 
                     <Label Text="Description"/>
-                    <CustomRenderer:CustomEditor x:Name="DesEditor"/>
-
+                    <CustomRenderer:CustomEditor x:Name="DesEditor"
+                                                 Text="{Binding Description}"/>
 
                     <Label Text="Location"/>
+                    <Picker ItemsSource="{Binding Locations}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Title="Select location"
+                            SelectedIndexChanged="Picker_SelectedIndexChanged"/>
 
                 </StackLayout>
             </ScrollView>

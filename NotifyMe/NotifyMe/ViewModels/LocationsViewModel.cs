@@ -21,10 +21,8 @@ namespace NotifyMe.ViewModels
             _locationService = locationService;
 
             _userName = _userService.GetCurrentUser().UserName;
-            //
             Locations = new ObservableCollection<Location>(_locationService.GetLocationsByUser(_userName));
         }
-
 
         private string _userName;
 

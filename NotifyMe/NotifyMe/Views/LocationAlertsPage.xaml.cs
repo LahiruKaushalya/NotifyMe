@@ -19,5 +19,10 @@ namespace NotifyMe.Views
             var vm = BindingContext as LocationAlertsViewModel;
             var alert = e.Item as Alert;
         }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+
+        }
     }
 }

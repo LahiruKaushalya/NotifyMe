@@ -13,10 +13,14 @@ namespace NotifyMe.ServiceInterfaces
 
         List<Alert> GetAllTimeAlerts();
 
-        List<Alert> GetAllUserTimeAlerts(string userEmail);
+        List<Alert> GetAllUserTimeAlerts(string userName);
+
+        List<Alert> GetActiveUserTimeAlerts(string userName);
 
         List<Alert> GetAllLocationAlerts();
 
-        List<Alert> GetAllUserLocationAlerts(string userEmail);
+        List<Alert> GetAllUserLocationAlerts(string userName);
+
+        List<Alert> GetActiveUserLocationAlerts(string userName);
     }
 }

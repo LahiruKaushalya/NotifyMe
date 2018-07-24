@@ -7,56 +7,68 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="Margin" Value="15,0,15,0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ListView ItemsSource="{Binding TimeAlerts}"
               ItemTapped="ListView_ItemTapped"
-              CachingStrategy="RecycleElement"
-              Margin="0,20,0,20">
+              IsPullToRefreshEnabled="True"
+              HasUnevenRows="True"
+              Margin="0,20,0,20"
+              IsRefreshing="{Binding IsRefreshing}"
+              RefreshCommand="{Binding Refresh}">
 
         <ListView.Header>
-            <Grid ColumnSpacing="0">
+            <Grid ColumnSpacing="5" Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Start"
+                <Label HorizontalTextAlignment="Start"
                        Grid.Column="0"
                        FontAttributes="Bold"
                        Text="Title" />
 
-                <Label VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Start"
+                <Label HorizontalTextAlignment="Start"
                        Grid.Column="1"
                        FontAttributes="Bold"
                        Text="Date and Time" />
+
+                <Switch Grid.Column="2"
+                        HorizontalOptions="End"
+                        Margin="0,0,10,0"
+                        Toggled="Switch_Toggled"/>
+                
             </Grid>
         </ListView.Header>
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
+                <ViewCell Height="50">
                     <Grid ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="140"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Label VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Start"
-                               Grid.Column="0" 
+                        <Label Grid.Column="0" 
                                Text="{Binding Title}" />
 
-                        <Label VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Start"
-                               Grid.Column="1" 
+                        <Label Grid.Column="1" 
                                Text="{Binding DateTime}" />
+                        
+                        <Image Source="round_restore_from_trash_black_24.png" 
+                               Grid.Column="2" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
