@@ -20,6 +20,7 @@ namespace NotifyMe
             #region Services
             _unityContainer.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             _unityContainer.RegisterType<IAlertService, AlertService>(new ContainerControlledLifetimeManager());
+            _unityContainer.RegisterType<ILocationService, LocationService>(new ContainerControlledLifetimeManager());
             #endregion
 
             #region Popups

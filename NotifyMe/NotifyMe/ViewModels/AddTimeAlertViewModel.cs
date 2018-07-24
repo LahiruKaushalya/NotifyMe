@@ -52,7 +52,7 @@ namespace NotifyMe.ViewModels
                             {
                                 Title = Title,
                                 Description = Description,
-                                User = currentUser.Email,
+                                User = currentUser.UserName,
                                 Type = false, //false means Time alert
                                 DateTime = Date + Time
                             };

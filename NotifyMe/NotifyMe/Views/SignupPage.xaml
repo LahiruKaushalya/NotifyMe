@@ -58,9 +58,9 @@
                        Grid.Row="0"/>
 
                 <Image Source="round_email_black_48.png" Grid.Row="1"/>
-                <Entry x:Name="EmailEntry" 
-                       Text="{Binding Email}" 
-                       Placeholder="Email"
+                <Entry x:Name="UserNameEntry" 
+                       Text="{Binding UserName}" 
+                       Placeholder="User Name"
                        Grid.Row="1"/>
 
                 <Image Source="round_https_black_48.png" Grid.Row="2"/>

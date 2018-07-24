@@ -54,10 +54,10 @@ namespace NotifyMe.ViewModels
             locator.DesiredAccuracy = 20;
 
             var location = await locator.GetPositionAsync(timeout: TimeSpan.FromMilliseconds(5000)); //Get current position from GPS
-            Map.TapPosition = location;
+            
             var position = new Xamarin.Forms.Maps.Position(location.Latitude, location.Longitude);
             var radius = Distance.FromKilometers(1.5);
-
+            Map.TapPosition = position;
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(position, radius));
 
         }

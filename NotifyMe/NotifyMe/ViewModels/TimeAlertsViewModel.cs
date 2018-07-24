@@ -21,7 +21,7 @@ namespace NotifyMe.ViewModels
             _userService = userService;
             _alertService = alertService;
 
-            var userEmail = _userService.GetCurrentUser().Email;
+            var userEmail = _userService.GetCurrentUser().UserName;
             
             TimeAlerts = new ObservableCollection<Alert>(_alertService.GetAllUserTimeAlerts(userEmail));
         }

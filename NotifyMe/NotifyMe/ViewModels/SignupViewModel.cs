@@ -21,7 +21,7 @@ namespace NotifyMe.ViewModels
 
         public string Name { get; set; }
 
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         public string Password { get; set; }
 
@@ -32,7 +32,7 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(async() => {
-                    if (Name == null || Email == null || Password == null || ConfirmPassword == null)
+                    if (Name == null || UserName == null || Password == null || ConfirmPassword == null)
                     {
                         await Application.Current.MainPage.DisplayAlert("Alert", "Information required to signup is incomplete.", "Ok");
                     }
@@ -44,23 +44,32 @@ namespace NotifyMe.ViewModels
                     {
                         var user = new User(){
                             Name = Name,
-                            Email = Email,
+                            UserName = UserName,
                             Password = Password,
                             CreatedOn = DateTime.Now
                         };
 
                         try
                         {
-                            bool isok = _userService.AddUser(user);
-                            if (isok)
+                            var isUser = _userService.GetUserByUserName(UserName);
+
+                            if (isUser != null)
                             {
-                                _userService.SetCurrentUser(user);
-                                await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                                await Application.Current.MainPage.DisplayAlert("Oops", "Email not avilable. Try again another", "Ok");
                             }
                             else
                             {
-                                //Adding failed
-                                await Application.Current.MainPage.DisplayAlert("Oops", "Signup failed. Try again later", "Ok");
+                                bool isok = _userService.AddUser(user);
+                                if (isok)
+                                {
+                                    _userService.SetCurrentUser(user);
+                                    await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                                }
+                                else
+                                {
+                                    //Adding failed
+                                    await Application.Current.MainPage.DisplayAlert("Oops", "Signup failed. Try again later", "Ok");
+                                }
                             }
                         }
                         catch (Exception)

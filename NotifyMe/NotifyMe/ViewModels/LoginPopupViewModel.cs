@@ -17,7 +17,7 @@ namespace NotifyMe.ViewModels
             _userService = userService;
         }
 
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         public string Password { get; set; }
 
@@ -26,11 +26,11 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(async() => {
-                    if (Email != null && Password != null)
+                    if (UserName != null && Password != null)
                     {
                         try
                         {
-                            var user = _userService.GetUserByEmail(Email);
+                            var user = _userService.GetUserByUserName(UserName);
                             if (user != null)
                             {
                                 var password = user.Password;

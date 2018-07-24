@@ -69,7 +69,7 @@ namespace NotifyMe.ViewModels
                     {
                         try
                         {
-                            var user = _userService.GetUserByEmail(_currentUser.Email);
+                            var user = _userService.GetUserByUserName(_currentUser.UserName);
                             if (user == null || user.Name == _currentUser.Name)
                             {
                                 _currentUser.Name = Name;

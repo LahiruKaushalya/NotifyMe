@@ -43,9 +43,9 @@ namespace NotifyMe.Services
             return user;
         }
 
-        public User GetUserByEmail(string Email)
+        public User GetUserByUserName(string userName)
         {
-            var user = _dbContext.Table<User>().FirstOrDefault(u => u.Email == Email);
+            var user = _dbContext.Table<User>().FirstOrDefault(u => u.UserName == userName);
             return user;
         }
 

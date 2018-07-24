@@ -49,7 +49,7 @@ namespace NotifyMe.ViewModels
                         try
                         {
                             var user = _userService.GetCurrentUser();
-                            var currentPwd = _userService.GetUserByEmail(user.Email).Password;
+                            var currentPwd = _userService.GetUserByUserName(user.UserName).Password;
 
                             if (currentPwd == CurrentPassword)
                             {

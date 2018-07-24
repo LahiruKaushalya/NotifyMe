@@ -10,7 +10,7 @@ namespace NotifyMe.ServiceInterfaces
 
         void SetCurrentUser(User user);
 
-        User GetUserByEmail(string Email);
+        User GetUserByUserName(string userName);
 
         List<User> GetAllUsers();
 
