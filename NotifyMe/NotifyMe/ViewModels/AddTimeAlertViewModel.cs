@@ -2,14 +2,13 @@
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Plugin.LocalNotifications;
 
 using NotifyMe.ServiceInterfaces;
 using NotifyMe.Models.DbModels;
-
-
+using NotifyMe.Models;
 namespace NotifyMe.ViewModels
 {
     public class AddTimeAlertViewModel : INotifyPropertyChanged
@@ -45,6 +44,7 @@ namespace NotifyMe.ViewModels
                     }
                     else
                     {
+                        int id = 1;//Remember to cahange................................
                         try
                         {
                             var currentUser = _userService.GetCurrentUser();
@@ -58,24 +58,52 @@ namespace NotifyMe.ViewModels
                                 IsActive = true,
                                 CreatedOn = DateTime.Now
                             };
-                            var id =  _alertService.AddAlert(alert);
+                            // Add alert to database
+                            //id =  _alertService.AddAlert(alert);
+
                             if (id != -1)
                             {
-                                CrossLocalNotifications.Current.Show(Title, Description, id, Date + Time);
-                                await Application.Current.MainPage.DisplayAlert("Success", "Alert added successfully.", "Ok");
+                                var notification = new Notification
+                                {
+                                    Id = id,
+                                    Title = Title,
+                                    Body = Description,
+                                    Date = Date,
+                                    Time = Time
+                                };
+                                //Platform specfic notification handle
+                                var result = DependencyService.Get<INotificationSender>().ScheduleNotification(notification);
+                                if (result != null)
+                                {
+                                    await Application.Current.MainPage.DisplayAlert("Success", "Alert added successfully.", "Ok");
+                                }
+                                else
+                                {
+                                    await RollbackDB(id);
+                                }
                             }
                             else
                             {
-                                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
+                                await RollbackDB(id);
                             }
                         }
                         catch (Exception)
                         {
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            await RollbackDB(id);
                         }
                     }
                 });
             }
+
+        }
+
+        private async Task RollbackDB(int id)
+        {
+            if (id != -1)
+            {
+                _alertService.DeleteAlertById(id);
+            }
+            await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
         }
 
         #region INotifyPropertyChanged Implementation

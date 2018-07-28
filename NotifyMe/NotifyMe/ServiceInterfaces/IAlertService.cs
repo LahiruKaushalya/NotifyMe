@@ -9,6 +9,10 @@ namespace NotifyMe.ServiceInterfaces
     {
         int AddAlert(Alert alert);
 
+        int DeleteAlert(Alert alert);
+
+        int DeleteAlertById(int id);
+
         Alert GetAlertById(int id);
 
         List<Alert> GetAllTimeAlerts();

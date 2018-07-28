@@ -24,6 +24,16 @@ namespace NotifyMe.Services
             return _dbContext.Insert(alert);
         }
 
+        public int DeleteAlert(Alert alert)
+        {
+            return _dbContext.Delete(alert);
+        }
+
+        public int DeleteAlertById(int id)
+        {
+            return _dbContext.Table<Alert>().Delete(a => a.Id == id);
+        }
+
         public List<Alert> GetActiveUserLocationAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
