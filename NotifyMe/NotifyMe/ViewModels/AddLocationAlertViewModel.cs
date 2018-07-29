@@ -6,6 +6,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
+using NotifyMe.Models;
+using Xamarin.Forms.Maps;
 
 namespace NotifyMe.ViewModels
 {
@@ -54,6 +56,7 @@ namespace NotifyMe.ViewModels
                     }
                     else
                     {
+                        int id = -1;
                         var alert = new Alert
                         {
                             Title = Title,
@@ -63,31 +66,59 @@ namespace NotifyMe.ViewModels
                             User = _currentUser.UserName,
                             Type = false, // false means Location Alert
                             IsActive = true,
+                            IsDeleted = false,
                             CreatedOn = DateTime.Now
                         };
 
                         try
                         {
-                            var id = _alertService.AddAlert(alert);
+                            id = _alertService.AddAlert(alert);
                             if (id != -1)
                             {
-                                // Need to find a way to send Location alerts
-                                DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
+                                var locationNotification = new LocationNotification
+                                {
+                                    Id = id,
+                                    Title = Title,
+                                    Body = Description,
+                                    Position = new Position(Location.Latitude, Location.Longitude),
+                                    Radius = 10
+                                };
+
+                                // Send Native Location alerts
+                                var result = DependencyService.Get<INotificationService>().ScheduleLocationNotification(locationNotification);
+
+                                if (result != null)
+                                {
+                                    DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
+                                }
+                                else
+                                {
+                                    RollbackDB(id);
+                                }
                             }
                             else
                             {
-                                DependencyService.Get<IToastService>().LongMessage("Something went wrong. Please try again");
+                                RollbackDB(id);
                             }
                         }
                         catch (Exception)
                         {
-                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
+                            RollbackDB(id);
                         }
                     }
-                    
                 });
             }
         }
+
+        private void RollbackDB(int id)
+        {
+            if (id != -1)
+            {
+                _alertService.DeleteAlertById(id);
+            }
+            DependencyService.Get<IToastService>().LongMessage("Something went wrong. Please try again");
+        }
+
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string propertyName = "")

@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Locations;
 using Android.Media;
 using Android.OS;
 using Android.Runtime;
@@ -18,27 +19,48 @@ namespace NotifyMe.Droid
     [BroadcastReceiver]
     public class NotificationSender : BroadcastReceiver
     {
+        private int _id;
+        private string _title;
+        private string _body;
+
         public override void OnReceive(Context context, Intent intent)
         {
-            var ID = intent.GetIntExtra("ID", 0);
-            var Title = intent.GetStringExtra("Title");
-            var Body = intent.GetStringExtra("Body");
+            _id = intent.GetIntExtra("ID", 0);
+            _title = intent.GetStringExtra("Title");
+            _body = intent.GetStringExtra("Body");
 
-            //Intent notificationTapIntent = new Intent(Forms.Context, typeof());
+            var Type = intent.GetStringExtra("Type");
 
+            if (Type.Equals("TimeNotification"))
+            {
+                SendNotification();
+            }
+            else if (Type.Equals("LocationNotification"))
+            {
+                bool isEntering = intent.GetBooleanExtra(LocationManager.KeyProximityEntering, false);
+
+                if (isEntering)
+                {
+                    SendNotification();
+                }
+            }
+        }
+
+        private void SendNotification()
+        {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Android.App.Application.Context);
 
-            notificationBuilder.SetContentTitle(Title)
-                               .SetContentText(Body)
+            notificationBuilder.SetContentTitle(_title)
+                               .SetContentText(_body)
                                .SetSmallIcon(Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha)
-                               .SetDefaults(NotificationCompat.DefaultSound | 
+                               .SetDefaults(NotificationCompat.DefaultSound |
                                             NotificationCompat.DefaultVibrate |
                                             NotificationCompat.DefaultLights)
                                .SetPriority(NotificationCompat.PriorityMax)
                                .SetCategory(NotificationCompat.CategoryReminder);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Android.App.Application.Context);
-            notificationManager.Notify(ID, notificationBuilder.Build());
+            notificationManager.Notify(_id, notificationBuilder.Build());
         }
 
     }

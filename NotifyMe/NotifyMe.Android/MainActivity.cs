@@ -19,6 +19,8 @@ using Rg.Plugins.Popup.Services;
 using NotifyMe.Droid;
 using NotifyMe.ServiceInterfaces;
 using System.Threading.Tasks;
+using NotifyMe.Models;
+using Android.Locations;
 
 [assembly: Dependency(typeof(MainActivity))]
 
@@ -46,27 +48,62 @@ namespace NotifyMe.Droid
 
         }
 
-        #region Notifications
-        public Models.Notification ScheduleNotification(Models.Notification notification)
+        #region Location Notification
+        public LocationNotification ScheduleLocationNotification(LocationNotification locationNotification)
         {
             try
             {
                 Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
 
-                intent.PutExtra("ID", notification.Id);
-                intent.PutExtra("Title", notification.Title);
-                intent.PutExtra("Body", notification.Body);
+                intent.PutExtra("ID", locationNotification.Id);
+                intent.PutExtra("Title", locationNotification.Title);
+                intent.PutExtra("Body", locationNotification.Body);
+                intent.PutExtra("Type", "LocationNotification");
+
+                var latitude = locationNotification.Position.Latitude;
+                var longitude = locationNotification.Position.Longitude;
+                var radius = locationNotification.Radius;
 
                 PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
-                                                                     notification.Id,
+                                                                     locationNotification.Id,
+                                                                     intent,
+                                                                     PendingIntentFlags.UpdateCurrent);
+
+                LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
+
+                locationManager.AddProximityAlert(latitude, longitude, radius, -1, broadcast);
+
+                return locationNotification;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region Time Notifications
+        public Models.TimeNotification ScheduleTimeNotification(TimeNotification timeNotification)
+        {
+            try
+            {
+                Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
+
+                intent.PutExtra("ID", timeNotification.Id);
+                intent.PutExtra("Title", timeNotification.Title);
+                intent.PutExtra("Body", timeNotification.Body);
+                intent.PutExtra("Type", "TimeNotification");
+
+                PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
+                                                                     timeNotification.Id,
                                                                      intent,
                                                                      PendingIntentFlags.UpdateCurrent);
 
                 AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(AlarmService);
 
 
-                var date = notification.Date;
-                var time = notification.Time;
+                var date = timeNotification.Date;
+                var time = timeNotification.Time;
 
                 Calendar calendar = Calendar.Instance;
                 calendar.TimeInMillis = Java.Lang.JavaSystem.CurrentTimeMillis();
@@ -79,7 +116,7 @@ namespace NotifyMe.Droid
 
                 alarmManager.SetExact(AlarmType.RtcWakeup, calendar.TimeInMillis, broadcast);
 
-                return notification;
+                return timeNotification;
             }
             catch (Exception)
             {
@@ -151,7 +188,6 @@ namespace NotifyMe.Droid
                 break;
             }
         }
-
         #endregion
 
         #region Popup

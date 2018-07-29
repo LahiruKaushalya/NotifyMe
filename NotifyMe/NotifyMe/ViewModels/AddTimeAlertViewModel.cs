@@ -63,7 +63,7 @@ namespace NotifyMe.ViewModels
 
                             if (id != -1)
                             {
-                                var notification = new Notification
+                                var timeNotification = new TimeNotification
                                 {
                                     Id = id,
                                     Title = Title,
@@ -72,7 +72,7 @@ namespace NotifyMe.ViewModels
                                     Time = Time
                                 };
                                 //Platform specfic notification handle
-                                var result = DependencyService.Get<INotificationService>().ScheduleNotification(notification);
+                                var result = DependencyService.Get<INotificationService>().ScheduleTimeNotification(timeNotification);
                                 if (result != null)
                                 {
                                     DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");

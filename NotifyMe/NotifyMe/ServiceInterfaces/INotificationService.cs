@@ -4,6 +4,8 @@ namespace NotifyMe.ServiceInterfaces
 {
     public interface INotificationService
     {
-        Notification ScheduleNotification(Notification notification);
+        TimeNotification ScheduleTimeNotification(TimeNotification timeNotification);
+
+        LocationNotification ScheduleLocationNotification(LocationNotification locationNotification);
     }
 }
