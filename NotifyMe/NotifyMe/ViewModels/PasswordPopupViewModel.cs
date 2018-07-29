@@ -30,19 +30,19 @@ namespace NotifyMe.ViewModels
                 return new Command(async ()=> {
                     if (CurrentPassword == null || CurrentPassword.Equals(""))
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Current password is required.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Current password is required");
                     }
                     else if (NewPassword == null || NewPassword.Equals(""))
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "New password is required.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("New password is required");
                     }
                     else if (ConfirmPassword == null || ConfirmPassword.Equals(""))
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Password confirmation is required.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Password confirmation is required");
                     }
                     else if (NewPassword != ConfirmPassword)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Passwords mismatch", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Passwords mismatch");
                     }
                     else
                     {
@@ -55,17 +55,17 @@ namespace NotifyMe.ViewModels
                             {
                                 user.Password = NewPassword;
                                 _userService.UpdateUser(user);
-                                await Application.Current.MainPage.DisplayAlert("Success", "Password successfully updated.", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Password successfully updated");
                                 await PopupNavigation.PopAsync(true);
                             }
                             else
                             {
-                                await Application.Current.MainPage.DisplayAlert("Alert", "Current passwords is invalid", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Current passwords is invalid");
                             }
                         }
                         catch (Exception)
                         {
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
                         }
                     }
                 });

@@ -85,10 +85,12 @@ namespace NotifyMe.ViewModels
             if (delete)
             {
                 _locationService.DeleteLocationSoft(location);
+                DependencyService.Get<IToastService>().ShortMessage("Location deleted");
             }
             else
             {
                 _locationService.RestoreLocation(location);
+                DependencyService.Get<IToastService>().ShortMessage("Location restored");
             }
         }
 

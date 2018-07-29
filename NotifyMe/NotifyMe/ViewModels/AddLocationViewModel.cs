@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using Plugin.Geolocator;
 using Xamarin.Forms.Maps;
 using NotifyMe.ServiceInterfaces;
-using Plugin.Geolocator.Abstractions;
 using System.Windows.Input;
 using Xamarin.Forms;
 using NotifyMe.CustomRenderers;
@@ -76,7 +75,7 @@ namespace NotifyMe.ViewModels
                 return new Command(async () => {
                     if (LocationName == string.Empty)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Add location name.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Add location name");
                     }
                     else
                     {
@@ -95,17 +94,17 @@ namespace NotifyMe.ViewModels
                             var id = _locationService.AddLocation(location);
                             if (id != -1)
                             {
-                                await Application.Current.MainPage.DisplayAlert("Success", "Location added successfully.", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Location added successfully");
                             }
                             else
                             {
-                                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
+                                DependencyService.Get<IToastService>().LongMessage("Something went wrong. Please try again");
                             }
                         }
                         catch (Exception)
                         {
                             //DB Error
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
                         }
                     }
                 });

@@ -2,7 +2,7 @@
 
 namespace NotifyMe.ServiceInterfaces
 {
-    public interface INotificationSender
+    public interface INotificationService
     {
         Notification ScheduleNotification(Notification notification);
     }

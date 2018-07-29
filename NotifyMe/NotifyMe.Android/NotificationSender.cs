@@ -26,13 +26,16 @@ namespace NotifyMe.Droid
 
             //Intent notificationTapIntent = new Intent(Forms.Context, typeof());
 
-            Notification.Builder notificationBuilder = new Notification.Builder(Android.App.Application.Context);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Android.App.Application.Context);
 
             notificationBuilder.SetContentTitle(Title)
                                .SetContentText(Body)
                                .SetSmallIcon(Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha)
-                               .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                               .SetPriority((int)NotificationPriority.Max);
+                               .SetDefaults(NotificationCompat.DefaultSound | 
+                                            NotificationCompat.DefaultVibrate |
+                                            NotificationCompat.DefaultLights)
+                               .SetPriority(NotificationCompat.PriorityMax)
+                               .SetCategory(NotificationCompat.CategoryReminder);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Android.App.Application.Context);
             notificationManager.Notify(ID, notificationBuilder.Build());

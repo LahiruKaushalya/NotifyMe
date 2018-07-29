@@ -50,7 +50,7 @@ namespace NotifyMe.ViewModels
                 return new Command(async () => {
                     if (Title == string.Empty || Description == string.Empty || Location == null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Information incomplete.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Information incomplete");
                     }
                     else
                     {
@@ -72,16 +72,16 @@ namespace NotifyMe.ViewModels
                             if (id != -1)
                             {
                                 // Need to find a way to send Location alerts
-                                await Application.Current.MainPage.DisplayAlert("Success", "Alert added successfully.", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
                             }
                             else
                             {
-                                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
+                                DependencyService.Get<IToastService>().LongMessage("Something went wrong. Please try again");
                             }
                         }
                         catch (Exception)
                         {
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
                         }
                     }
                     

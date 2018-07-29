@@ -34,15 +34,16 @@ namespace NotifyMe.ViewModels
                 return new Command(async() => {
                     if (Name == null || UserName == null || Password == null || ConfirmPassword == null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Information required to signup is incomplete.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Information incomplete");
                     }
                     else if (Password != ConfirmPassword)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Passwords are mismatch.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Passwords mismatch");
                     }
                     else
                     {
-                        var user = new User(){
+                        var user = new User()
+                        {
                             Name = Name,
                             UserName = UserName,
                             Password = Password,
@@ -55,7 +56,7 @@ namespace NotifyMe.ViewModels
 
                             if (isUser != null)
                             {
-                                await Application.Current.MainPage.DisplayAlert("Oops", "User Name not avilable. Try again another", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Username not available");
                             }
                             else
                             {
@@ -63,19 +64,20 @@ namespace NotifyMe.ViewModels
                                 if (isok)
                                 {
                                     _userService.SetCurrentUser(user);
+                                    DependencyService.Get<IToastService>().LongMessage("Welcome to NotifyMe");
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                 }
                                 else
                                 {
                                     //Adding failed
-                                    await Application.Current.MainPage.DisplayAlert("Oops", "Signup failed. Try again later", "Ok");
+                                    DependencyService.Get<IToastService>().LongMessage("Signup failed");
                                 }
                             }
                         }
                         catch (Exception)
                         {
                             //DB Error
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
                         }
                     }
                 });

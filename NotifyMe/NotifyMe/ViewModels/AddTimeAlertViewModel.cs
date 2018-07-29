@@ -40,11 +40,11 @@ namespace NotifyMe.ViewModels
                 return new Command(async () => {
                     if (Title.Equals(string.Empty) || Description.Equals(string.Empty))
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Information that need create alert is incomplete.", "Ok");
+                        DependencyService.Get<IToastService>().ShortMessage("Information incomplete");
                     }
                     else
                     {
-                        int id = 1;//Remember to cahange................................
+                        int id = -1;
                         try
                         {
                             var currentUser = _userService.GetCurrentUser();
@@ -59,23 +59,23 @@ namespace NotifyMe.ViewModels
                                 CreatedOn = DateTime.Now
                             };
                             // Add alert to database
-                            //id =  _alertService.AddAlert(alert);
+                            id =  _alertService.AddAlert(alert);
 
                             if (id != -1)
                             {
                                 var notification = new Notification
                                 {
-                                    Id = id,
+                                    Id = (int)(DateTime.Now.Ticks % Int16.MaxValue),
                                     Title = Title,
                                     Body = Description,
                                     Date = Date,
                                     Time = Time
                                 };
                                 //Platform specfic notification handle
-                                var result = DependencyService.Get<INotificationSender>().ScheduleNotification(notification);
+                                var result = DependencyService.Get<INotificationService>().ScheduleNotification(notification);
                                 if (result != null)
                                 {
-                                    await Application.Current.MainPage.DisplayAlert("Success", "Alert added successfully.", "Ok");
+                                    DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
                                 }
                                 else
                                 {
@@ -103,7 +103,7 @@ namespace NotifyMe.ViewModels
             {
                 _alertService.DeleteAlertById(id);
             }
-            await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong. Please try again", "Ok");
+            DependencyService.Get<IToastService>().LongMessage("Something went wrong. Please try again");
         }
 
         #region INotifyPropertyChanged Implementation

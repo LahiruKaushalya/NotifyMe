@@ -39,29 +39,30 @@ namespace NotifyMe.ViewModels
                                     user.LoginState = true;
                                     _userService.SetCurrentUser(user);
                                     _userService.UpdateUser(user);
-                                    
+
+                                    DependencyService.Get<IToastService>().ShortMessage("Login successfull");
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
                                     await PopupNavigation.PopAsync(true);
                                 }
                                 else
                                 {
-                                    await Application.Current.MainPage.DisplayAlert("Alert", "Invalid password", "Ok");
+                                    DependencyService.Get<IToastService>().ShortMessage("Invalid password");
                                 }
                             }
-                            else //invalid Email
+                            else //invalid password
                             {
-                                await Application.Current.MainPage.DisplayAlert("Alert", "Invalid username", "Ok");
+                                DependencyService.Get<IToastService>().ShortMessage("Invalid password");
                             }
                         }
                         catch (Exception)
                         {
                             //DB Error
-                            await Application.Current.MainPage.DisplayAlert("Oops", "Can't connect to database.", "Ok");
+                            DependencyService.Get<IToastService>().LongMessage("Cannot connect to database");
                         }
                     }
                     else //Incomplete inputs
                     {
-                        await Application.Current.MainPage.DisplayAlert("Alert", "Information required to login is incomplete.", "Ok");
+                        DependencyService.Get<IToastService>().LongMessage("Information  incomplete.");
                     }
                 });
             }
