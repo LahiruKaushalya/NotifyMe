@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.Views.Popups.TimeAlertDetailsPopup"
+             xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,10"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Start"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="40,60,40,60" 
+          Padding="20,20,20,20" 
+          BackgroundColor="GhostWhite"
+          RowSpacing="0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" 
+               Grid.Column="0"
+               FontAttributes="Bold"
+               Text="Notification State"/>
+        <Label Grid.Row="0" 
+               Grid.Column="0"
+               HorizontalOptions="End"
+               Text="test"
+               x:Name="State"/>
+        <Label Grid.Row="0" 
+               Grid.Column="1"
+               Text="icon"
+               x:Name="StateIcon"/>
+
+        <ScrollView Grid.Row="1" Grid.ColumnSpan="2">
+            <StackLayout >
+
+                <Label FontAttributes="Bold" 
+                   Text="Title"/>
+                <Label x:Name="AlertTitle"
+                   Margin="10,0,0,0"/>
+
+                <Label FontAttributes="Bold"
+                   Text="Description"/>
+                <Label x:Name="Body"
+                   Margin="10,0,0,0"/>
+
+                <Label FontAttributes="Bold"
+                   Text="Date and Time"/>
+                <Label x:Name="DateTime"
+                   Margin="10,0,0,0"/>
+
+                <Label FontAttributes="Bold"
+                   Text="Created on"/>
+                <Label x:Name="CreatedOn"
+                   Margin="10,0,0,0"/>
+
+            </StackLayout>
+        </ScrollView>
+
+        <Button x:Name="DeleteBtn"
+                Image="round_delete_white_24.png"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,0"
+                Clicked="DeleteAlert"/>
+
+        <Button x:Name="RestoreBtn" 
+                Image="round_restore_from_trash_white_24.png"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,0"
+                Clicked="RestoreAlert"/>
+        
+    </Grid>
+</Pages:PopupPage>
+    

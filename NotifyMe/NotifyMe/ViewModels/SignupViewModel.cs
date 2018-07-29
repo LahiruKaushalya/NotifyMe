@@ -89,7 +89,7 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(async() => {
-                    await PopupNavigation.PushAsync(new LoginPopup());
+                    await PopupNavigation.Instance.PushAsync(new LoginPopup());
                 });
             }
         }

@@ -68,7 +68,8 @@
                         <Image Source="round_restore_from_trash_black_24.png" 
                                Grid.Column="2" 
                                HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               IsVisible="{Binding IsDeleted}"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>

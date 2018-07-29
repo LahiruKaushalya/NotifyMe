@@ -56,7 +56,7 @@ namespace NotifyMe.ViewModels
                                 user.Password = NewPassword;
                                 _userService.UpdateUser(user);
                                 DependencyService.Get<IToastService>().ShortMessage("Password successfully updated");
-                                await PopupNavigation.PopAsync(true);
+                                await PopupNavigation.Instance.PopAsync(true);
                             }
                             else
                             {

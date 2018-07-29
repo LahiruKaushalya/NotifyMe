@@ -37,7 +37,7 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(async () => {
+                return new Command(() => {
                     if (Title.Equals(string.Empty) || Description.Equals(string.Empty))
                     {
                         DependencyService.Get<IToastService>().ShortMessage("Information incomplete");
@@ -65,7 +65,7 @@ namespace NotifyMe.ViewModels
                             {
                                 var notification = new Notification
                                 {
-                                    Id = (int)(DateTime.Now.Ticks % Int16.MaxValue),
+                                    Id = id,
                                     Title = Title,
                                     Body = Description,
                                     Date = Date,
@@ -79,17 +79,17 @@ namespace NotifyMe.ViewModels
                                 }
                                 else
                                 {
-                                    await RollbackDB(id);
+                                   RollbackDB(id);
                                 }
                             }
                             else
                             {
-                                await RollbackDB(id);
+                                RollbackDB(id);
                             }
                         }
                         catch (Exception)
                         {
-                            await RollbackDB(id);
+                            RollbackDB(id);
                         }
                     }
                 });
@@ -97,7 +97,7 @@ namespace NotifyMe.ViewModels
 
         }
 
-        private async Task RollbackDB(int id)
+        private void RollbackDB(int id)
         {
             if (id != -1)
             {

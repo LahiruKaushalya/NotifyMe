@@ -9,22 +9,26 @@ namespace NotifyMe.ServiceInterfaces
     {
         int AddAlert(Alert alert);
 
-        int DeleteAlert(Alert alert);
+        int DeleteAlertHard(Alert alert);
+
+        int DeleteAlertSoft(Alert alert);
 
         int DeleteAlertById(int id);
 
         Alert GetAlertById(int id);
 
-        List<Alert> GetAllTimeAlerts();
+        List<Alert> GetTimeAlerts();
+
+        List<Alert> GetUserTimeAlerts(string userName);
 
         List<Alert> GetAllUserTimeAlerts(string userName);
 
-        List<Alert> GetActiveUserTimeAlerts(string userName);
+        List<Alert> GetLocationAlerts();
 
-        List<Alert> GetAllLocationAlerts();
+        List<Alert> GetUserLocationAlerts(string userName);
 
         List<Alert> GetAllUserLocationAlerts(string userName);
 
-        List<Alert> GetActiveUserLocationAlerts(string userName);
+        int RestoreAlert(Alert alert);
     }
 }

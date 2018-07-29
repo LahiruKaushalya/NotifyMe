@@ -47,7 +47,7 @@ namespace NotifyMe.ViewModels
             get
             {
                 return new Command(()=> {
-                    PopupNavigation.PushAsync(new PasswordPopup());
+                    PopupNavigation.Instance.PushAsync(new PasswordPopup());
                 });
             }
         }

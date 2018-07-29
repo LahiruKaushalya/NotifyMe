@@ -72,7 +72,7 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(async () => {
+                return new Command(() => {
                     if (LocationName == string.Empty)
                     {
                         DependencyService.Get<IToastService>().ShortMessage("Add location name");

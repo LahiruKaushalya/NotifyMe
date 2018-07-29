@@ -42,7 +42,7 @@ namespace NotifyMe.ViewModels
 
                                     DependencyService.Get<IToastService>().ShortMessage("Login successfull");
                                     await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
-                                    await PopupNavigation.PopAsync(true);
+                                    await PopupNavigation.Instance.PopAsync(true);
                                 }
                                 else
                                 {

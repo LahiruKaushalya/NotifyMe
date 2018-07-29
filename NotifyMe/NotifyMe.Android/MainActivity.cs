@@ -159,7 +159,7 @@ namespace NotifyMe.Droid
         {
             if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
             {
-                PopupNavigation.PopAsync(true);
+                PopupNavigation.Instance.PopAsync(true);
             }
             else
             {

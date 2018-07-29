@@ -19,6 +19,8 @@ namespace NotifyMe.Models.DbModels
 
         public bool IsActive { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public DateTime DateTime { get; set; }
 
         public int LocationID { get; set; }

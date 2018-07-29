@@ -22,7 +22,7 @@ namespace NotifyMe.ViewModels
 
             var userEmail = _userService.GetCurrentUser().UserName;
 
-            LocationAlerts = new ObservableCollection<Alert>(_alertService.GetAllUserLocationAlerts(userEmail));
+            LocationAlerts = new ObservableCollection<Alert>(_alertService.GetUserLocationAlerts(userEmail));
         }
 
         private bool _isRefreshing;

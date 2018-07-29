@@ -47,7 +47,7 @@ namespace NotifyMe.ViewModels
         {
             get
             {
-                return new Command(async () => {
+                return new Command(() => {
                     if (Title == string.Empty || Description == string.Empty || Location == null)
                     {
                         DependencyService.Get<IToastService>().ShortMessage("Information incomplete");

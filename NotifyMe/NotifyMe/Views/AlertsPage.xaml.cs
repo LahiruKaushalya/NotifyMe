@@ -16,5 +16,6 @@ namespace NotifyMe.Views
         {
             InitializeComponent();
         }
+
     }
 }

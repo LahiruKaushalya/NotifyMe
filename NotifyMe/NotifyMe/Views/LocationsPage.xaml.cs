@@ -17,11 +17,11 @@ namespace NotifyMe.Views
 			InitializeComponent ();
 		}
 
-        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as LocationsViewModel;
             var location = e.Item as Location;
-            await PopupNavigation.PushAsync(new MapPopup(location));
+            await PopupNavigation.Instance.PushAsync(new MapPopup(location));
         }
 
         public void UpdateLocation(Location location, bool delete)

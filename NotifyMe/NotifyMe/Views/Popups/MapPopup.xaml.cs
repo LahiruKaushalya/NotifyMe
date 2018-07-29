@@ -43,7 +43,7 @@ namespace NotifyMe.Views.Popups
             if (responce)
             {
                 new LocationsPage().UpdateLocation(_location, true);
-                await PopupNavigation.PopAsync();
+                await PopupNavigation.Instance.PopAsync();
             }
             else { return; }
         }
@@ -55,7 +55,7 @@ namespace NotifyMe.Views.Popups
             if (responce)
             {
                 new LocationsPage().UpdateLocation(_location, false);
-                await PopupNavigation.PopAsync();
+                await PopupNavigation.Instance.PopAsync();
             }
             else { return; }
         }
