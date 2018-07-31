@@ -21,6 +21,7 @@ using NotifyMe.ServiceInterfaces;
 using System.Threading.Tasks;
 using NotifyMe.Models;
 using Android.Locations;
+using NotifyMe.Models.DbModels;
 
 [assembly: Dependency(typeof(MainActivity))]
 
@@ -45,10 +46,32 @@ namespace NotifyMe.Droid
             Xamarin.FormsMaps.Init(this, bundle);
 
             LoadApplication(new App());
-
         }
 
         #region Location Notification
+
+        #region Delete
+        public Alert RemoveLocationNotification(Alert alert)
+        {
+            try
+            {
+                Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
+                PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
+                                                                     alert.Id,
+                                                                     intent,
+                                                                     PendingIntentFlags.UpdateCurrent);
+                LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
+                locationManager.RemoveProximityAlert(broadcast);
+                return alert;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region Schedule
         public LocationNotification ScheduleLocationNotification(LocationNotification locationNotification)
         {
             try
@@ -80,6 +103,8 @@ namespace NotifyMe.Droid
                 return null;
             }
         }
+        #endregion
+
         #endregion
 
         #region Time Notifications
@@ -202,6 +227,7 @@ namespace NotifyMe.Droid
                 // Do something if there are not any pages in the `PopupStack`
             }
         }
+        
         #endregion
     }
 }

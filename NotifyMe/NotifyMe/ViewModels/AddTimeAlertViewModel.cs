@@ -55,7 +55,6 @@ namespace NotifyMe.ViewModels
                                 User = currentUser.UserName,
                                 Type = true, //True means Time alert
                                 DateTime = Date + Time,
-                                IsActive = true,
                                 CreatedOn = DateTime.Now
                             };
                             // Add alert to database

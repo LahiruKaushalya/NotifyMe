@@ -385,4 +385,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\round_restore_from_trash_white_24pt_3x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_add_white_24pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_add_white_24pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_add_white_24pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_white_24pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_white_24pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_white_24pt_3x.png" />
+  </ItemGroup>
 </Project>

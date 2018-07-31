@@ -15,29 +15,36 @@ namespace NotifyMe.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TimeAlertsPage : ContentPage
 	{
+        private TimeAlertsViewModel vm;
+
 		public TimeAlertsPage ()
 		{
 			InitializeComponent ();
-		}
+            vm = BindingContext as TimeAlertsViewModel;
+        }
 
         private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var vm = BindingContext as TimeAlertsViewModel;
             var alert = e.Item as Alert;
             await PopupNavigation.Instance.PushAsync(new TimeAlertDetailsPopup(alert));
         }
 
-        public void UpdateAlert(Alert alert, bool delete)
+        public void UpdateAlert(Alert alert, bool disable)
         {
-            var vm = BindingContext as TimeAlertsViewModel;
-            vm.UpdateAlert(alert, delete);
+            vm.UpdateAlert(alert, disable);
+            vm.Refresh.Execute(null);
+        }
+
+        public void DeleteAlert(Alert alert)
+        {
+            vm.DeleteAlert(alert);
             vm.Refresh.Execute(null);
         }
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             var vm = BindingContext as TimeAlertsViewModel;
-            vm.ShowDeleted = e.Value;
+            vm.ShowDisabled = e.Value;
             vm.Refresh.Execute(null);
         }
     }

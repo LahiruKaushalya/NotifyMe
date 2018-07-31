@@ -17,7 +17,7 @@ namespace NotifyMe.Models.DbModels
 
         public bool Type { get; set; } //True means Time Alert, False means Location alert. Only two states. Therefore no Enum used
 
-        public bool IsActive { get; set; }
+        public bool IsDisabled { get; set; }
 
         public bool IsDeleted { get; set; }
 

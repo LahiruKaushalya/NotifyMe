@@ -32,14 +32,14 @@ namespace NotifyMe.Services
             return -1;
         }
 
-        public int DeleteAlertHard(Alert alert)
+        public int DeleteAlert(Alert alert)
         {
             return _dbContext.Delete(alert);
         }
         
-        public int DeleteAlertSoft(Alert alert)
+        public int DisableAlert(Alert alert)
         {
-            alert.IsDeleted = true;
+            alert.IsDisabled = true;
             return _dbContext.Update(alert);
         }
 
@@ -72,7 +72,7 @@ namespace NotifyMe.Services
             return alert;
         }
 
-        public List<Alert> GetLocationAlerts()
+        public List<Alert> GetAllLocationAlerts()
         {
             var alerts = _dbContext.Table<Alert>()
                             .Where(a => a.Type == false)
@@ -81,7 +81,7 @@ namespace NotifyMe.Services
             return alerts;
         }
 
-        public List<Alert> GetTimeAlerts()
+        public List<Alert> GetAllTimeAlerts()
         {
             var alerts = _dbContext.Table<Alert>()
                             .Where(a => a.Type == true)
@@ -90,27 +90,27 @@ namespace NotifyMe.Services
             return alerts;
         }
 
-        public List<Alert> GetUserLocationAlerts(string userName)
+        public List<Alert> GetActiveUserLocationAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == false && a.User == userName && a.IsDeleted == false)
+                            .Where(a => a.Type == false && a.User == userName && a.IsDisabled == false)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
         }
 
-        public List<Alert> GetUserTimeAlerts(string userName)
+        public List<Alert> GetActiveUserTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == true && a.User == userName && a.IsDeleted == false)
+                            .Where(a => a.Type == true && a.User == userName && a.IsDisabled == false)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
         }
 
-        public int RestoreAlert(Alert alert)
+        public int ActivateAlert(Alert alert)
         {
-            alert.IsDeleted = false;
+            alert.IsDisabled = false;
             return _dbContext.Update(alert);
         }
     }

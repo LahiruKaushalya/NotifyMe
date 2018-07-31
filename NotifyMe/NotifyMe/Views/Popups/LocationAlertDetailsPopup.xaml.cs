@@ -1,22 +1,19 @@
-﻿using NotifyMe.Models.DbModels;
-using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
+
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.Views.Popups
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TimeAlertDetailsPopup
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class LocationAlertDetailsPopup
 	{
         private Alert _alert;
 
-		public TimeAlertDetailsPopup (Alert alert)
+        public LocationAlertDetailsPopup (Alert alert)
 		{
 			InitializeComponent ();
 
@@ -25,7 +22,7 @@ namespace NotifyMe.Views.Popups
 
             AlertTitle.Text = alert.Title;
             Body.Text = alert.Description;
-            DateTime.Text = alert.DateTime.ToString();
+            Location.Text = alert.LocationName;
             CreatedOn.Text = alert.CreatedOn.ToString();
         }
 
@@ -35,7 +32,7 @@ namespace NotifyMe.Views.Popups
 
             if (responce)
             {
-                new TimeAlertsPage().UpdateAlert(_alert, true);
+                new LocationAlertsPage().UpdateAlert(_alert, true);
                 await PopupNavigation.Instance.PopAsync();
             }
             else { return; }
@@ -47,7 +44,7 @@ namespace NotifyMe.Views.Popups
 
             if (responce)
             {
-                new TimeAlertsPage().UpdateAlert(_alert, false);
+                new LocationAlertsPage().UpdateAlert(_alert, false);
                 await PopupNavigation.Instance.PopAsync();
             }
             else { return; }
@@ -59,7 +56,7 @@ namespace NotifyMe.Views.Popups
 
             if (responce)
             {
-                new TimeAlertsPage().DeleteAlert(_alert);
+                new LocationAlertsPage().DeleteAlert(_alert);
                 await PopupNavigation.Instance.PopAsync();
             }
             else { return; }

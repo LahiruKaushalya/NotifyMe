@@ -65,8 +65,6 @@ namespace NotifyMe.ViewModels
                             LocationName = Location.Name,
                             User = _currentUser.UserName,
                             Type = false, // false means Location Alert
-                            IsActive = true,
-                            IsDeleted = false,
                             CreatedOn = DateTime.Now
                         };
 
@@ -81,7 +79,7 @@ namespace NotifyMe.ViewModels
                                     Title = Title,
                                     Body = Description,
                                     Position = new Position(Location.Latitude, Location.Longitude),
-                                    Radius = 10
+                                    Radius = 2
                                 };
 
                                 // Send Native Location alerts

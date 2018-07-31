@@ -19,17 +19,21 @@
               ItemTapped="ListView_ItemTapped"
               IsPullToRefreshEnabled="True"
               HasUnevenRows="True"
-              Margin="0,20,0,20"
+              Margin="0,0,0,10"
               IsRefreshing="{Binding IsRefreshing}"
-              RefreshCommand="{Binding Refresh}">
+              RefreshCommand="{Binding Refresh}"
+              BackgroundColor="{StaticResource ListViewColor}">
 
         <ListView.Header>
-            <Grid ColumnSpacing="5" Margin="0,0,0,20">
+            <Grid BackgroundColor="{StaticResource ListViewHeaderColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
 
                 <Label HorizontalTextAlignment="Start"
                        Grid.Column="0"
@@ -51,12 +55,16 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell Height="50">
-                    <Grid ColumnSpacing="0">
+                    <Grid ColumnSpacing="0" BackgroundColor="{StaticResource ListViewColor}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition Width="0.4*"/>
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.ColumnSpan="3" 
+                                 IsVisible="{Binding IsDisabled}"
+                                 BackgroundColor="#D8E5FC"/>
 
                         <Label Grid.Column="0" 
                                Text="{Binding Title}" />
@@ -64,10 +72,11 @@
                         <Label Grid.Column="1" 
                                Text="{Binding LocationName}" />
 
-                        <Image Source="round_restore_from_trash_black_24.png" 
+                        <Image Source="round_alarm_add_white_24.png" 
                                Grid.Column="2" 
                                HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               IsVisible="{Binding IsDisabled}"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>

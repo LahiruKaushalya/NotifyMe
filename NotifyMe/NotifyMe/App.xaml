@@ -11,6 +11,8 @@
             
             <!--Styles -->
             <Color x:Key="BaseColor">#03A9F4</Color>
+            <Color x:Key="ListViewColor">#FFFFFF</Color>
+            <Color x:Key="ListViewHeaderColor">#BAC8E2</Color>
 
             <Style TargetType="ActivityIndicator">
                 <Setter Property="Scale" Value="0.15" />

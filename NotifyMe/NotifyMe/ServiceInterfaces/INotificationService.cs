@@ -1,4 +1,5 @@
 ﻿using NotifyMe.Models;
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.ServiceInterfaces
 {
@@ -7,5 +8,7 @@ namespace NotifyMe.ServiceInterfaces
         TimeNotification ScheduleTimeNotification(TimeNotification timeNotification);
 
         LocationNotification ScheduleLocationNotification(LocationNotification locationNotification);
+
+        Alert RemoveLocationNotification(Alert alert);
     }
 }

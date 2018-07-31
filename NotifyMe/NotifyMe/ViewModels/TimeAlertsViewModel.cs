@@ -23,14 +23,14 @@ namespace NotifyMe.ViewModels
 
             var userName = _userService.GetCurrentUser().UserName;
             _userName = _userService.GetCurrentUser().UserName;
-            TimeAlerts = new ObservableCollection<Alert>(_alertService.GetUserTimeAlerts(userName));
+            TimeAlerts = new ObservableCollection<Alert>(_alertService.GetActiveUserTimeAlerts(userName));
         }
 
         private string _userName;
 
         private bool _isRefreshing;
 
-        private bool _showDeleted;
+        private bool _showDisabled;
 
         public bool IsRefreshing
         {
@@ -42,13 +42,13 @@ namespace NotifyMe.ViewModels
             }
         }
 
-        public bool ShowDeleted
+        public bool ShowDisabled
         {
-            get { return _showDeleted; }
+            get { return _showDisabled; }
             set
             {
-                _showDeleted = value;
-                OnPropertyChanged(nameof(ShowDeleted));
+                _showDisabled = value;
+                OnPropertyChanged(nameof(ShowDisabled));
             }
         }
 
@@ -62,13 +62,13 @@ namespace NotifyMe.ViewModels
 
                     List<Alert> list;
 
-                    if (ShowDeleted)
+                    if (ShowDisabled)
                     {
                         list = _alertService.GetAllUserTimeAlerts(_userName);
                     }
                     else
                     {
-                        list = _alertService.GetUserTimeAlerts(_userName);
+                        list = _alertService.GetActiveUserTimeAlerts(_userName);
                     }
 
                     foreach (Alert alert in list)
@@ -80,18 +80,24 @@ namespace NotifyMe.ViewModels
             }
         }
 
-        public void UpdateAlert(Alert alert, bool delete)
+        public void UpdateAlert(Alert alert, bool disable)
         {
-            if (delete)
+            if (disable)
             {
-                _alertService.DeleteAlertSoft(alert);
-                DependencyService.Get<IToastService>().ShortMessage("Alert deleted");
+                _alertService.DisableAlert(alert);
+                DependencyService.Get<IToastService>().ShortMessage("Alert disabled");
             }
             else
             {
-                _alertService.RestoreAlert(alert);
-                DependencyService.Get<IToastService>().ShortMessage("Alert restored");
+                _alertService.ActivateAlert(alert);
+                DependencyService.Get<IToastService>().ShortMessage("Alert reactivated");
             }
+        }
+
+        public void DeleteAlert(Alert alert)
+        {
+            _alertService.DeleteAlert(alert);
+            DependencyService.Get<IToastService>().ShortMessage("Alert deleted");
         }
 
         public void AddOrHideAlert(Alert alert)

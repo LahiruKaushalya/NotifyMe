@@ -12,28 +12,28 @@ namespace NotifyMe.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LocationsPage : ContentPage
 	{
+        private LocationsViewModel vm;
+
 		public LocationsPage ()
 		{
 			InitializeComponent ();
-		}
+            vm = BindingContext as LocationsViewModel;
+        }
 
         private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var vm = BindingContext as LocationsViewModel;
             var location = e.Item as Location;
             await PopupNavigation.Instance.PushAsync(new MapPopup(location));
         }
 
         public void UpdateLocation(Location location, bool delete)
         {
-            var vm = BindingContext as LocationsViewModel;
             vm.UpdateLocation(location, delete);
             vm.Refresh.Execute(null);
         }
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            var vm = BindingContext as LocationsViewModel;
             vm.ShowDeleted = e.Value;
             vm.Refresh.Execute(null);
         }

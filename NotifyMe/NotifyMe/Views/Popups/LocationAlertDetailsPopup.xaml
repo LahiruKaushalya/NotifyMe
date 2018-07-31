@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.Popups.TimeAlertDetailsPopup"
+             x:Class="NotifyMe.Views.Popups.LocationAlertDetailsPopup"
              xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
-
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -55,8 +55,8 @@
                    Margin="10,0,0,0"/>
 
                 <Label FontAttributes="Bold"
-                   Text="Date and Time"/>
-                <Label x:Name="DateTime"
+                   Text="Location"/>
+                <Label x:Name="Location"
                    Margin="10,0,0,0"/>
 
                 <Label FontAttributes="Bold"
@@ -80,13 +80,14 @@
                 Grid.Column="0"
                 Margin="0,0,0,0"
                 Clicked="ReactivateAlert"/>
-
+        
         <Button x:Name="DeleteBtn"
                 Image="round_delete_white_24.png"
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="0,0,0,0"
                 Clicked="DeleteAlert"/>
+
 
     </Grid>
 </Pages:PopupPage>
