@@ -15,11 +15,15 @@ namespace NotifyMe.ViewModels
     {
         private IUserService _userService;
         private IAlertService _alertService;
+        private IValidatorService _validatorService;
 
-        public AddTimeAlertViewModel(IUserService userService , IAlertService alertService)
+        public AddTimeAlertViewModel(IUserService userService, 
+                                     IAlertService alertService,
+                                     IValidatorService validatorService)
         {
             _userService = userService;
             _alertService = alertService;
+            _validatorService = validatorService;
             Date = DateTime.Now.Date;
             Title = string.Empty;
             Description = string.Empty;
@@ -44,51 +48,63 @@ namespace NotifyMe.ViewModels
                     }
                     else
                     {
-                        int id = -1;
-                        try
-                        {
-                            var currentUser = _userService.GetCurrentUser();
-                            var alert = new Alert()
-                            {
-                                Title = Title,
-                                Description = Description,
-                                User = currentUser.UserName,
-                                Type = true, //True means Time alert
-                                DateTime = Date + Time,
-                                CreatedOn = DateTime.Now
-                            };
-                            // Add alert to database
-                            id =  _alertService.AddAlert(alert);
+                        var isDayValid = _validatorService.ValidateDate(Date);
+                        var isTimeValid = _validatorService.ValidateTime(Time);
 
-                            if (id != -1)
+                        if (!isDayValid || !isTimeValid) // validate date and time
+                        {
+                            DependencyService.Get<IToastService>().ShortMessage("Invalid date time");
+                        }
+                        else
+                        {
+                            int id = -1;
+                            try
                             {
-                                var timeNotification = new TimeNotification
+                                var currentUser = _userService.GetCurrentUser();
+                                var alert = new Alert()
                                 {
-                                    Id = id,
                                     Title = Title,
-                                    Body = Description,
+                                    Description = Description,
+                                    User = currentUser.UserName,
+                                    Type = true, //True means Time alert
+                                    DisplayDateTime = Date + Time,
                                     Date = Date,
-                                    Time = Time
+                                    Time = Time,
+                                    CreatedOn = DateTime.Now
                                 };
-                                //Platform specfic notification handle
-                                var result = DependencyService.Get<INotificationService>().ScheduleTimeNotification(timeNotification);
-                                if (result != null)
+                                // Add alert to database
+                                id = _alertService.AddAlert(alert);
+
+                                if (id != -1)
                                 {
-                                    DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
+                                    var timeNotification = new TimeNotification
+                                    {
+                                        Id = id,
+                                        Title = Title,
+                                        Body = Description,
+                                        Date = Date,
+                                        Time = Time
+                                    };
+                                    //Platform specfic notification handle
+                                    var result = DependencyService.Get<INotificationService>().ScheduleTimeNotification(timeNotification);
+                                    if (result != null)
+                                    {
+                                        DependencyService.Get<IToastService>().ShortMessage("Alert added successfully");
+                                    }
+                                    else
+                                    {
+                                        RollbackDB(id);
+                                    }
                                 }
                                 else
                                 {
-                                   RollbackDB(id);
+                                    RollbackDB(id);
                                 }
                             }
-                            else
+                            catch (Exception)
                             {
                                 RollbackDB(id);
                             }
-                        }
-                        catch (Exception)
-                        {
-                            RollbackDB(id);
                         }
                     }
                 });

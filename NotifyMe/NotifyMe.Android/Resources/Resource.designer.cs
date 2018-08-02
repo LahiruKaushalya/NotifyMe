@@ -2982,7 +2982,7 @@ namespace NotifyMe.Droid
 			public const int round_add_location_white_48 = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int round_add_white_48 = 2130837799;
+			public const int round_add_white_24 = 2130837799;
 			
 			// aapt resource value: 0x7f020128
 			public const int round_alarm_add_white_24 = 2130837800;

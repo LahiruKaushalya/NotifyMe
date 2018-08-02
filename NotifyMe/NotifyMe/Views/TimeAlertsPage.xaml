@@ -71,7 +71,7 @@
                                Text="{Binding Title}" />
 
                         <Label Grid.Column="1" 
-                               Text="{Binding DateTime}" />
+                               Text="{Binding DisplayDateTime}" />
 
                         <Image Source="round_alarm_add_white_24.png" 
                                Grid.Column="2" 

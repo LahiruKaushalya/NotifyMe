@@ -16,17 +16,21 @@ namespace NotifyMe.Models.DbModels
         public string Description { get; set; }
 
         public bool Type { get; set; } //True means Time Alert, False means Location alert. Only two states. Therefore no Enum used
+        
+        public DateTime DisplayDateTime { get; set; }
 
-        public bool IsDisabled { get; set; }
+        public DateTime Date { get; set; }
 
-        public bool IsDeleted { get; set; }
-
-        public DateTime DateTime { get; set; }
+        public TimeSpan Time { get; set; }
 
         public int LocationID { get; set; }
 
         public string LocationName { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public bool IsDisabled { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

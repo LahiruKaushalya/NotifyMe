@@ -350,15 +350,6 @@
     <BundleResource Include="Resources\round_home_black_48pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\round_add_white_48pt_1x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_add_white_48pt_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_add_white_48pt_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\round_delete_white_24pt_1x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -402,5 +393,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\round_alarm_off_white_24pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_white_24pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_white_24pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_add_white_24pt_3x.png" />
   </ItemGroup>
 </Project>

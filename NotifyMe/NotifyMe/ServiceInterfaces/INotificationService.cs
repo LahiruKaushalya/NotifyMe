@@ -10,5 +10,7 @@ namespace NotifyMe.ServiceInterfaces
         LocationNotification ScheduleLocationNotification(LocationNotification locationNotification);
 
         Alert RemoveLocationNotification(Alert alert);
+
+        Alert RemoveTimeNotification(Alert alert);
     }
 }

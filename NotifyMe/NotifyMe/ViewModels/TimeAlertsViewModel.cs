@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using NotifyMe.Models.DbModels;
 using NotifyMe.ServiceInterfaces;
 using System.Collections.Generic;
+using NotifyMe.Models;
 
 namespace NotifyMe.ViewModels
 {
@@ -85,11 +86,21 @@ namespace NotifyMe.ViewModels
             if (disable)
             {
                 _alertService.DisableAlert(alert);
+                DependencyService.Get<INotificationService>().RemoveTimeNotification(alert);
                 DependencyService.Get<IToastService>().ShortMessage("Alert disabled");
             }
             else
             {
                 _alertService.ActivateAlert(alert);
+                var notification = new TimeNotification
+                {
+                    Id = alert.Id,
+                    Body = alert.Description,
+                    Title = alert.Title,
+                    Date = alert.Date,
+                    Time = alert.Time
+                };
+                DependencyService.Get<INotificationService>().ScheduleTimeNotification(notification);
                 DependencyService.Get<IToastService>().ShortMessage("Alert reactivated");
             }
         }

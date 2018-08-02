@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Android.App;
 using Android.Content;
 using Android.Locations;
-using Android.Media;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.App;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms;
 
 namespace NotifyMe.Droid
 {
@@ -42,13 +32,14 @@ namespace NotifyMe.Droid
                 if (isEntering)
                 {
                     SendNotification();
+                    MainActivity.RemoveProximityAlert(_id);
                 }
             }
         }
 
         private void SendNotification()
         {
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Android.App.Application.Context);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Application.Context);
 
             notificationBuilder.SetContentTitle(_title)
                                .SetContentText(_body)
@@ -59,9 +50,8 @@ namespace NotifyMe.Droid
                                .SetPriority(NotificationCompat.PriorityMax)
                                .SetCategory(NotificationCompat.CategoryReminder);
 
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Android.App.Application.Context);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Application.Context);
             notificationManager.Notify(_id, notificationBuilder.Build());
         }
-
     }
 }

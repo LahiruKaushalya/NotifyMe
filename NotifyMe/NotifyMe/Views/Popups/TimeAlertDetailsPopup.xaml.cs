@@ -1,4 +1,5 @@
 ﻿using NotifyMe.Models.DbModels;
+using NotifyMe.ServiceInterfaces;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,25 @@ namespace NotifyMe.Views.Popups
 		{
 			InitializeComponent ();
 
+            var _validatorService = CommonServiceLocator.ServiceLocator.Current.GetInstance<IValidatorService>();
+
+            var isDayStillValid = _validatorService.ValidateDate(alert.Date);
+            var isTimeStillValid = _validatorService.ValidateTime(alert.Time);
+
+            if (!isDayStillValid || !isTimeStillValid)
+            {
+                ReactivateBtn.IsVisible = false;
+                DisableBtn.IsVisible = false;
+            }
+            else
+            {
+                ReactivateBtn.IsVisible = alert.IsDisabled;
+            }
             _alert = alert;
-            ReactivateBtn.IsVisible = alert.IsDisabled;
 
             AlertTitle.Text = alert.Title;
             Body.Text = alert.Description;
-            DateTime.Text = alert.DateTime.ToString();
+            DateTime.Text = alert.DisplayDateTime.ToString();
             CreatedOn.Text = alert.CreatedOn.ToString();
         }
 

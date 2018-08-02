@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content;
-using Android.Support.V4.Content;
+using Android.Locations;
 
 using Java.Util;
 using Xamarin.Forms;
@@ -18,9 +18,7 @@ using Rg.Plugins.Popup.Services;
 
 using NotifyMe.Droid;
 using NotifyMe.ServiceInterfaces;
-using System.Threading.Tasks;
 using NotifyMe.Models;
-using Android.Locations;
 using NotifyMe.Models.DbModels;
 
 [assembly: Dependency(typeof(MainActivity))]
@@ -30,8 +28,6 @@ namespace NotifyMe.Droid
     [Activity(Label = "NotifyMe", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, INotificationService
     {
-        private List<string> _permissions = new List<string>();
-
         protected async override void OnCreate(Bundle bundle)
         {
             await GetPermissions();
@@ -49,28 +45,7 @@ namespace NotifyMe.Droid
         }
 
         #region Location Notification
-
-        #region Delete
-        public Alert RemoveLocationNotification(Alert alert)
-        {
-            try
-            {
-                Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
-                PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
-                                                                     alert.Id,
-                                                                     intent,
-                                                                     PendingIntentFlags.UpdateCurrent);
-                LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
-                locationManager.RemoveProximityAlert(broadcast);
-                return alert;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-        #endregion
-
+        
         #region Schedule
         public LocationNotification ScheduleLocationNotification(LocationNotification locationNotification)
         {
@@ -105,9 +80,38 @@ namespace NotifyMe.Droid
         }
         #endregion
 
+        #region Cancel
+        public Alert RemoveLocationNotification(Alert alert)
+        {
+            try
+            {
+                RemoveProximityAlert(alert.Id);
+                return alert;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static void RemoveProximityAlert(int alertID)
+        {
+            Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
+            PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
+                                                                    alertID,
+                                                                    intent,
+                                                                    PendingIntentFlags.UpdateCurrent);
+            LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
+            locationManager.RemoveProximityAlert(broadcast);
+
+        }
+        #endregion
+
         #endregion
 
         #region Time Notifications
+
+        #region Schedule
         public Models.TimeNotification ScheduleTimeNotification(TimeNotification timeNotification)
         {
             try
@@ -150,6 +154,30 @@ namespace NotifyMe.Droid
         }
         #endregion
 
+        #region Cancel
+        public Alert RemoveTimeNotification(Alert alert)
+        {
+            try
+            {
+                Intent intent = new Intent(Android.App.Application.Context, typeof(NotificationSender));
+                PendingIntent broadcast = PendingIntent.GetBroadcast(Android.App.Application.Context,
+                                                                     alert.Id,
+                                                                     intent,
+                                                                     PendingIntentFlags.UpdateCurrent);
+                AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(AlarmService);
+                alarmManager.Cancel(broadcast);
+                return alert;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        
+        #endregion
+
+        #endregion
+
         #region RuntimePermissions
 
         async Task GetPermissions()
@@ -165,21 +193,24 @@ namespace NotifyMe.Droid
 
         readonly string[] PermissionsGroupLocation =
         {
-            Manifest.Permission.AccessCoarseLocation,
             Manifest.Permission.AccessFineLocation,
+            Manifest.Permission.WakeLock,
         };
 
         async Task GetPermissionsAsync()
         {
-            const string permission = Manifest.Permission.AccessFineLocation;
+            const string permission1 = Manifest.Permission.AccessFineLocation;
+            const string permission2 = Manifest.Permission.WakeLock;
 
-            if (CheckSelfPermission(permission) == (int)Permission.Granted)
+            if (CheckSelfPermission(permission1) == (int)Permission.Granted &&
+                CheckSelfPermission(permission2) == (int)Permission.Granted)
             {
-                Toast.MakeText(this, "Access permissions granted", ToastLength.Short).Show();
+                //Toast.MakeText(this, "Access permissions granted", ToastLength.Short).Show();
                 return;
             }
 
-            if (ShouldShowRequestPermissionRationale(permission))
+            if (ShouldShowRequestPermissionRationale(permission1) ||
+                ShouldShowRequestPermissionRationale(permission2))
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.SetTitle("Permissions Needed");
