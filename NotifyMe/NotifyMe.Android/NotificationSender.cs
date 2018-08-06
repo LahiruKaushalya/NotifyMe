@@ -3,6 +3,8 @@ using Android.App;
 using Android.Content;
 using Android.Locations;
 using Android.Support.V4.App;
+using NotifyMe.Models.DbModels;
+using SQLite;
 
 namespace NotifyMe.Droid
 {
@@ -13,17 +15,22 @@ namespace NotifyMe.Droid
         private string _title;
         private string _body;
 
+        private SQLiteConnection _dbContext;
+
         public override void OnReceive(Context context, Intent intent)
         {
             _id = intent.GetIntExtra("ID", 0);
             _title = intent.GetStringExtra("Title");
             _body = intent.GetStringExtra("Body");
 
+            _dbContext = new SqliteDbConnection_Android().GetConnection();
+
             var Type = intent.GetStringExtra("Type");
 
             if (Type.Equals("TimeNotification"))
             {
                 SendNotification();
+                UpdateAlert(_id);
             }
             else if (Type.Equals("LocationNotification"))
             {
@@ -32,6 +39,7 @@ namespace NotifyMe.Droid
                 if (isEntering)
                 {
                     SendNotification();
+                    UpdateAlert(_id);
                     MainActivity.RemoveProximityAlert(_id);
                 }
             }
@@ -52,6 +60,13 @@ namespace NotifyMe.Droid
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Application.Context);
             notificationManager.Notify(_id, notificationBuilder.Build());
+        }
+
+        private void UpdateAlert(int id)
+        {
+           var alert =  _dbContext.Table<Alert>().Where(a => a.Id == id).FirstOrDefault();
+            alert.IsSent = true;
+            _dbContext.Update(alert);
         }
     }
 }

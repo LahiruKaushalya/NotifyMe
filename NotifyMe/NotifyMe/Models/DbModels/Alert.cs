@@ -29,6 +29,8 @@ namespace NotifyMe.Models.DbModels
 
         public DateTime CreatedOn { get; set; }
 
+        public bool IsSent { get; set; }
+
         public bool IsDisabled { get; set; }
 
         public bool IsDeleted { get; set; }

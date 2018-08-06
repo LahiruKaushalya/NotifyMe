@@ -1,10 +1,5 @@
-﻿using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using NotifyMe.Models;
 
 namespace NotifyMe.Views
 {

@@ -73,11 +73,18 @@
                         <Label Grid.Column="1" 
                                Text="{Binding DisplayDateTime}" />
 
+                        <Image Source="round_account_circle_black_48.png" 
+                               Grid.Column="2" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               IsVisible="{Binding IsSent}"/>
+
                         <Image Source="round_alarm_add_white_24.png" 
                                Grid.Column="2" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
                                IsVisible="{Binding IsDisabled}"/>
+
                     </Grid>
                 </ViewCell>
             </DataTemplate>

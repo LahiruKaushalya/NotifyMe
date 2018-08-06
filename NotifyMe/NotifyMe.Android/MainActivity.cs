@@ -20,13 +20,14 @@ using NotifyMe.Droid;
 using NotifyMe.ServiceInterfaces;
 using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
+using System.Linq;
 
 [assembly: Dependency(typeof(MainActivity))]
 
 namespace NotifyMe.Droid
 {
     [Activity(Label = "NotifyMe", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, INotificationService
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ILocationListener, INotificationService
     {
         protected async override void OnCreate(Bundle bundle)
         {
@@ -42,6 +43,26 @@ namespace NotifyMe.Droid
             Xamarin.FormsMaps.Init(this, bundle);
 
             LoadApplication(new App());
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+            };
+            string locationProvider = locationManager.GetBestProvider(criteriaForLocationService, true);
+
+            if (locationProvider.Equals(string.Empty))
+            {
+                Toast.MakeText(Android.App.Application.Context, "Location provider not available", ToastLength.Long).Show();
+            }
+            else
+            {
+                locationManager.RequestLocationUpdates(locationProvider, 0, 10, this);
+            }
         }
 
         #region Location Notification
@@ -246,6 +267,28 @@ namespace NotifyMe.Droid
         }
         #endregion
 
+        #region Location Listner implementation
+        public void OnLocationChanged(Android.Locations.Location location)
+        {
+            
+        }
+
+        public void OnProviderDisabled(string provider)
+        {
+            
+        }
+
+        public void OnProviderEnabled(string provider)
+        {
+            
+        }
+
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
+        {
+            
+        }
+        #endregion
+
         #region Popup
         public override void OnBackPressed()
         {
@@ -258,7 +301,6 @@ namespace NotifyMe.Droid
                 // Do something if there are not any pages in the `PopupStack`
             }
         }
-        
         #endregion
     }
 }

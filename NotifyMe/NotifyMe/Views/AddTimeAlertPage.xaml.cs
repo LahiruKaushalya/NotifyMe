@@ -15,6 +15,6 @@ namespace NotifyMe.Views
 		public AddTimeAlertPage ()
 		{
 			InitializeComponent ();
-		}
+        }
 	}
 }
