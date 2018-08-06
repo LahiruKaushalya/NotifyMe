@@ -73,7 +73,7 @@
                         <Label Grid.Column="1" 
                                Text="{Binding DisplayDateTime}" />
 
-                        <Image Source="round_account_circle_black_48.png" 
+                        <Image Source="round_account_circle_black_24.png" 
                                Grid.Column="2" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"

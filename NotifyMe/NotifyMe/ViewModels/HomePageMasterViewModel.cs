@@ -27,7 +27,7 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 0,
                         Title = "Alerts",
-                        Icon = "round_notifications_black_48.png",
+                        Icon = "round_notifications_black_24.png",
                         TargetType = typeof(AlertsPage)
                     },
 
@@ -35,7 +35,7 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 1,
                         Title = "Add Alert",
-                        Icon = "round_add_alert_black_48.png",
+                        Icon = "round_add_alert_black_24.png",
                         TargetType = typeof(AddAlertPage)
                     },
 
@@ -43,7 +43,7 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 2,
                         Title = "Locations",
-                        Icon = "round_place_black_48.png",
+                        Icon = "round_place_black_24.png",
                         TargetType = typeof(LocationsPage)
                     },
 
@@ -51,7 +51,7 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 3,
                         Title = "Add Lacation",
-                        Icon = "round_add_location_black_48.png",
+                        Icon = "round_add_location_black_24.png",
                         TargetType = typeof(AddLocationPage)
                     },
 
@@ -59,7 +59,7 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 4,
                         Title = "Account",
-                        Icon = "round_account_circle_black_48.png",
+                        Icon = "round_account_circle_black_24.png",
                         TargetType = typeof(AccountPage)
                     },
 
@@ -67,14 +67,14 @@ namespace NotifyMe.ViewModels
                     {
                         Id = 5,
                         Title = "Settings",
-                        Icon = "round_settings_black_48.png",
+                        Icon = "round_settings_black_24.png",
                         TargetType = typeof(SettingsPage)
                     },
 
                     new HomePageMenuItem {
                         Id = 6,
                         Title = "Logout",
-                        Icon = "round_exit_to_app_black_48.png",
+                        Icon = "round_exit_to_app_black_24.png",
                         TargetType = typeof(SignupPage)
                     },
             });

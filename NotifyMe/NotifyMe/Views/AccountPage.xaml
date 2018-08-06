@@ -58,19 +58,19 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="round_person_black_48.png" Grid.Row="0"/>
+                <Image Source="round_person_black_24.png" Grid.Row="0"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
                        Grid.Row="0"/>
 
-                <Image Source="round_call_black_48.png" Grid.Row="1"/>
+                <Image Source="round_call_black_24.png" Grid.Row="1"/>
                 <Entry x:Name="TelephoneEntry" 
                        Text="{Binding Telephone}"
                        Placeholder="Update Telephone No"
                        Grid.Row="1"/>
 
-                <Image Source="round_home_black_48.png" Grid.Row="2"/>
+                <Image Source="round_home_black_24.png" Grid.Row="2"/>
                 <Entry x:Name="AddressEntry" 
                        Text="{Binding Address}"
                        Placeholder="Update Home Address"
@@ -92,7 +92,7 @@
                         Text="Update Account"
                         Command="{Binding UpdateAccount}"/>
 
-                <Image Source="round_add_a_photo_black_48.png"
+                <Image Source="round_add_a_photo_black_24.png"
                        Grid.Row="0"
                        Grid.Column="0"
                        TranslationX="190"

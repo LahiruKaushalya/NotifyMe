@@ -8,7 +8,7 @@
                             Icon="round_alarm_add_white_24.png"/>
 
     <Pages:AddLocationAlertPage Title="Location Alert" 
-                                Icon="round_add_location_white_48.png"/>
+                                Icon="round_add_location_white_24.png"/>
 
 
 </TabbedPage>

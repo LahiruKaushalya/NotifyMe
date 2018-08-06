@@ -51,26 +51,26 @@
                        TranslationY="-30"
                        Text="{StaticResource AppName}"/>
 
-                <Image Source="round_person_black_48.png" Grid.Row="0"/>
+                <Image Source="round_person_black_24.png" Grid.Row="0"/>
                 <Entry x:Name="NameEntry" 
                        Text="{Binding Name}" 
                        Placeholder="Name"
                        Grid.Row="0"/>
 
-                <Image Source="round_email_black_48.png" Grid.Row="1"/>
+                <Image Source="round_email_black_24.png" Grid.Row="1"/>
                 <Entry x:Name="UserNameEntry" 
                        Text="{Binding UserName}" 
                        Placeholder="User Name"
                        Grid.Row="1"/>
 
-                <Image Source="round_https_black_48.png" Grid.Row="2"/>
+                <Image Source="round_https_black_24.png" Grid.Row="2"/>
                 <Entry x:Name="PasswordEntry" 
                        Text="{Binding Password}"
                        IsPassword="True"
                        Placeholder="Password"
                        Grid.Row="2"/>
 
-                <Image Source="round_https_black_48.png" Grid.Row="3"/>
+                <Image Source="round_https_black_24.png" Grid.Row="3"/>
                 <Entry x:Name="ConfirmPasswordEntry" 
                        Text="{Binding ConfirmPassword}" 
                        IsPassword="True"

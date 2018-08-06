@@ -34,13 +34,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="round_person_black_48.png" Grid.Row="1"/>
+        <Image Source="round_person_black_24.png" Grid.Row="1"/>
         <Entry x:Name="UserNameEntry" 
                        Text="{Binding UserName}"
                        Placeholder="User Name"
                        Grid.Row="1"/>
 
-        <Image Source="round_https_black_48.png" Grid.Row="2"/>
+        <Image Source="round_https_black_24.png" Grid.Row="2"/>
         <Entry x:Name="PwdEntry" 
                        Text="{Binding Password}" 
                        IsPassword="True"
