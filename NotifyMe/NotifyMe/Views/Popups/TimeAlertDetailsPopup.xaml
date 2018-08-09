@@ -35,15 +35,30 @@
                Grid.Column="0"
                FontAttributes="Bold"
                Text="Notification State"/>
-        <Label Grid.Row="0" 
+
+        <Image x:Name="PendingIcon"
+               Source="round_check_circle_outline_black_18.png" 
+               Grid.Row="0" 
                Grid.Column="1"
-               Text="icon"
-               HorizontalOptions="End"
-               x:Name="StateIcon"/>
+               HorizontalOptions="End"/>
 
-        <ScrollView Grid.Row="1" Grid.ColumnSpan="2">
+        <Image x:Name="SentIcon"
+               Source="round_check_circle_black_18.png" 
+               Grid.Row="0" 
+               Grid.Column="1"
+               HorizontalOptions="End"/>
+
+        <Image x:Name="DisabledIcon"
+               Source="round_alarm_off_black_18.png" 
+               Grid.Row="0" 
+               Grid.Column="1"
+               BackgroundColor="GhostWhite"
+               HorizontalOptions="End"/>
+
+        <ScrollView Grid.Row="1" 
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,20">
             <StackLayout >
-
                 <Label FontAttributes="Bold" 
                    Text="Title"/>
                 <Label x:Name="AlertTitle"
@@ -81,10 +96,16 @@
                 Margin="0,0,0,0"
                 Clicked="ReactivateAlert"/>
 
+        <Button Image="round_delete_white_24.png"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="0,0,0,0"
+                Clicked="DeleteAlert"/>
+
         <Button x:Name="DeleteBtn"
                 Image="round_delete_white_24.png"
                 Grid.Row="2"
-                Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Margin="0,0,0,0"
                 Clicked="DeleteAlert"/>
 

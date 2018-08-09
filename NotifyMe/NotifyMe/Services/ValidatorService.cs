@@ -5,7 +5,7 @@ namespace NotifyMe.Services
 {
     public class ValidatorService : IValidatorService
     {
-        public bool ValidateDate(DateTime date)
+        public bool ValidateDateTime(DateTime date, TimeSpan time)
         {
             if (date.Year > DateTime.Now.Year)
             {
@@ -23,19 +23,11 @@ namespace NotifyMe.Services
             {
                 return false;
             }
-            else if (date.Day >= DateTime.Now.Day)
+            else if (date.Day > DateTime.Now.Day)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool ValidateTime(TimeSpan time)
-        {
-            if (time.Hours < DateTime.Now.Hour)
+            else if (date.Day < DateTime.Now.Day)
             {
                 return false;
             }
@@ -43,13 +35,17 @@ namespace NotifyMe.Services
             {
                 return true;
             }
-            else if (time.Minutes < DateTime.Now.Minute)
+            else if (time.Hours < DateTime.Now.Hour)
             {
                 return false;
             }
             else if (time.Minutes > DateTime.Now.Minute)
             {
                 return true;
+            }
+            else if (time.Minutes < DateTime.Now.Minute)
+            {
+                return false;
             }
             else
             {

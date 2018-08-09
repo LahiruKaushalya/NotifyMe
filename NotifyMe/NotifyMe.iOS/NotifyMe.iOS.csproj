@@ -296,24 +296,6 @@
     <BundleResource Include="Resources\round_call_black_24pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_black_24pt_1x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_black_24pt_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_black_24pt_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_outline_black_24pt_1x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_outline_black_24pt_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\round_check_circle_outline_black_24pt_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\round_delete_white_24pt_1x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -420,5 +402,32 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\round_settings_black_24pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_black_18pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_black_18pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_black_18pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_outline_black_18pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_outline_black_18pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_check_circle_outline_black_18pt_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_black_18pt_1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_black_18pt_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\round_alarm_off_black_18pt_3x.png" />
   </ItemGroup>
 </Project>

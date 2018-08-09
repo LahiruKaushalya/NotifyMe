@@ -4,8 +4,6 @@ namespace NotifyMe.ServiceInterfaces
 {
     public interface IValidatorService
     {
-        bool ValidateDate(DateTime date);
-
-        bool ValidateTime(TimeSpan time);
+        bool ValidateDateTime(DateTime date, TimeSpan time);
     }
 }

@@ -48,10 +48,9 @@ namespace NotifyMe.ViewModels
                     }
                     else
                     {
-                        var isDayValid = _validatorService.ValidateDate(Date);
-                        var isTimeValid = _validatorService.ValidateTime(Time);
+                        var isDateTimeValid = _validatorService.ValidateDateTime(Date,Time);
 
-                        if (!isDayValid || !isTimeValid) // validate date and time
+                        if (!isDateTimeValid) // validate date and time
                         {
                             DependencyService.Get<IToastService>().ShortMessage("Invalid date time");
                         }

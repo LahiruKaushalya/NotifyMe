@@ -20,22 +20,25 @@ namespace NotifyMe.Views.Popups
 		public TimeAlertDetailsPopup (Alert alert)
 		{
 			InitializeComponent ();
+            _alert = alert;
 
             var _validatorService = CommonServiceLocator.ServiceLocator.Current.GetInstance<IValidatorService>();
 
-            var isDayStillValid = _validatorService.ValidateDate(alert.Date);
-            var isTimeStillValid = _validatorService.ValidateTime(alert.Time);
+            var isDateTimeStillValid = _validatorService.ValidateDateTime(alert.Date, alert.Time);
 
-            if (!isDayStillValid || !isTimeStillValid)
+            if (!isDateTimeStillValid)
             {
-                ReactivateBtn.IsVisible = false;
-                DisableBtn.IsVisible = false;
+                DeleteBtn.IsVisible = true;
             }
             else
             {
+                DeleteBtn.IsVisible = false;
                 ReactivateBtn.IsVisible = alert.IsDisabled;
             }
-            _alert = alert;
+
+            DisabledIcon.IsVisible = alert.IsDisabled;
+            PendingIcon.IsVisible = !_alert.IsSent;
+            SentIcon.IsVisible = _alert.IsSent;
 
             AlertTitle.Text = alert.Title;
             Body.Text = alert.Description;

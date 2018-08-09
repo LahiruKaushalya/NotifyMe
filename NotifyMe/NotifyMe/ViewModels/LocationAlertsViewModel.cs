@@ -95,6 +95,7 @@ namespace NotifyMe.ViewModels
             }
             else
             {
+                alert.IsSent = false;
                 _alertService.ActivateAlert(alert);
                 var location = _locationService.GetLocationById(alert.LocationID);
                 var notification = new LocationNotification

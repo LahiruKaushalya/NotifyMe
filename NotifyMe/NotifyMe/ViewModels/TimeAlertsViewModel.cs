@@ -91,6 +91,7 @@ namespace NotifyMe.ViewModels
             }
             else
             {
+                alert.IsSent = false;
                 _alertService.ActivateAlert(alert);
                 var notification = new TimeNotification
                 {

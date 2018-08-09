@@ -54,7 +54,7 @@
                     <ViewCell>
                         <Grid Margin="20,15,20,10" RowSpacing="0" ColumnSpacing="15">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="0.12*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 

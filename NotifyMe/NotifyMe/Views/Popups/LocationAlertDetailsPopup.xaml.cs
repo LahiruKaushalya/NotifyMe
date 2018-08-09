@@ -18,7 +18,12 @@ namespace NotifyMe.Views.Popups
 			InitializeComponent ();
 
             _alert = alert;
-            ReactivateBtn.IsVisible = alert.IsDisabled;
+
+            ReactivateBtn.IsVisible = alert.IsDisabled || alert.IsSent;
+
+            DisabledIcon.IsVisible = alert.IsDisabled;
+            PendingIcon.IsVisible = !alert.IsSent;
+            SentIcon.IsVisible = alert.IsSent;
 
             AlertTitle.Text = alert.Title;
             Body.Text = alert.Description;
