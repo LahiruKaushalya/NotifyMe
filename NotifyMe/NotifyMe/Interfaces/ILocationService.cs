@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using NotifyMe.Models.DbModels;
 
-namespace NotifyMe.ServiceInterfaces
+namespace NotifyMe.Interfaces
 {
     public interface ILocationService
     {

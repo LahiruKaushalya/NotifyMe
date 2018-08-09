@@ -17,7 +17,7 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 
 using NotifyMe.Droid;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
 using System.Linq;
@@ -31,13 +31,13 @@ namespace NotifyMe.Droid
     {
         protected async override void OnCreate(Bundle bundle)
         {
+            base.OnCreate(bundle);
             await GetPermissions();
+            GetLocationUpdate();
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
-            base.OnCreate(bundle);
-
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
@@ -48,20 +48,28 @@ namespace NotifyMe.Droid
         protected override void OnResume()
         {
             base.OnResume();
+            GetLocationUpdate();
+        }
+
+        private void GetLocationUpdate()
+        {
             LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
             Criteria criteriaForLocationService = new Criteria
             {
                 Accuracy = Accuracy.Fine
             };
             string locationProvider = locationManager.GetBestProvider(criteriaForLocationService, true);
-
-            if (locationProvider.Equals(string.Empty))
+            if (locationProvider == null)
+            {
+                return;
+            }
+            else if (locationProvider.Equals(string.Empty))
             {
                 Toast.MakeText(Android.App.Application.Context, "Location provider not available", ToastLength.Long).Show();
             }
             else
             {
-                locationManager.RequestLocationUpdates(locationProvider, 0, 10, this);
+                locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
             }
         }
 
@@ -218,7 +226,7 @@ namespace NotifyMe.Droid
             Manifest.Permission.WakeLock,
         };
 
-        async Task GetPermissionsAsync()
+        private async Task GetPermissionsAsync()
         {
             const string permission1 = Manifest.Permission.AccessFineLocation;
             const string permission2 = Manifest.Permission.WakeLock;
@@ -226,7 +234,6 @@ namespace NotifyMe.Droid
             if (CheckSelfPermission(permission1) == (int)Permission.Granted &&
                 CheckSelfPermission(permission2) == (int)Permission.Granted)
             {
-                //Toast.MakeText(this, "Access permissions granted", ToastLength.Short).Show();
                 return;
             }
 
@@ -235,7 +242,7 @@ namespace NotifyMe.Droid
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.SetTitle("Permissions Needed");
-                alert.SetMessage("NotifyMe needs special permissions to continue");
+                alert.SetMessage("NotifyMe needs permissions to continue");
                 alert.SetPositiveButton("Grant Permissions", (senderAlert, args) =>
                 {
                     RequestPermissions(PermissionsGroupLocation, RequestLocationId);
@@ -247,7 +254,7 @@ namespace NotifyMe.Droid
             RequestPermissions(PermissionsGroupLocation, RequestLocationId);
         }
 
-        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             switch (requestCode)
             {
@@ -255,7 +262,7 @@ namespace NotifyMe.Droid
                 {
                     if (grantResults[0] == (int)Permission.Granted)
                     {
-                        Toast.MakeText(this, "Special permissions granted", ToastLength.Short).Show();
+                        Toast.MakeText(this, "Permissions granted", ToastLength.Short).Show();
                     }
                     else
                     {

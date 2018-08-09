@@ -5,6 +5,7 @@ using Android.Locations;
 using Android.Support.V4.App;
 using NotifyMe.Models.DbModels;
 using SQLite;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.Droid
 {
@@ -56,7 +57,7 @@ namespace NotifyMe.Droid
                                             NotificationCompat.DefaultVibrate |
                                             NotificationCompat.DefaultLights)
                                .SetPriority(NotificationCompat.PriorityMax)
-                               .SetCategory(NotificationCompat.CategoryReminder);
+                               .SetCategory(NotificationCompat.CategoryAlarm);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Application.Context);
             notificationManager.Notify(_id, notificationBuilder.Build());
@@ -64,9 +65,9 @@ namespace NotifyMe.Droid
 
         private void UpdateAlert(int id)
         {
-           var alert =  _dbContext.Table<Alert>().Where(a => a.Id == id).FirstOrDefault();
-            alert.IsSent = true;
-            _dbContext.Update(alert);
+            var alert =  _dbContext.Table<Alert>().Where(a => a.Id == id).FirstOrDefault();
+            alert.State = AlertState.Sent;
+           _dbContext.Update(alert);
         }
     }
 }

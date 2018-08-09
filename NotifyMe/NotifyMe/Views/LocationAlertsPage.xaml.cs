@@ -1,11 +1,13 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
 
 using NotifyMe.ViewModels;
+using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
-using Rg.Plugins.Popup.Services;
 using NotifyMe.Views.Popups;
-using System.Threading.Tasks;
 
 namespace NotifyMe.Views
 {
@@ -22,8 +24,8 @@ namespace NotifyMe.Views
 
         private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         { 
-            var alert = e.Item as Alert;
-            await PopupNavigation.Instance.PushAsync(new LocationAlertDetailsPopup(alert));
+            var alert = e.Item as DisplayAlert;
+            await PopupNavigation.Instance.PushAsync(new AlertDetailsPopup(alert.Id));
         }
 
         public void UpdateAlert(Alert alert, bool disable)

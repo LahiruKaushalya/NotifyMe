@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.Popups.TimeAlertDetailsPopup"
+             x:Class="NotifyMe.Views.Popups.AlertDetailsPopup"
              xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
 
     <ContentPage.Resources>
@@ -36,49 +36,26 @@
                FontAttributes="Bold"
                Text="Notification State"/>
 
-        <Image x:Name="PendingIcon"
-               Source="round_check_circle_outline_black_18.png" 
+        <Image x:Name="AlertStateIcon"
                Grid.Row="0" 
                Grid.Column="1"
-               HorizontalOptions="End"/>
-
-        <Image x:Name="SentIcon"
-               Source="round_check_circle_black_18.png" 
-               Grid.Row="0" 
-               Grid.Column="1"
-               HorizontalOptions="End"/>
-
-        <Image x:Name="DisabledIcon"
-               Source="round_alarm_off_black_18.png" 
-               Grid.Row="0" 
-               Grid.Column="1"
-               BackgroundColor="GhostWhite"
                HorizontalOptions="End"/>
 
         <ScrollView Grid.Row="1" 
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,20">
             <StackLayout >
-                <Label FontAttributes="Bold" 
-                   Text="Title"/>
-                <Label x:Name="AlertTitle"
-                   Margin="10,0,0,0"/>
+                <Label x:Name="Label1" FontAttributes="Bold"/>
+                <Label x:Name="DataLabel1" Margin="10,0,0,0"/>
 
-                <Label FontAttributes="Bold"
-                   Text="Description"/>
-                <Label x:Name="Body"
-                   Margin="10,0,0,0"/>
+                <Label x:Name="Label2" FontAttributes="Bold"/>
+                <Label x:Name="DataLabel2" Margin="10,0,0,0"/>
 
-                <Label FontAttributes="Bold"
-                   Text="Date and Time"/>
-                <Label x:Name="DateTime"
-                   Margin="10,0,0,0"/>
+                <Label x:Name="Label3" FontAttributes="Bold"/>
+                <Label x:Name="DataLabel3" Margin="10,0,0,0"/>
 
-                <Label FontAttributes="Bold"
-                   Text="Created on"/>
-                <Label x:Name="CreatedOn"
-                   Margin="10,0,0,0"/>
-
+                <Label x:Name="Label4" FontAttributes="Bold"/>
+                <Label x:Name="DataLabel4" Margin="10,0,0,0"/>
             </StackLayout>
         </ScrollView>
 
@@ -106,9 +83,10 @@
                 Image="round_delete_white_24.png"
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
+                IsVisible="False"
                 Margin="0,0,0,0"
                 Clicked="DeleteAlert"/>
 
     </Grid>
+
 </Pages:PopupPage>
-    

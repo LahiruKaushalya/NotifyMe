@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Models.DbModels;
 using NotifyMe.Models;
+using static NotifyMe.Helpers.Enums;
+
 namespace NotifyMe.ViewModels
 {
     public class AddTimeAlertViewModel : INotifyPropertyChanged
     {
         private IUserService _userService;
         private IAlertService _alertService;
-        private IValidatorService _validatorService;
+        private IValidator _validator;
 
         public AddTimeAlertViewModel(IUserService userService, 
                                      IAlertService alertService,
-                                     IValidatorService validatorService)
+                                     IValidator validator)
         {
             _userService = userService;
             _alertService = alertService;
-            _validatorService = validatorService;
+            _validator = validator;
             Date = DateTime.Now.Date;
             Title = string.Empty;
             Description = string.Empty;
@@ -48,7 +50,7 @@ namespace NotifyMe.ViewModels
                     }
                     else
                     {
-                        var isDateTimeValid = _validatorService.ValidateDateTime(Date,Time);
+                        var isDateTimeValid = _validator.ValidateDateTime(Date,Time);
 
                         if (!isDateTimeValid) // validate date and time
                         {
@@ -65,8 +67,8 @@ namespace NotifyMe.ViewModels
                                     Title = Title,
                                     Description = Description,
                                     User = currentUser.UserName,
-                                    Type = true, //True means Time alert
-                                    DisplayDateTime = Date + Time,
+                                    Type = AlertType.Time,
+                                    State = AlertState.Active,
                                     Date = Date,
                                     Time = Time,
                                     CreatedOn = DateTime.Now

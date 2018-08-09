@@ -1,11 +1,13 @@
 ﻿using SQLite;
 using System;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.Models.DbModels
 {
     [Table("Alerts")]
-    public class Alert
+    public class Alert 
     {
+        #region Common
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         
@@ -15,24 +17,23 @@ namespace NotifyMe.Models.DbModels
 
         public string Description { get; set; }
 
-        public bool Type { get; set; } //True means Time Alert, False means Location alert. Only two states. Therefore no Enum used
-        
-        public DateTime DisplayDateTime { get; set; }
+        public DateTime CreatedOn { get; set; }
 
+        public AlertType Type { get; set; }
+
+        public AlertState State { get; set; }
+        #endregion
+
+        #region Time
         public DateTime Date { get; set; }
 
         public TimeSpan Time { get; set; }
+        #endregion
 
+        #region Location
         public int LocationID { get; set; }
 
         public string LocationName { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public bool IsSent { get; set; }
-
-        public bool IsDisabled { get; set; }
-
-        public bool IsDeleted { get; set; }
+        #endregion
     }
 }

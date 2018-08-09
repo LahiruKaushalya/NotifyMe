@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 using NotifyMe.Droid;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 [assembly: Xamarin.Forms.Dependency(typeof(ToastAndroid))]
 namespace NotifyMe.Droid

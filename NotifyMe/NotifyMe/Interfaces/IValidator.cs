@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace NotifyMe.ServiceInterfaces
+namespace NotifyMe.Interfaces
 {
-    public interface IValidatorService
+    public interface IValidator
     {
         bool ValidateDateTime(DateTime date, TimeSpan time);
     }

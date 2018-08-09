@@ -1,4 +1,4 @@
-﻿using NotifyMe.ServiceInterfaces;
+﻿using NotifyMe.Interfaces;
 
 namespace NotifyMe.ViewModels
 {

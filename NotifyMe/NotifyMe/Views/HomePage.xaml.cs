@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 using CommonServiceLocator;
 
 using NotifyMe.Models;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.Views
 {

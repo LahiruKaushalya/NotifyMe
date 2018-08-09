@@ -2,7 +2,7 @@
 using SQLite;
 
 using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using Xamarin.Forms;
 using System.Linq;
 using System.Threading.Tasks;

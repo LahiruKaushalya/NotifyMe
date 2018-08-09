@@ -1,7 +1,7 @@
 ﻿using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
 
-namespace NotifyMe.ServiceInterfaces
+namespace NotifyMe.Interfaces
 {
     public interface INotificationService
     {

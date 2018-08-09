@@ -4,7 +4,7 @@ using SQLite;
 using Xamarin.Forms;
 
 using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.Services
 {

@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 
 using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Views;
 using NotifyMe.Views.Popups;
 

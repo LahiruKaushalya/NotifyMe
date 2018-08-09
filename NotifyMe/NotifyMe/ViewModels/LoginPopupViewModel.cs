@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Views;
 
 namespace NotifyMe.ViewModels

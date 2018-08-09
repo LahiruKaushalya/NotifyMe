@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+
 using Xamarin.Forms;
+using NotifyMe.Models.DbModels;
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.ViewModels
 {

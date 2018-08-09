@@ -3,7 +3,7 @@ using System.IO;
 using SQLite;
 
 using NotifyMe.Droid;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 
 [assembly: Xamarin.Forms.Dependency(typeof(SqliteDbConnection_Android))]

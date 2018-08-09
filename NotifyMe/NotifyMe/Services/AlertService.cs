@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using SQLite;
-
-using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
 using Xamarin.Forms;
-using System.Linq;
-using System.Threading.Tasks;
+using NotifyMe.Models.DbModels;
+using NotifyMe.Interfaces;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.Services
 {
@@ -39,7 +38,7 @@ namespace NotifyMe.Services
         
         public int DisableAlert(Alert alert)
         {
-            alert.IsDisabled = true;
+            alert.State = AlertState.Disabled;
             return _dbContext.Update(alert);
         }
 
@@ -51,7 +50,7 @@ namespace NotifyMe.Services
         public List<Alert> GetAllUserLocationAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == false && a.User == userName)
+                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -60,7 +59,7 @@ namespace NotifyMe.Services
         public List<Alert> GetAllUserTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == true && a.User == userName)
+                            .Where(a => a.Type == AlertType.Time && a.User == userName)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -75,7 +74,7 @@ namespace NotifyMe.Services
         public List<Alert> GetAllLocationAlerts()
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == false)
+                            .Where(a => a.Type == AlertType.Location)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -84,7 +83,7 @@ namespace NotifyMe.Services
         public List<Alert> GetAllTimeAlerts()
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == true)
+                            .Where(a => a.Type == AlertType.Time)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -93,7 +92,7 @@ namespace NotifyMe.Services
         public List<Alert> GetActiveUserLocationAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == false && a.User == userName && a.IsDisabled == false)
+                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName && a.State == AlertState.Active)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -102,7 +101,7 @@ namespace NotifyMe.Services
         public List<Alert> GetActiveUserTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == true && a.User == userName && a.IsDisabled == false)
+                            .Where(a => a.Type == AlertType.Time && a.User == userName && a.State == AlertState.Active)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
@@ -110,7 +109,7 @@ namespace NotifyMe.Services
 
         public int ActivateAlert(Alert alert)
         {
-            alert.IsDisabled = false;
+            alert.State = AlertState.Active;
             return _dbContext.Update(alert);
         }
     }

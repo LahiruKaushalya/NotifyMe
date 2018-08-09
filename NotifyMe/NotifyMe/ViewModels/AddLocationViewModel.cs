@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
 using Plugin.Geolocator;
-using Xamarin.Forms.Maps;
-using NotifyMe.ServiceInterfaces;
-using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
+using NotifyMe.Interfaces;
 using NotifyMe.CustomRenderers;
 using NotifyMe.Models.DbModels;
 

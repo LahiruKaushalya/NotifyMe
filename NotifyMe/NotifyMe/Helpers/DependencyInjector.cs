@@ -2,12 +2,12 @@
 using Unity.Lifetime;
 using Unity.ServiceLocation;
 using CommonServiceLocator;
-
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Services;
 using NotifyMe.ViewModels;
 
-namespace NotifyMe
+
+namespace NotifyMe.Helpers
 {
     public class DependencyInjector
     {
@@ -21,7 +21,8 @@ namespace NotifyMe
             _unityContainer.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             _unityContainer.RegisterType<IAlertService, AlertService>(new ContainerControlledLifetimeManager());
             _unityContainer.RegisterType<ILocationService, LocationService>(new ContainerControlledLifetimeManager());
-            _unityContainer.RegisterType<IValidatorService, ValidatorService>(new ContainerControlledLifetimeManager());
+            _unityContainer.RegisterType<IValidator, Validator>(new ContainerControlledLifetimeManager());
+            _unityContainer.RegisterType<IConverter, Converter>(new ContainerControlledLifetimeManager());
             #endregion
 
             #region Popups
@@ -51,6 +52,6 @@ namespace NotifyMe
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(_unityContainer));
         }
 
-        
+
     }
 }

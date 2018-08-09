@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using NotifyMe.Models;
 using NotifyMe.Views;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.ViewModels
 {

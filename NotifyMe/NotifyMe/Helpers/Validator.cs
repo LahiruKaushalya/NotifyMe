@@ -1,9 +1,9 @@
 ﻿using System;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
-namespace NotifyMe.Services
+namespace NotifyMe.Helpers
 {
-    public class ValidatorService : IValidatorService
+    public class Validator : IValidator
     {
         public bool ValidateDateTime(DateTime date, TimeSpan time)
         {

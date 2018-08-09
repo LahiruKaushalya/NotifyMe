@@ -7,7 +7,7 @@ using Rg.Plugins.Popup.Services;
 
 using NotifyMe.Views.Popups;
 using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.ViewModels
 {

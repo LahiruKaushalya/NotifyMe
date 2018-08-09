@@ -6,9 +6,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using NotifyMe.ViewModels;
-using NotifyMe.Models.DbModels;
+using NotifyMe.Models;
 using NotifyMe.Views.Popups;
-using Rg.Plugins.Popup.Contracts;
+using NotifyMe.Models.DbModels;
 
 namespace NotifyMe.Views
 {
@@ -25,8 +25,8 @@ namespace NotifyMe.Views
 
         private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var alert = e.Item as Alert;
-            await PopupNavigation.Instance.PushAsync(new TimeAlertDetailsPopup(alert));
+            var alert = e.Item as DisplayAlert;
+            await PopupNavigation.Instance.PushAsync(new AlertDetailsPopup(alert.Id));
         }
 
         public void UpdateAlert(Alert alert, bool disable)

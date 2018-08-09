@@ -2,11 +2,14 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
-using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
 using System.Collections.Generic;
+
+using Xamarin.Forms;
 using NotifyMe.Models;
+
+using NotifyMe.Models.DbModels;
+using NotifyMe.Interfaces;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.ViewModels
 {
@@ -15,20 +18,23 @@ namespace NotifyMe.ViewModels
         private IUserService _userService;
         private IAlertService _alertService;
         private ILocationService _locationService;
+        private IConverter _converter;
 
-        public ObservableCollection<Alert> LocationAlerts { get; set; }
+        public ObservableCollection<DisplayAlert> LocationAlerts { get; set; }
 
         public LocationAlertsViewModel(IUserService userService, 
                                        IAlertService alertService,
-                                       ILocationService locationService)
+                                       ILocationService locationService,
+                                       IConverter converter)
         {
             _userService = userService;
             _alertService = alertService;
             _locationService = locationService;
-
-            var userEmail = _userService.GetCurrentUser().UserName;
+            _converter = converter;
+            
             _userName = _userService.GetCurrentUser().UserName;
-            LocationAlerts = new ObservableCollection<Alert>(_alertService.GetActiveUserLocationAlerts(userEmail));
+            var displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveUserLocationAlerts(_userName));
+            LocationAlerts = displayAlerts;
         }
 
         private string _userName;
@@ -65,20 +71,18 @@ namespace NotifyMe.ViewModels
                     IsRefreshing = true;
                     LocationAlerts.Clear();
 
-                    List<Alert> list;
-
+                    ObservableCollection<DisplayAlert> displayAlerts;
                     if (ShowDisabled)
                     {
-                        list = _alertService.GetAllUserLocationAlerts(_userName);
+                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllUserLocationAlerts(_userName));
                     }
                     else
                     {
-                        list = _alertService.GetActiveUserLocationAlerts(_userName);
+                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveUserLocationAlerts(_userName));
                     }
-
-                    foreach (Alert alert in list)
+                    foreach (DisplayAlert displayAlert in displayAlerts)
                     {
-                        LocationAlerts.Add(alert);
+                        LocationAlerts.Add(displayAlert);
                     }
                     IsRefreshing = false;
                 });
@@ -95,7 +99,7 @@ namespace NotifyMe.ViewModels
             }
             else
             {
-                alert.IsSent = false;
+                alert.State = AlertState.Pending;
                 _alertService.ActivateAlert(alert);
                 var location = _locationService.GetLocationById(alert.LocationID);
                 var notification = new LocationNotification

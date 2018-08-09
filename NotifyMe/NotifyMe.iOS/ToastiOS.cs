@@ -7,7 +7,7 @@ using Foundation;
 using UIKit;
 
 using NotifyMe.iOS;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 
 [assembly:Xamarin.Forms.Dependency(typeof(ToastiOS))]
 namespace NotifyMe.iOS

@@ -1,4 +1,4 @@
-﻿namespace NotifyMe.ServiceInterfaces
+﻿namespace NotifyMe.Interfaces
 {
     public interface IToastService
     {

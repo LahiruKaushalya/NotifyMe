@@ -5,9 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
 using NotifyMe.Models;
 using Xamarin.Forms.Maps;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.ViewModels
 {
@@ -64,7 +65,8 @@ namespace NotifyMe.ViewModels
                             LocationID = Location.Id,
                             LocationName = Location.Name,
                             User = _currentUser.UserName,
-                            Type = false, // false means Location Alert
+                            Type = AlertType.Location,
+                            State = AlertState.Active,
                             CreatedOn = DateTime.Now
                         };
 

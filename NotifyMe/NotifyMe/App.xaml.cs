@@ -1,9 +1,9 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using CommonServiceLocator;
-
 using NotifyMe.Views;
-using NotifyMe.ServiceInterfaces;
+using NotifyMe.Interfaces;
+using NotifyMe.Helpers;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace NotifyMe

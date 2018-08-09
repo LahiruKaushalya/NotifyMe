@@ -1,10 +1,9 @@
-﻿using NotifyMe.ServiceInterfaces;
-using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+
+using NotifyMe.Interfaces;
 
 namespace NotifyMe.ViewModels
 {

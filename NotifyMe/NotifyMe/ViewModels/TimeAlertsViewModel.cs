@@ -1,12 +1,14 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel;
 using System.Windows.Input;
-using Xamarin.Forms;
-using NotifyMe.Models.DbModels;
-using NotifyMe.ServiceInterfaces;
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+using Xamarin.Forms;
 using NotifyMe.Models;
+using NotifyMe.Models.DbModels;
+using NotifyMe.Interfaces;
+using static NotifyMe.Helpers.Enums;
 
 namespace NotifyMe.ViewModels
 {
@@ -14,17 +16,22 @@ namespace NotifyMe.ViewModels
     {
         private IUserService _userService;
         private IAlertService _alertService;
+        private IConverter _converter;
 
-        public ObservableCollection<Alert> TimeAlerts { get; set; }
+        public ObservableCollection<DisplayAlert> TimeAlerts { get; set; }
 
-        public TimeAlertsViewModel(IUserService userService, IAlertService alertService)
+        public TimeAlertsViewModel(IUserService userService, 
+                                   IAlertService alertService,
+                                   IConverter converter)
         {
             _userService = userService;
             _alertService = alertService;
+            _converter = converter;
 
-            var userName = _userService.GetCurrentUser().UserName;
             _userName = _userService.GetCurrentUser().UserName;
-            TimeAlerts = new ObservableCollection<Alert>(_alertService.GetActiveUserTimeAlerts(userName));
+            var displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllUserTimeAlerts(_userName));
+            
+            TimeAlerts = new ObservableCollection<DisplayAlert>(displayAlerts);
         }
 
         private string _userName;
@@ -61,20 +68,18 @@ namespace NotifyMe.ViewModels
                     IsRefreshing = true;
                     TimeAlerts.Clear();
 
-                    List<Alert> list;
-
+                    ObservableCollection<DisplayAlert> displayAlerts;
                     if (ShowDisabled)
                     {
-                        list = _alertService.GetAllUserTimeAlerts(_userName);
+                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllUserTimeAlerts(_userName));
                     }
                     else
                     {
-                        list = _alertService.GetActiveUserTimeAlerts(_userName);
+                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveUserTimeAlerts(_userName));
                     }
-
-                    foreach (Alert alert in list)
+                    foreach (DisplayAlert displayAlert in displayAlerts)
                     {
-                        TimeAlerts.Add(alert);
+                        TimeAlerts.Add(displayAlert);
                     }
                     IsRefreshing = false;
                 });
@@ -91,7 +96,7 @@ namespace NotifyMe.ViewModels
             }
             else
             {
-                alert.IsSent = false;
+                alert.State = AlertState.Pending;
                 _alertService.ActivateAlert(alert);
                 var notification = new TimeNotification
                 {
