@@ -21,6 +21,7 @@ using NotifyMe.Interfaces;
 using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
 using System.Linq;
+using Android.Net;
 
 [assembly: Dependency(typeof(MainActivity))]
 
@@ -307,6 +308,14 @@ namespace NotifyMe.Droid
             {
                 // Do something if there are not any pages in the `PopupStack`
             }
+        }
+        #endregion
+
+        #region Check Internet Connectivity
+        public static bool IsNetworkConnected()
+        {
+            var connectivityManager = (ConnectivityManager)Android.App.Application.Context.GetSystemService(ConnectivityService);
+            return connectivityManager.ActiveNetworkInfo == null ? false : connectivityManager.ActiveNetworkInfo.IsConnected;
         }
         #endregion
     }

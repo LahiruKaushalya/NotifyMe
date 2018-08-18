@@ -16,17 +16,21 @@ namespace NotifyMe.Interfaces
 
         Alert GetAlertById(int id);
 
-        List<Alert> GetAllTimeAlerts();
+        List<Alert> GetAllTimeAlerts(string userName);
 
-        List<Alert> GetActiveUserTimeAlerts(string userName);
+        List<Alert> GetSentTimeAlerts(string userName);
 
-        List<Alert> GetAllUserTimeAlerts(string userName);
+        List<Alert> GetActiveTimeAlerts(string userName);
 
-        List<Alert> GetAllLocationAlerts();
+        List<Alert> GetDisabledTimeAlerts(string userName);
 
-        List<Alert> GetActiveUserLocationAlerts(string userName);
+        List<Alert> GetSentLocationAlerts(string userName);
 
-        List<Alert> GetAllUserLocationAlerts(string userName);
+        List<Alert> GetActiveLocationAlerts(string userName);
+
+        List<Alert> GetAllLocationAlerts(string userName);
+
+        List<Alert> GetDisabledLocationAlerts(string userName);
 
         int ActivateAlert(Alert alert);
     }

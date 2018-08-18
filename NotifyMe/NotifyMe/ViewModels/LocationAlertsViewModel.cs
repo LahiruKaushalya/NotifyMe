@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
 using NotifyMe.Models;
@@ -10,6 +9,7 @@ using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
 using NotifyMe.Interfaces;
 using static NotifyMe.Helpers.Enums;
+using System.Collections.Generic;
 
 namespace NotifyMe.ViewModels
 {
@@ -33,15 +33,23 @@ namespace NotifyMe.ViewModels
             _converter = converter;
             
             _userName = _userService.GetCurrentUser().UserName;
-            var displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveUserLocationAlerts(_userName));
+            var displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllLocationAlerts(_userName));
             LocationAlerts = displayAlerts;
+
+            Options = new List<string>()
+            {
+                "All",
+                "Active",
+                "Sent",
+                "Disabled"
+            };
         }
 
         private string _userName;
 
         private bool _isRefreshing;
 
-        private bool _showDisabled;
+        private string _selectedOption;
 
         public bool IsRefreshing
         {
@@ -53,15 +61,17 @@ namespace NotifyMe.ViewModels
             }
         }
 
-        public bool ShowDisabled
+        public string SelectedOption
         {
-            get { return _showDisabled; }
+            get { return _selectedOption; }
             set
             {
-                _showDisabled = value;
-                OnPropertyChanged(nameof(ShowDisabled));
+                _selectedOption = value;
+                OnPropertyChanged(nameof(SelectedOption));
             }
         }
+
+        public List<string> Options { get; set; }
 
         public ICommand Refresh
         {
@@ -71,16 +81,31 @@ namespace NotifyMe.ViewModels
                     IsRefreshing = true;
                     LocationAlerts.Clear();
 
-                    ObservableCollection<DisplayAlert> displayAlerts;
-                    if (ShowDisabled)
+                    ObservableCollection<DisplayAlert> _displayAlerts;
+                    switch (SelectedOption)
                     {
-                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllUserLocationAlerts(_userName));
+                        case "All":
+                            _displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetAllLocationAlerts(_userName));
+                            break;
+
+                        case "Active":
+                            _displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveLocationAlerts(_userName));
+                            break;
+
+                        case "Sent":
+                            _displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetSentLocationAlerts(_userName));
+                            break;
+
+                        case "Disabled":
+                            _displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetDisabledLocationAlerts(_userName));
+                            break;
+
+                        default:
+                            _displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveLocationAlerts(_userName));
+                            break;
                     }
-                    else
-                    {
-                        displayAlerts = _converter.AlertToDisplayAlert(_alertService.GetActiveUserLocationAlerts(_userName));
-                    }
-                    foreach (DisplayAlert displayAlert in displayAlerts)
+
+                    foreach (DisplayAlert displayAlert in _displayAlerts)
                     {
                         LocationAlerts.Add(displayAlert);
                     }
@@ -96,6 +121,7 @@ namespace NotifyMe.ViewModels
                 _alertService.DisableAlert(alert);
                 DependencyService.Get<INotificationService>().RemoveLocationNotification(alert);
                 DependencyService.Get<IToastService>().ShortMessage("Alert disabled");
+                Refresh.Execute(null);
             }
             else
             {
@@ -112,6 +138,7 @@ namespace NotifyMe.ViewModels
                 };
                 DependencyService.Get<INotificationService>().ScheduleLocationNotification(notification);
                 DependencyService.Get<IToastService>().ShortMessage("Alert reactivated");
+                Refresh.Execute(null);
             }
         }
 
@@ -120,6 +147,7 @@ namespace NotifyMe.ViewModels
             _alertService.DeleteAlert(alert);
             DependencyService.Get<INotificationService>().RemoveLocationNotification(alert);
             DependencyService.Get<IToastService>().ShortMessage("Alert deleted");
+            Refresh.Execute(null);
         }
 
         public void AddOrHideAlert(Alert alert)

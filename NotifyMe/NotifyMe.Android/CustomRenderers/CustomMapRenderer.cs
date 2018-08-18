@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Android;
-using Android.Content;
+﻿using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Views;
+using Android.Net;
 using Android.Widget;
 using CustomRenderer.Droid;
+using Java.Util;
 using NotifyMe.CustomRenderers;
+using NotifyMe.Droid;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
@@ -57,6 +57,24 @@ namespace CustomRenderer.Droid
                 Position = pos
             });
             _map.AddMarker(marker);
+
+            if (MainActivity.IsNetworkConnected())
+            {
+                try
+                {
+                    Android.Locations.Geocoder geocoder = new Android.Locations.Geocoder(Android.App.Application.Context, Locale.Default);
+                    var addresses = geocoder.GetFromLocation(e.Point.Latitude, e.Point.Longitude, 1);
+                    var x = addresses;
+                }
+                catch (Exception)
+                {
+                    Toast.MakeText(Context, "N", ToastLength.Long).Show();
+                }
+            }
+            else
+            {
+                Toast.MakeText(Context, "No internet connection", ToastLength.Long).Show();
+            }
         }
 
         protected override MarkerOptions CreateMarker(Pin pin)

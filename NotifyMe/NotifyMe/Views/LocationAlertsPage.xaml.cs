@@ -40,9 +40,10 @@ namespace NotifyMe.Views
             vm.Refresh.Execute(null);
         }
 
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        private void Picker_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            vm.ShowDisabled = e.Value;
+            var picker = (Picker)sender;
+            vm.SelectedOption = (string)picker.SelectedItem;
             vm.Refresh.Execute(null);
         }
     }

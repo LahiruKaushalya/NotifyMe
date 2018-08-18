@@ -32,19 +32,17 @@ namespace NotifyMe.Views
         public void UpdateAlert(Alert alert, bool disable)
         {
             vm.UpdateAlert(alert, disable);
-            vm.Refresh.Execute(null);
         }
 
         public void DeleteAlert(Alert alert)
         {
             vm.DeleteAlert(alert);
-            vm.Refresh.Execute(null);
         }
 
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        private void Picker_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            var vm = BindingContext as TimeAlertsViewModel;
-            vm.ShowDisabled = e.Value;
+            var picker = (Picker)sender;
+            vm.SelectedOption = (string)picker.SelectedItem;
             vm.Refresh.Execute(null);
         }
     }

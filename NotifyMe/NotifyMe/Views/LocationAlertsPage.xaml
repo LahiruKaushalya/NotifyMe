@@ -44,10 +44,13 @@
                        FontAttributes="Bold"
                        Text="Location" />
 
-                <Switch Grid.Column="2"
-                        HorizontalOptions="End"
-                        Margin="0,0,9,0"
-                        Toggled="Switch_Toggled"/>
+                <Picker x:Name="Picker" 
+                        ItemsSource="{Binding Options}"
+                        Grid.Column="2"
+                        WidthRequest="60"
+                        HorizontalOptions="Center"
+                        Title="State"
+                        SelectedIndexChanged="Picker_SelectedIndexChanged"/>
             </Grid>
         </ListView.Header>
 

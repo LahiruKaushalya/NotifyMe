@@ -12,14 +12,15 @@ namespace NotifyMe.Services
     {
         private SQLiteConnection _dbContext;
 
-        public AlertService()//False => Location Alert
+        public AlertService()
         {
             _dbContext = DependencyService.Get<ISqliteConnection>().GetConnection();
             _dbContext.CreateTable<Alert>();
         }
 
+        #region Common
         public int AddAlert(Alert alert)
-        {  
+        {
             _dbContext.Insert(alert);
             var addedAlert = _dbContext.Table<Alert>()
                                 .OrderByDescending(a => a.Id)
@@ -35,7 +36,7 @@ namespace NotifyMe.Services
         {
             return _dbContext.Delete(alert);
         }
-        
+
         public int DisableAlert(Alert alert)
         {
             alert.State = AlertState.Disabled;
@@ -47,16 +48,21 @@ namespace NotifyMe.Services
             return _dbContext.Table<Alert>().Delete(a => a.Id == id);
         }
 
-        public List<Alert> GetAllUserLocationAlerts(string userName)
+        public Alert GetAlertById(int id)
         {
-            var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName)
-                            .OrderByDescending(a => a.Id)
-                            .ToList();
-            return alerts;
+            var alert = _dbContext.Table<Alert>().Where(a => a.Id == id).FirstOrDefault();
+            return alert;
         }
 
-        public List<Alert> GetAllUserTimeAlerts(string userName)
+        public int ActivateAlert(Alert alert)
+        {
+            alert.State = AlertState.Active;
+            return _dbContext.Update(alert);
+        }
+        #endregion
+
+        #region Time Alerts
+        public List<Alert> GetAllTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
                             .Where(a => a.Type == AlertType.Time && a.User == userName)
@@ -65,40 +71,16 @@ namespace NotifyMe.Services
             return alerts;
         }
 
-        public Alert GetAlertById(int id)
-        {
-            var alert = _dbContext.Table<Alert>().Where(a => a.Id == id).FirstOrDefault();
-            return alert;
-        }
-
-        public List<Alert> GetAllLocationAlerts()
+        public List<Alert> GetSentTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == AlertType.Location)
+                            .Where(a => a.Type == AlertType.Time &&  a.User == userName && a.State == AlertState.Sent)
                             .OrderByDescending(a => a.Id)
                             .ToList();
             return alerts;
         }
 
-        public List<Alert> GetAllTimeAlerts()
-        {
-            var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == AlertType.Time)
-                            .OrderByDescending(a => a.Id)
-                            .ToList();
-            return alerts;
-        }
-
-        public List<Alert> GetActiveUserLocationAlerts(string userName)
-        {
-            var alerts = _dbContext.Table<Alert>()
-                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName && a.State == AlertState.Active)
-                            .OrderByDescending(a => a.Id)
-                            .ToList();
-            return alerts;
-        }
-
-        public List<Alert> GetActiveUserTimeAlerts(string userName)
+        public List<Alert> GetActiveTimeAlerts(string userName)
         {
             var alerts = _dbContext.Table<Alert>()
                             .Where(a => a.Type == AlertType.Time && a.User == userName && a.State == AlertState.Active)
@@ -107,10 +89,54 @@ namespace NotifyMe.Services
             return alerts;
         }
 
-        public int ActivateAlert(Alert alert)
+        public List<Alert> GetDisabledTimeAlerts(string userName)
         {
-            alert.State = AlertState.Active;
-            return _dbContext.Update(alert);
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == AlertType.Time && a.User == userName && a.State == AlertState.Disabled)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return alerts;
         }
+        #endregion
+
+        #region Location Alerts
+        public List<Alert> GetAllLocationAlerts(string userName)
+        {
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return alerts;
+        }
+
+        public List<Alert> GetSentLocationAlerts(string userName)
+        {
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == AlertType.Location)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return alerts;
+        }
+
+        public List<Alert> GetActiveLocationAlerts(string userName)
+        {
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == (int)AlertType.Location && a.User == userName && a.State == AlertState.Active)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return alerts;
+        }
+
+        public List<Alert> GetDisabledLocationAlerts(string userName)
+        {
+            var alerts = _dbContext.Table<Alert>()
+                            .Where(a => a.Type == AlertType.Location && a.User == userName && a.State == AlertState.Disabled)
+                            .OrderByDescending(a => a.Id)
+                            .ToList();
+            return alerts;
+        }
+        #endregion
+
+
     }
 }

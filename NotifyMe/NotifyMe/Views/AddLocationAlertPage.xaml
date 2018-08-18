@@ -46,7 +46,7 @@
                                                  Text="{Binding Description}"/>
 
                     <Label Text="Location"/>
-                    <Picker ItemsSource="{Binding Locations}"
+                    <CustomRenderer:CustomPicker ItemsSource="{Binding Locations}"
                             ItemDisplayBinding="{Binding Name}"
                             Title="Select location"
                             SelectedIndexChanged="Picker_SelectedIndexChanged"/>
