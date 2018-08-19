@@ -9,17 +9,22 @@
             <ViewModels:ViewModelLocator x:Key="ViewModelLocator"/>
             <x:String x:Key="AppName">NotifyMe</x:String>
             
-            <!--Styles -->
-            <Color x:Key="BaseColor">#03A9F4</Color>
+            <!--Static Resources -->
+            <Color x:Key="BaseColor">#009b39</Color>
+            <Color x:Key="TextColor">#FFFFFF</Color>
             <Color x:Key="ListViewColor">#FFFFFF</Color>
-            <Color x:Key="ListViewHeaderColor">#BAC8E2</Color>
+            <Color x:Key="ListViewHeaderColor">#009b39</Color>
 
             <Style TargetType="ActivityIndicator">
                 <Setter Property="Scale" Value="0.15" />
                 <Setter Property="Color" Value="White" />
             </Style>
-
-
+            <!--Navbar Style-->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource BaseColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource TextColor}"/>
+            </Style>
+            <!--Button Style-->
             <Style TargetType="Button">
                 <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="BackgroundColor" Value="{StaticResource BaseColor}" />

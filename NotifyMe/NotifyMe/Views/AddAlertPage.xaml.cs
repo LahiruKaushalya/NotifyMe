@@ -11,7 +11,7 @@ namespace NotifyMe.Views
         {
             InitializeComponent();
             On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-            
+            On<Xamarin.Forms.PlatformConfiguration.Android>().SetBarSelectedItemColor((Color)Xamarin.Forms.Application.Current.Resources["BaseColor"]);
         }
     }
 }

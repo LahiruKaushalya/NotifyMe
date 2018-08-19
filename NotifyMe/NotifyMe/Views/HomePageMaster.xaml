@@ -27,7 +27,7 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
 
-                    <Image:CircleImage Source="notify_me.png"
+                    <Image:CircleImage Source="notifyme.png"
                                        Grid.Column="1" Grid.Row="1"
                                        HorizontalOptions="Start"/>
                     

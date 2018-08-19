@@ -22,16 +22,12 @@
     
     <ContentPage.Content>
             <Grid Margin="0,0,0,30" RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1"/>
-                    <RowDefinition Height="*"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
-
-
-            <ScrollView Grid.Row="1" Margin="30,0,30,30">
+            <ScrollView Grid.Row="0" Margin="30,0,30,30">
                 <StackLayout >
                     <Label Text="New Time Alert"
                            FontSize="Medium"
@@ -57,7 +53,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <Button Grid.Row="2"
+            <Button Grid.Row="1"
                         Text="Add"
                         Command="{Binding AddAlert}"/>
                

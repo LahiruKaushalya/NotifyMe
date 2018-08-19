@@ -9,8 +9,7 @@
   </MasterDetailPage.Master>
     
   <MasterDetailPage.Detail>
-    <NavigationPage x:Name="Navigator"
-                    BarBackgroundColor="{StaticResource BaseColor}">
+    <NavigationPage x:Name="Navigator">
       <x:Arguments>
         <pages:AlertsPage />
       </x:Arguments>

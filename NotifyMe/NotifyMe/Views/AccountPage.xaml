@@ -34,7 +34,7 @@
                      VerticalOptions="End"
                      BackgroundColor="{StaticResource BaseColor}"/>
             
-            <Image:CircleImage Source="notify_me.png"
+            <Image:CircleImage Source="notifyme.png"
                                Grid.Row="1"
                                HorizontalOptions="Center" 
                                VerticalOptions="Start"

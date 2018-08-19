@@ -38,7 +38,9 @@ namespace NotifyMe.Droid
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            
+
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#02511f"));
+
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);

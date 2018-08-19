@@ -1,6 +1,8 @@
 ﻿
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
+using Android.Graphics;
 using Android.Locations;
 using Android.Support.V4.App;
 using NotifyMe.Models.DbModels;
@@ -52,12 +54,13 @@ namespace NotifyMe.Droid
 
             notificationBuilder.SetContentTitle(_title)
                                .SetContentText(_body)
-                               .SetSmallIcon(Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha)
+                               .SetSmallIcon(Resource.Drawable.notification_small_icon)
+                               .SetLargeIcon(BitmapFactory.DecodeResource(Application.Context.Resources, Resource.Drawable.notification_large_icon))
                                .SetDefaults(NotificationCompat.DefaultSound |
                                             NotificationCompat.DefaultVibrate |
                                             NotificationCompat.DefaultLights)
                                .SetPriority(NotificationCompat.PriorityMax)
-                               .SetCategory(NotificationCompat.CategoryAlarm);
+                               .SetCategory(NotificationCompat.CategoryReminder);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.From(Application.Context);
             notificationManager.Notify(_id, notificationBuilder.Build());
