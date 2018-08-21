@@ -28,7 +28,7 @@ using Plugin.CurrentActivity;
 
 namespace NotifyMe.Droid
 {
-    [Activity(Label = "NotifyMe", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "NotifyMe", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, ILocationListener, INotificationService
     {
         protected async override void OnCreate(Bundle bundle)

@@ -64,7 +64,7 @@
                        Placeholder="Name"
                        Grid.Row="0"/>
 
-                <Image Source="round_call_black_24.png" Grid.Row="1"/>
+                <Image Source="round_phone_black_24.png" Grid.Row="1"/>
                 <Entry x:Name="TelephoneEntry" 
                        Text="{Binding Telephone}"
                        Placeholder="Update Telephone No"
