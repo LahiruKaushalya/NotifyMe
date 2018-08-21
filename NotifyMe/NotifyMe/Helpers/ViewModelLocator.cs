@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
+using NotifyMe.ViewModels;
 
-namespace NotifyMe.ViewModels
+namespace NotifyMe.Helpers
 {
     public class ViewModelLocator
     {
@@ -75,6 +76,13 @@ namespace NotifyMe.ViewModels
         #endregion
 
         #region Other View Models
+        public MapCreationViewModel MapCreationViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MapCreationViewModel>();
+            }
+        }
         public SignupViewModel SignupViewModel
         {
             get

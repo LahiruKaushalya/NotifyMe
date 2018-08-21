@@ -47,6 +47,7 @@ namespace NotifyMe.Helpers
             _unityContainer.RegisterType<HomePageMasterViewModel>();
             _unityContainer.RegisterType<SettingsViewModel>();
             _unityContainer.RegisterType<AccountViewModel>();
+            _unityContainer.RegisterType<MapCreationViewModel>();
             #endregion
 
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(_unityContainer));

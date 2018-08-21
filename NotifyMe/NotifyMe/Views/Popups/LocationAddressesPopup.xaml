@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.Views.Popups.LocationAddressesPopup"
+             xmlns:Pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BindingContext="{Binding AddLocationViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="40,60,40,20" 
+          BackgroundColor="White"
+          Opacity="0.9"
+          RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <ActivityIndicator Grid.RowSpan="2" x:Name="ActivityIndicator"/>
+
+        <Grid Grid.Row="0">
+            <ListView x:Name="ListView"
+                  ItemTapped="ListView_ItemTapped"
+                  BackgroundColor="{StaticResource ListViewColor}">
+
+                <ListView.Header>
+                    <Grid BackgroundColor="{StaticResource ListViewHeaderColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0"
+                           HorizontalOptions="Center"
+                           TextColor="White"
+                           Text="Location Address Suggestions" />
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="40">
+                            <Grid RowSpacing="0" 
+                              Padding="20,0,20,0" 
+                              BackgroundColor="{StaticResource ListViewColor}">
+                                <Label VerticalTextAlignment="Center" 
+                                   Text="{Binding FeatureName}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry x:Name="LocationNameEntry"
+                   Text="{Binding LocationName}"
+                   Placeholder="Add location name"
+                   Grid.Column="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Start"
+                   Margin="20,0,0,0"/>
+
+            <Button Image="round_add_white_24.png"
+                    Grid.Column="1"
+                    Margin="0,0,0,0"
+                    CornerRadius="25"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Command="{Binding AddLocation}"/>
+        </Grid>
+    </Grid>
+</Pages:PopupPage>

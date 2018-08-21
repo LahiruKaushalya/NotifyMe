@@ -22,6 +22,7 @@ using NotifyMe.Models;
 using NotifyMe.Models.DbModels;
 using System.Linq;
 using Android.Net;
+using Plugin.CurrentActivity;
 
 [assembly: Dependency(typeof(MainActivity))]
 
@@ -44,6 +45,7 @@ namespace NotifyMe.Droid
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
+            CrossCurrentActivity.Current.Init(this, bundle);
 
             LoadApplication(new App());
         }
