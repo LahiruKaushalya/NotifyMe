@@ -41,7 +41,7 @@ namespace NotifyMe.ViewModels
                                     _userService.UpdateUser(user);
 
                                     DependencyService.Get<IToastService>().ShortMessage("Login successfull");
-                                    await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                                    await Application.Current.MainPage.Navigation.PushAsync(new IndexPage());
                                     await PopupNavigation.Instance.PopAsync(true);
                                 }
                                 else

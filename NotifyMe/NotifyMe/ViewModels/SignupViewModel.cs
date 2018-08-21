@@ -65,7 +65,7 @@ namespace NotifyMe.ViewModels
                                 {
                                     _userService.SetCurrentUser(user);
                                     DependencyService.Get<IToastService>().LongMessage("Welcome to NotifyMe");
-                                    await Application.Current.MainPage.Navigation.PushAsync(new HomePage());
+                                    await Application.Current.MainPage.Navigation.PushAsync(new IndexPage());
                                 }
                                 else
                                 {

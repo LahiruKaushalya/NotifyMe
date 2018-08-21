@@ -28,7 +28,7 @@ namespace NotifyMe
             else
             {
                 userService.SetCurrentUser(currentUser);
-                MainPage = new NavigationPage(new HomePage());
+                MainPage = new NavigationPage(new IndexPage());
             }
 
 		}

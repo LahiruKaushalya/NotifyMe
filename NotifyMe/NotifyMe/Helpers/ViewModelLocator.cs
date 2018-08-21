@@ -91,11 +91,11 @@ namespace NotifyMe.Helpers
             }
         }
 
-        public HomePageMasterViewModel HomePageMasterViewModel
+        public IndexPageMasterViewModel HomePageMasterViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<HomePageMasterViewModel>();
+                return ServiceLocator.Current.GetInstance<IndexPageMasterViewModel>();
             }
         }
 

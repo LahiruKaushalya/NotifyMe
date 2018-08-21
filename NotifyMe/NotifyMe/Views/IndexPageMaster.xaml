@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.HomePageMaster"
+             x:Class="NotifyMe.Views.IndexPageMaster"
              Title="Master"
              xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding HomePageMasterViewModel, Source={StaticResource ViewModelLocator}}">
@@ -9,7 +9,7 @@
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
             SeparatorVisibility="Default"
-            RowHeight="60"
+            RowHeight="50"
             HasUnevenRows="False"
             ItemsSource="{Binding MenuItems}">
 
@@ -51,7 +51,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <ViewCell >
                         <Grid Margin="20,15,20,10" RowSpacing="0" ColumnSpacing="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.12*"/>
