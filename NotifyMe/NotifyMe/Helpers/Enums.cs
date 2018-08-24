@@ -15,7 +15,8 @@ namespace NotifyMe.Helpers
             Disabled,
             Pending,
             Sent,
-            Deleted
+            Deleted,
+            Failed
         }
     }
 }

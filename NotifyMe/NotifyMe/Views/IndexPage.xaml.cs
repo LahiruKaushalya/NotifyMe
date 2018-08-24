@@ -31,6 +31,7 @@ namespace NotifyMe.Views
 
             if (item.TargetType == typeof(SignupPage))
             {
+                MasterPage.ListView.SelectedItem = null;
                 var responce = await Application.Current.MainPage.DisplayAlert("Logout", "Are you sure?", "Yes", "No");
                 if (responce)
                 {
@@ -41,7 +42,6 @@ namespace NotifyMe.Views
                 }
                 else
                 {
-                    MasterPage.ListView.SelectedItem = null;
                     return;
                 }
             }

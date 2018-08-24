@@ -33,5 +33,7 @@ namespace NotifyMe.Interfaces
         List<Alert> GetDisabledLocationAlerts(string userName);
 
         int ActivateAlert(Alert alert);
+
+        int UpdateAlert(Alert alert);
     }
 }

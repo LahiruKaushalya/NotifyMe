@@ -1,12 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotifyMe.Views.HomePage">
+             x:Class="NotifyMe.Views.HomePage"
+             xmlns:Image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Image Grid.Row="0" 
+                   Source="homebackground.jpg"
+                   VerticalOptions="Start"/> 
+
+            <Image Grid.Row="0" 
+                   Source="wrapper.png"
+                   VerticalOptions="Start"
+                   HorizontalOptions="CenterAndExpand"
+                   TranslationY="10"/>
+
+            <Image:CircleImage Grid.Row="0"
+                               Source="notifyme.png" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"
+                               BorderColor="White" 
+                               BorderThickness="2"
+                               HeightRequest="140" 
+                               WidthRequest="140" 
+                               TranslationY="20"/>
+            
+            <Label Grid.Row="1"
+                   Text="NotifyMe"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   TextColor="Black"
+                   TranslationY="-110"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

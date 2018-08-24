@@ -5,6 +5,8 @@ using Plugin.Geolocator.Abstractions;
 
 using NotifyMe.Interfaces;
 using NotifyMe.Models.DbModels;
+using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace NotifyMe.ViewModels
 {
@@ -26,7 +28,7 @@ namespace NotifyMe.ViewModels
         public ICommand AddLocation {
             get
             {
-                return new Command(() => {
+                return new Command(async() => {
 
                     if (LocationName == string.Empty)
                     {
@@ -48,8 +50,10 @@ namespace NotifyMe.ViewModels
                         {
                             var id = _locationService.AddLocation(location);
                             if (id != -1)
-                            {
+                            {  
                                 DependencyService.Get<IToastService>().ShortMessage("Location added successfully");
+                                await Task.Delay(20);
+                                await PopupNavigation.Instance.PopAsync();
                             }
                             else
                             {

@@ -59,6 +59,11 @@ namespace NotifyMe.Services
             alert.State = AlertState.Active;
             return _dbContext.Update(alert);
         }
+
+        public int UpdateAlert(Alert alert)
+        {
+            return _dbContext.Update(alert);
+        }
         #endregion
 
         #region Time Alerts

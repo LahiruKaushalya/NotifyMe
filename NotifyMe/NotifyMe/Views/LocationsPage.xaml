@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="Margin" Value="15,0,15,0"/>
+                <Setter Property="Margin" Value="20,0,20,0"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
@@ -37,16 +37,18 @@
                 <Label HorizontalTextAlignment="Start"
                        Grid.Column="0"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Location Name" />
 
                 <Label HorizontalTextAlignment="Start"
                        Grid.Column="1"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Show Deleted" />
 
                 <Switch Grid.Column="1"
                         HorizontalOptions="End"
-                        Margin="0,0,10,0"
+                        Margin="0,0,15,0"
                         Toggled="Switch_Toggled"/>
                 
             </Grid>

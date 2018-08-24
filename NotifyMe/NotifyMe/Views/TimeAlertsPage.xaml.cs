@@ -21,6 +21,7 @@ namespace NotifyMe.Views
 		{
 			InitializeComponent ();
             vm = BindingContext as TimeAlertsViewModel;
+            Picker.SelectedIndex = 0;
         }
 
         private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)

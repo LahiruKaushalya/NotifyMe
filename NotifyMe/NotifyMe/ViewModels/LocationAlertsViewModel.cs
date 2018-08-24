@@ -57,7 +57,7 @@ namespace NotifyMe.ViewModels
             set
             {
                 _isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
+                OnPropertyChanged();
             }
         }
 
@@ -67,7 +67,7 @@ namespace NotifyMe.ViewModels
             set
             {
                 _selectedOption = value;
-                OnPropertyChanged(nameof(SelectedOption));
+                OnPropertyChanged();
             }
         }
 
@@ -134,7 +134,7 @@ namespace NotifyMe.ViewModels
                     Title = alert.Title,
                     Body = alert.Description,
                     Position = new Xamarin.Forms.Maps.Position(location.Latitude, location.Longitude),
-                    Radius = 2
+                    Radius = 30
                 };
                 DependencyService.Get<INotificationService>().ScheduleLocationNotification(notification);
                 DependencyService.Get<IToastService>().ShortMessage("Alert reactivated");

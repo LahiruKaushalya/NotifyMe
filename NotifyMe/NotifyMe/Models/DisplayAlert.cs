@@ -10,5 +10,7 @@ namespace NotifyMe.Models
         public bool IsDisabled { get; set; }
 
         public bool IsSent { get; set; }
+
+        public bool IsFailed { get; set; }
     }
 }

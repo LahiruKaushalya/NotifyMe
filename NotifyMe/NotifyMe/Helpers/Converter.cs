@@ -10,6 +10,15 @@ namespace NotifyMe.Helpers
 {
     public class Converter : IConverter
     {
+        private IValidator _validator;
+        private IAlertService _alertService;
+
+        public Converter(IAlertService alertService, IValidator validator)
+        {
+            _alertService = alertService;
+            _validator = validator;
+        }
+
         public ObservableCollection<DisplayAlert> AlertToDisplayAlert(List<Alert> alerts)
         {
             var displayAlerts = new ObservableCollection<DisplayAlert>();
@@ -19,8 +28,24 @@ namespace NotifyMe.Helpers
 
                 var isDisabled = false;
                 var isSent = false;
+                var isFailed = false;
 
-                if (alert.State == AlertState.Disabled)
+                if (alert.Type == AlertType.Time && alert.State == AlertState.Active)
+                {
+                    var isDateTimeStillValid = _validator.ValidateDateTime(alert.Date, alert.Time);
+
+                    if (!isDateTimeStillValid)
+                    {
+                        isFailed = true;
+                        alert.State = AlertState.Failed;
+                        _alertService.UpdateAlert(alert);
+                    }
+                }
+                if (alert.State == AlertState.Failed)
+                {
+                    isFailed = true;
+                }
+                else if (alert.State == AlertState.Disabled)
                 {
                     isDisabled = true;
                 }
@@ -45,7 +70,8 @@ namespace NotifyMe.Helpers
                     LocationName = alert.LocationName,
                     DisplayDateTime = (alert.Date + alert.Time).ToString(),
                     IsDisabled = isDisabled,
-                    IsSent = isSent
+                    IsSent = isSent,
+                    IsFailed = isFailed
                 };
                 displayAlerts.Add(displayAlert);
             }

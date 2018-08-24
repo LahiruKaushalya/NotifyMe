@@ -37,11 +37,13 @@
                        Grid.Column="0"
                        Margin="20,0,0,0"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Title" />
 
                 <Label HorizontalTextAlignment="Start"
                        Grid.Column="1"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Date and Time" />
 
                 <Picker x:Name="Picker" 
@@ -49,10 +51,9 @@
                         Grid.Column="2"
                         WidthRequest="60"
                         HorizontalOptions="Center"
-                        Title="State"
+                        TextColor="White"
+                        FontAttributes="Bold"
                         SelectedIndexChanged="Picker_SelectedIndexChanged"/>
-
-
             </Grid>
         </ListView.Header>
 
@@ -96,6 +97,13 @@
                                VerticalOptions="Center"
                                BackgroundColor="#D8E5FC"
                                IsVisible="{Binding IsDisabled}"/>
+
+                        <Image Source="round_warning_black_18.png" 
+                               Grid.Column="2" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               BackgroundColor="white"
+                               IsVisible="{Binding IsFailed}"/>
 
                     </Grid>
                 </ViewCell>

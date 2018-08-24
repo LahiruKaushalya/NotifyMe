@@ -81,7 +81,7 @@ namespace NotifyMe.ViewModels
                                     Title = Title,
                                     Body = Description,
                                     Position = new Position(Location.Latitude, Location.Longitude),
-                                    Radius = 2
+                                    Radius = 30
                                 };
 
                                 // Send Native Location alerts

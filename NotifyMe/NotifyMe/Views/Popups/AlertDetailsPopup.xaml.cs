@@ -44,8 +44,11 @@ namespace NotifyMe.Views.Popups
             {
                 AlertStateIcon.Source = "round_check_circle_black_18.png";
             }
-            else if(_alert.State == AlertState.Active ||
-                    _alert.State == AlertState.Pending)
+            else if (_alert.State == AlertState.Failed)
+            {
+                AlertStateIcon.Source = "round_warning_black_18.png";
+            }
+            else if(_alert.State == AlertState.Active || _alert.State == AlertState.Pending)
             {
                 AlertStateIcon.Source = "round_check_circle_outline_black_18.png";
             }

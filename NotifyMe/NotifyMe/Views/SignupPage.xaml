@@ -29,7 +29,7 @@
 
             <BoxView Grid.Row="0" BackgroundColor="{StaticResource BaseColor}"/>
 
-            <Grid Grid.Row="1" Margin="0,50,0,20" RowSpacing="5" ColumnSpacing="8" BackgroundColor="GhostWhite">
+            <Grid Grid.Row="1" Margin="0,70,0,20" RowSpacing="5" ColumnSpacing="8" BackgroundColor="GhostWhite">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.18*"/>
                     <ColumnDefinition Width="*"/>
@@ -81,7 +81,7 @@
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
-                        TranslationY="30"
+                        TranslationY="45"
                         Text="Signup"
                         Command="{Binding Signup}"/>
 
@@ -89,14 +89,14 @@
                        Grid.ColumnSpan="2" 
                        HorizontalTextAlignment="Center" 
                        VerticalTextAlignment="Center"
-                       TranslationY="30"
+                       TranslationY="45"
                        Text="Already have an account?"/>
 
                 <Button Grid.Row="6" 
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="StartAndExpand"
-                        TranslationY="30"
+                        TranslationY="45"
                         Text="Login"
                         Command="{Binding Login}"/>
 
@@ -108,8 +108,8 @@
                                VerticalOptions="Start"
                                BorderColor="White" 
                                BorderThickness="2"
-                               HeightRequest="90" 
-                               WidthRequest="90" 
+                               HeightRequest="100" 
+                               WidthRequest="100" 
                                TranslationY="-75"/>   
         </Grid>
 

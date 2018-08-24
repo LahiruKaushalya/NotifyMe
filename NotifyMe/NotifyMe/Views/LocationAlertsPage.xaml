@@ -37,11 +37,13 @@
                        Grid.Column="0"
                        Margin="20,0,0,0"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Title" />
 
                 <Label HorizontalTextAlignment="Start"
                        Grid.Column="1"
                        FontAttributes="Bold"
+                       TextColor="White"
                        Text="Location" />
 
                 <Picker x:Name="Picker" 
@@ -49,7 +51,8 @@
                         Grid.Column="2"
                         WidthRequest="60"
                         HorizontalOptions="Center"
-                        Title="State"
+                        TextColor="White"
+                        FontAttributes="Bold"
                         SelectedIndexChanged="Picker_SelectedIndexChanged"/>
             </Grid>
         </ListView.Header>

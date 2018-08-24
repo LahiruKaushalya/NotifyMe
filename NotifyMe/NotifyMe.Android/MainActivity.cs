@@ -59,11 +59,17 @@ namespace NotifyMe.Droid
         private void GetLocationUpdate()
         {
             LocationManager locationManager = (LocationManager)Android.App.Application.Context.GetSystemService(LocationService);
-            Criteria criteriaForLocationService = new Criteria
+            string locationProvider = null;
+            try
             {
-                Accuracy = Accuracy.Fine
-            };
-            string locationProvider = locationManager.GetBestProvider(criteriaForLocationService, true);
+                Criteria criteriaForLocationService = new Criteria
+                {
+                    HorizontalAccuracy = Accuracy.High
+                };
+                locationProvider = locationManager.GetBestProvider(criteriaForLocationService, true);
+            }
+            catch (Exception) { }
+            
             if (locationProvider == null)
             {
                 return;
@@ -74,7 +80,7 @@ namespace NotifyMe.Droid
             }
             else
             {
-                locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
+                locationManager.RequestLocationUpdates(locationProvider, 100, 1, this);
             }
         }
 
